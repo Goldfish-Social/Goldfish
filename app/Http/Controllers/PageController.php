@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class PageController extends Controller
 {
     public function landing() {
-        return view('auth.login');
+        return view('landing');
     }
     // Redirect /i to /i/web
     public function web() {
