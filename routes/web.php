@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DiscoverController;
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
@@ -21,16 +22,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => 'guest'], function() {
-    Route::get('/', [PageController::class, 'landing'])->name('landing');
+    Route::get('/', [HomeController::class, 'landing'])->name('landing');
 });
 
 // About, terms & privacy
 Route::group(['prefix' => 'about'], function () {
-    Route::get('/', [PageController::class, 'about'])->name('about');
-    Route::get('privacy', [PageController::class, 'privacy'])->name('privacy');
-    Route::get('terms', [PageController::class, 'terms'])->name('terms');
-    Route::get('guidelines', [PageController::class, 'guidelines'])->name('guidelines');
-    Route::get('contact', [PageController::class, 'contact'])->name('contact');
+    Route::get('/', [HomeController::class, 'about'])->name('about');
+    Route::get('privacy', [HomeController::class, 'privacy'])->name('privacy');
+    Route::get('terms', [HomeController::class, 'terms'])->name('terms');
+    Route::get('guidelines', [HomeController::class, 'guidelines'])->name('guidelines');
+    Route::get('contact', [HomeController::class, 'contact'])->name('contact');
 });
 
 Auth::routes(['verify' => true]);
@@ -41,7 +42,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'i'], function () {
     // All under /i
-    Route::get('/', [PageController::class, 'web']);
+    Route::get('/', [HomeController::class, 'web']);
     // /i/home
     Route::get('home', [PostController::class, 'index'])->name('home');
     // /i/account
@@ -77,14 +78,19 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'i'], function (
     Route::group(['prefix' => 'discover'], function () {
         Route::get('/', [DiscoverController::class, 'index'])->name('discover');
     });
-    // Discover page
+    // Trending group page
     Route::group(['prefix' => 'trending'], function () {
         Route::get('/', [TrendingController::class, 'index'])->name('trending');
     });
-    // Profile page (demo)
-    Route::group(['prefix' => 'profile'], function () {
-        Route::get('/', [UserController::class, 'profile']);
-        Route::get('{id}', [ProfileController::class, 'show'])->whereAlphaNumeric('id');
+    // Groups
+    Route::group(['prefix' => 'groups'], function () {
+        Route::get('/', [GroupController::class, 'index'])->name('groups');
+        Route::get('create', [GroupController::class, 'create'])->name('create-group');
+    });
+    // Pages
+    Route::group(['prefix' => 'pages'], function () {
+        Route::get('/', [PageController::class, 'index'])->name('pages');
+        Route::get('create', [PageController::class, 'create'])->name('create-page');
     });
     
 });

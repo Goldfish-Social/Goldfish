@@ -2,35 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\StorePageRequest;
+use App\Http\Requests\UpdatePageRequest;
+use App\Models\Page;
 
 class PageController extends Controller
 {
-    public function landing() {
-        return view('landing');
+    public function index()
+    {
+        // Return create pages view
+        return view('pages.index');
     }
-    // Redirect /i to /i/web
-    public function web() {
-        return redirect()->route('home');
+
+    public function create()
+    {
+        // Return create pages view
+        return view('pages.create');
     }
-    // Return about page view
-    public function about() {
-        return view('about.index');
-    }
-    // Return terms page view
-    public function terms() {
-        return view('about.terms');
-    }
-    // Return privacy page view
-    public function privacy() {
-        return view('about.privacy');
-    }
-    // Return guidelines page view
-    public function guidelines() {
-        return view('about.guidelines');
-    }
-    // Return contact page view
-    public function contact() {
-        return view('about.contact');
-    }
+
+    
 }
