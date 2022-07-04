@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePostRequest;
-use App\Http\Requests\UpdatePostRequest;
+use Illuminate\Http\Request;
 use App\Models\Post;
 
 class PostController extends Controller
@@ -28,32 +27,28 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        return view('posts.form');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StorePostRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StorePostRequest $request)
+    public function store(Request $request)
     {
         // Validate form fields
         $formFields = $request->validate([
             'caption' => 'required',
             'visibility' => 'required',
-            'media' => ['required','mimes:mp4,jpeg','max:10048'],
+            'media' => ['required','mimes:mp4,mov','max:100048'],
         ]);
 
-        // Check media on upload
         if($request->hasFile('media')) {
             $formFields['media'] = $request->file('media')->store('media', 'public');
         }
+
         // Get user_id from auth
         $formFields['user_id'] = auth()->id();
+
         // Submit data
         Post::create($formFields);
+
         // Return after success
         return redirect('/i/home')->with('message', 'Post published!');
     }
@@ -89,7 +84,7 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePostRequest $request, Post $post)
+    public function update(Request $request, Post $post)
     {
         //
     }

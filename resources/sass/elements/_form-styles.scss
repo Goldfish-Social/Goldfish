@@ -1,0 +1,388 @@
+/* ---------------------------------- */
+/* Forms Reset & Styles
+------------------------------------- */
+
+$body-input-font-color:           #808080;
+
+
+select  , textarea , input ,  input[type="text"], input[type="password"], input[type="email"], input[type="number"] {
+  height: 46px;
+  line-height: 46px;
+  padding: 0 20px;
+  outline: none;
+  font-size: $body-font-size;
+  color: $body-input-font-color;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  display: block;
+  background-color: #fff;
+  font-weight: 400;
+  opacity: 1;
+  border-radius: $global-border-radius;
+  border: none;
+}
+
+select {
+  cursor: pointer;
+}
+
+input {
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  -o-transition: all 0.1s ease-in-out;
+  -ms-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+  &:focus, &[type="text"]:focus, &[type="password"]:focus, &[type="email"]:focus, &[type="number"]:focus {
+    color: $body-input-font-color;
+    transition: box-shadow 0.2s !important;
+    opacity: 1;
+    border: none;
+  }
+}
+
+textarea:focus {
+  color: $body-input-font-color;
+  transition: box-shadow 0.2s !important;
+  opacity: 1;
+  border: none; 
+}
+
+input {
+  &:-webkit-autofill {
+    &:focus {
+      -webkit-box-shadow: 0 0 0 30px #fff inset !important;
+      -webkit-text-fill-color: $body-input-font-color !important;
+    }
+    -webkit-box-shadow: 0 0 0 30px #fff inset !important;
+    -webkit-text-fill-color: $body-input-font-color !important;
+  }
+  &.with-border, &[type="text"].with-border, &[type="password"].with-border, &[type="email"].with-border, &[type="number"].with-border {
+    border: 1px solid #e0e0e0;
+  }
+}
+
+/* With Border */
+
+textarea.with-border, select.with-border {
+  border: 1px solid #e0e0e0;
+}
+
+input {
+  &.with-border:focus, &[type="text"].with-border:focus, &[type="password"].with-border:focus, &[type="email"].with-border:focus, &[type="number"].with-border:focus {
+    border: 1px solid #e0e0e0;
+  }
+}
+
+textarea.with-border:focus {
+  border: 1px solid #e0e0e0;
+}
+
+input {
+  &[type="submit"] {
+    border: none;
+    padding: 11px 18px;
+    width: auto;
+  }
+  &[type="checkbox"] {
+    display: inline;
+  }
+  &[type="radio"] {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    box-shadow: none;
+  }
+}
+
+/* Input Placeholder Color */
+
+::placeholder {
+  color: $body-input-font-color;
+  opacity: 1;
+}
+
+textarea {
+  height: auto;
+  line-height: $body-line-height;
+  padding: 20px;
+  min-height: 130px;
+  transition: none !important;
+  min-width: 100%;
+}
+
+label, legend {
+  display: block;
+  font-weight: bold;
+  font-size: $body-font-size;
+  font-weight: normal;
+  margin-bottom: 8px;
+}
+
+label span, legend span {
+  font-weight: normal;
+  font-size: 14px;
+  color: #444;
+}
+
+fieldset {
+  padding: 0;
+  border: none;
+}
+
+button {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  cursor: pointer;
+}
+ 
+button {
+  outline: none !important;
+}
+ 
+
+img {
+  max-width: 100%;
+}
+
+
+/* ---------------------------------- */
+/* Input With Icon
+------------------------------------- */
+
+.input-with-icon {
+  position: relative;
+  input {
+    padding-left: 45px;
+  }
+  i {
+    position: absolute;
+    top: 0;
+    color: #a0a0a0;
+    text-align: center;
+    line-height: 46px;
+    width: 46px;
+    height: 46px;
+    font-size: 19px; 
+    box-sizing: border-box;
+    display: block; 
+  }
+  &.no-border i {
+    border: none;
+  }
+}
+
+/* Input with right icon */
+
+.input-with-icon-right {
+  display: block;
+  position: relative;
+  input {
+    padding-right: 45px;
+  }
+  i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 15px;
+    font-size: 20px;
+    color: #a0a0a0;
+    font-style: normal;
+    cursor: normal;
+    pointer-events: none;
+    &.currency {
+      font-size: 14px;
+    }
+  }
+}
+
+
+/* ---------------------------------- */
+/* Keywords Input
+------------------------------------- */
+
+.keywords-container {
+  margin-bottom: -15px;
+}
+
+.keywords-list {
+  display: block;
+  float: left;
+  height: 0;
+}
+
+.keyword {
+  background-color: rgba($primary-color, 0.07);
+  color: $primary-color;
+  display: inline-block;
+  float: left;
+  padding: 0;
+  border-radius: $global-border-radius;
+  cursor: default;
+  margin: 0 7px 7px 0;
+  height: 35px;
+  line-height: 35px;
+  box-sizing: border-box;
+  animation: KeywordIn 0.3s ease-in-out;
+  animation-fill-mode: both;
+  transition: 0.4s;
+  overflow: hidden;
+  max-width: 100%;
+  font-size: 14.7px;
+  &.keyword-removed {
+    max-width: 0;
+    margin: 0;
+    overflow: hidden;
+    opacity: 0;
+    animation: KeywordOut 0.4s ease-in-out;
+    animation-fill-mode: both;
+    pointer-events: none;
+  }
+}
+
+@keyframes KeywordIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes KeywordOut {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+    margin-top: -35px;
+  }
+}
+
+
+.keyword-text {
+  padding-right: 12px;
+}
+
+.keyword .keyword-remove:before {
+  display: inline-block;
+  cursor: pointer;
+  font-family: "Feather-Icons";
+  content: "\ea02";
+  line-height: 20px;
+  position: relative;
+  top: 2px;
+  margin-right: 4px;
+  margin-left: 10px;
+  font-size: 15px;
+}
+
+.keyword-input-container {
+  position: relative;
+  .keyword-input-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 36px;
+    width: 36px;
+    padding: 0;
+    color: #fff;
+    background-color: $primary-color;
+    border-radius: $global-border-radius;
+    margin: 6px;
+    font-size: 19px;
+    text-align: center;
+    line-height: 36px;
+    i {
+      color: #fff;
+      position: relative;
+      top: 2px;
+    }
+  }
+}
+
+input.keyword-input {
+  margin: 0 0 15px 0;
+}
+
+
+
+/* ---------------------------------- */
+/* Input animation placeholder
+------------------------------------- */
+
+.line {
+  position: relative;
+  height: 55px;
+}
+
+.line__input {
+  border: 1px solid #dadce0 !important;
+  font-size: 15px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 4px;
+  outline: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0 16px;
+  padding-top: 11px !important;
+  height: 55px !important;
+}
+
+.line__placeholder {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  left: 15px;
+  font-size: 15px; 
+  padding: 0 5px;
+  color: #a7a7a7;
+  -webkit-transition: .25s;
+  transition: .25s;
+}
+
+.line__input:focus {
+  box-shadow: 0 0 0 1px $primary-color inset;
+  border-color: transparent !important;
+}
+
+.line textarea {
+  padding-top: 22px !important;
+}
+
+.line__input:not([value=""])+.line__placeholder,
+.line__input:not([value=""])+.line__placeholder,
+.line__input:focus+.line__placeholder {
+  top: 6px;
+  font-size: 12px;
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+}
+
+.line__input:focus+.line__placeholder {
+  color: $primary-color;
+}
+
+.line textarea+.line__placeholder {
+  top: 30px;
+}

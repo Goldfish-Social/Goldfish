@@ -1,177 +1,346 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container m-auto">
+<div class="mcontainer">
 
-    <h1 class="lg:lg:text-2xl text-lg text-lg font-extrabold leading-none text-gray-900 tracking-tight mt-3"> Explore </h1>
 
-    <div class="lg:m-0 -mx-5 flex justify-between items-center py-2 relative space-x-3 dark-tabs" uk-sticky="cls-active: bg-gray-100 bg-opacity-95; media : @m ; media @m">
-        <div class="flex overflow-x-scroll lg:overflow-hidden lg:pl-0 pl-5 space-x-3 lg:py-2">
-            <a href="#" class="bg-white py-2 px-4 rounded inline-block font-bold shadow"> Shop</a>
-            <a href="#" class="bg-white py-2 px-4 rounded inline-block font-bold shadow"> Travel </a>
-            <a href="#" class="bg-white py-2 px-4 rounded inline-block font-bold shadow"> Fitness</a>
-            <a href="#" class="bg-white py-2 px-4 rounded inline-block font-bold shadow"> Technology</a>
-            <a href="#" class="bg-white py-2 px-4 rounded inline-block font-bold shadow"> Music </a>
-            <a href="#" class="bg-white py-2 px-4 rounded inline-block font-bold shadow"> Architecture</a>
+    <div class="flex justify-between relative md:mb-4 mb-3">
+        <div class="flex-1">
+            <h2 class="text-2xl font-semibold"> Videos </h2>
+            <nav class="responsive-nav border-b md:m-0 -mx-4">
+                <ul>
+                    <li class="active"><a href="#" class="lg:px-2">   Suggestions </a></li>
+                    <li><a href="#" class="lg:px-2"> Newest </a></li>
+                    <li><a href="#" class="lg:px-2"> My videos </a></li>
+                </ul>
+            </nav>
         </div>
+        <a href="#create-post-modal" uk-toggle class="flex items-center justify-center h-9 lg:px-5 px-2 rounded-md bg-blue-600 text-white space-x-1.5 absolute right-0">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5">
+                <path fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+                    clip-rule="evenodd"></path>
+            </svg>
+            <span class="md:block hidden"> Create </span>
+        </a> 
     </div>
-    
-    <div class="grid lg:grid-cols-4 grid-cols-2 gap-2 hover:text-yellow-700 uk-link-reset">
-        <div>
-            <div class="bg-red-400 max-w-full lg:h-64 h-4 rounded-md relative overflow-hidden uk-transition-toggle shadow-sm"> 
-                <a href="#story-modal" uk-toggle>
-                    <img src="assets/images/avatars/avatar-1.jpg" class="w-full h-full absolute object-cover inset-0">
-                </a>
-                <a  href="#story-modal" uk-toggle class="absolute flex h-full items-center justify-center w-8 w-full uk-transition-scale-up bg-black bg-opacity-10"> 
-                    <img src="assets/images/icon-play.svg" alt="" class="w-16 h-16">
-                 </a>
-                <div class="absolut absolute bottom-0 flex items-center justify-between px-4 py-3 space-x-2 text-white w-full custom-overly1">   
-                    <a href="#">Johnson </a>  
-                    <div class="flex space-x-3">  
-                      <a href="#" class="flex items-center"> <ion-icon name="heart" class="mr-1 md hydrated" role="img" aria-label="heart"></ion-icon>  150 </a>
-                      <a href="#" class="flex items-center"> <ion-icon name="chatbubble-ellipses" class="mr-1 md hydrated" role="img" aria-label="chatbubble ellipses"></ion-icon> 30 </a>         
-                    </div>        
-                </div>
-            </div>
-        </div>
+
+    <!-- Vide slider -->
+
+    <div class="relative" uk-slider="finite: true">
         
-        <div class="lg:col-span-2 lg:row-span-2">
-            <div class="bg-pink-400 h-full max-w-full overflow-hidden relative rounded-md uk-transition-toggle shadow-sm"> 
-                <a href="#story-modal" uk-toggle>
-                    <img src="assets/images/post/img2.jpg" class="w-full h-full absolute object-cover inset-0 transform scale-125">
-                </a>
-                <div class="absolut absolute bottom-0 p-6 space-y-2 text-white w-full custom-overly1 uk-light lg:block hidden">   
-                    <div class="flex flex-1 items-center space-x-2">
-                        <a href="#" class="flex items-center">
-                            <div class="bg-gradient-to-tr from-yellow-600 to-pink-600 p-1 rounded-full transform -rotate-2 hover:rotate-3 transition hover:scale-105 m-0.5 mr-2">
-                                <img src="assets/images/avatars/avatar-2.jpg" class="bg-gray-200 border border-white rounded-full w-8">
+        <div class="uk-slider-container px-1 py-3">
+            <ul class="uk-slider-items uk-child-width-1-4@m uk-child-width-1-3@s uk-child-width-1-2 uk-grid-small uk-grid">
+                <li>
+                    <a href="video-watch.html" class="w-full md:h-36 h-28 overflow-hidden rounded-lg relative block">
+                        <img src="assets/images/video/img-2.png" alt="" class="w-full h-full absolute inset-0 object-cover">
+                        <span class="absolute bg-black bg-opacity-60 bottom-1 font-semibold px-1.5 py-0.5 right-1 rounded text-white text-xs"> 12:21</span>
+                        <img src="assets/images/icon-play.svg" class="w-12 h-12 uk-position-center" alt="">
+                    </a>
+                    <div class="pt-3">
+                        <a href="video-watch.html" class="font-semibold line-clamp-2"> Great RC Jet Model Show With 2X SUKHOI SU-30 </a>
+                        <div class="pt-2">
+                            <a href="#" href="video-watch.html" class="text-sm">  Trap Nation  </a>
+                            <div class="flex space-x-2 items-center text-sm mt-1">
+                                <div> 27 weeks ago</div>
+                                <div class="md:block hidden">·</div>
+                                <div> 156.9K views</div>
                             </div>
-                            Monroe Parker  
-                        </a>
-                        <div class="flex space-x-3">
-                            <a href="#" class="flex items-center">
-                                <ion-icon name="heart" class="mr-1 md hydrated" role="img" aria-label="heart"></ion-icon> 150
-                            </a>
-                            <a href="#" class="flex items-center">
-                                <ion-icon name="chatbubble-ellipses" class="mr-1 md hydrated" role="img" aria-label="chatbubble ellipses">
-                                </ion-icon> 30
-                            </a>
                         </div>
                     </div>
-                    <h1 class="font-bold text-3xl"> Lorem ipsum dolor sit amet consectetuer adipiscing</h1>
-                    <p> Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet 
-                        doming id quod mazim placerat facer possim </p>
-                </div>
-            </div>
-        </div>
-        <div>
-            <div class="bg-green-400 max-w-full lg:h-64 h-40 rounded-md relative overflow-hidden uk-transition-toggle shadow-sm"> 
-                <a href="#story-modal" uk-toggle>
-                    <img src="assets/images/post/img6.jpg" class="w-full h-full absolute object-cover inset-0">
-                </a>
-                <a href="#story-modal" uk-toggle class="absolute flex h-full items-center justify-center w-8 w-full uk-transition-scale-up bg-black bg-opacity-10"> 
-                    <img src="assets/images/icon-play.svg" alt="" class="w-16 h-16">
-                </a>
-                <div class="absolut absolute bottom-0 flex items-center justify-between px-4 py-3 space-x-2 text-white w-full custom-overly1">   
-                    <a href="#">James  </a>  
-                    <div class="flex space-x-3">  
-                      <a href="#" class="flex items-center"> <ion-icon name="heart" class="mr-1 md hydrated" role="img" aria-label="heart"></ion-icon>  150 </a>
-                      <a href="#" class="flex items-center"> <ion-icon name="chatbubble-ellipses" class="mr-1 md hydrated" role="img" aria-label="chatbubble ellipses"></ion-icon> 30 </a>         
-                    </div>        
-                </div>
-            </div>
-        </div>
-        <div>
-            <div class="bg-yellow-400 max-w-full lg:h-64 h-40 rounded-md relative overflow-hidden shadow-sm"> 
-                <a href="#story-modal" uk-toggle>
-                    <img src="assets/images/post/img4.jpg" class="w-full h-full absolute object-cover inset-0 object-cover object-left">
-                </a>
-                <div class="absolut absolute bottom-0 flex items-center justify-between px-4 py-3 space-x-2 text-white w-full custom-overly1">   
-                    <a href="#">Martin  </a>  
-                    <div class="flex space-x-3">  
-                      <a href="#" class="flex items-center"> <ion-icon name="heart" class="mr-1 md hydrated" role="img" aria-label="heart"></ion-icon>  150 </a>
-                      <a href="#" class="flex items-center"> <ion-icon name="chatbubble-ellipses" class="mr-1 md hydrated" role="img" aria-label="chatbubble ellipses"></ion-icon> 30 </a>         
-                    </div>        
-                </div>
-            </div>
-        </div>
-        <div>
-            <div class="bg-purple-400 max-w-full lg:h-64 h-40 rounded-md relative overflow-hidden shadow-sm"> 
-                <a href="#story-modal" uk-toggle>
-                    <img src="assets/images/avatars/avatar-lg-1.jpg" class="w-full h-full absolute object-cover inset-0">
-                </a>
-                <div class="absolut absolute bottom-0 flex items-center justify-between px-4 py-3 space-x-2 text-white w-full custom-overly1">   
-                    <a href="#">Johnson </a>  
-                    <div class="flex space-x-3">  
-                      <a href="#" class="flex items-center"> <ion-icon name="heart" class="mr-1 md hydrated" role="img" aria-label="heart"></ion-icon>  150 </a>
-                      <a href="#" class="flex items-center"> <ion-icon name="chatbubble-ellipses" class="mr-1 md hydrated" role="img" aria-label="chatbubble ellipses"></ion-icon> 30 </a>         
-                    </div>        
-                </div>
-            </div>
-        </div>
+                </li>
+                <li>
+                    <a href="video-watch.html" class="w-full md:h-36 h-28 overflow-hidden rounded-lg relative block">
+                        <img src="assets/images/video/img-3.png" alt="" class="w-full h-full absolute inset-0 object-cover">
+                        <span class="absolute bg-black bg-opacity-60 bottom-1 font-semibold px-1.5 py-0.5 right-1 rounded text-white text-xs"> 12:21</span>
+                        <img src="assets/images/icon-play.svg" class="w-12 h-12 uk-position-center" alt="">
+                    </a>
+                    <div class="pt-3">
+                        <a href="video-watch.html" class="font-semibold line-clamp-2"> Exploring an Abandoned Water Park in China
+                        </a>
+                        <div class="pt-2">
+                            <a href="#" class="text-sm font-medium"> Denise Marie</a>
+                            <div class="flex space-x-2 items-center text-sm mt-1">
+                                <div> 27 weeks ago</div>
+                                <div class="md:block hidden">·</div>
+                                <div> 156.9K views</div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <a href="video-watch.html" class="w-full md:h-36 h-28 overflow-hidden rounded-lg relative block">
+                        <img src="assets/images/video/img-5.png" alt="" class="w-full h-full absolute inset-0 object-cover">
+                        <span class="absolute bg-black bg-opacity-60 bottom-1 font-semibold px-1.5 py-0.5 right-1 rounded text-white text-xs"> 12:21</span>
+                        <img src="assets/images/icon-play.svg" class="w-12 h-12 uk-position-center" alt="">
+                    </a>
+                    <div class="pt-3">
+                        <a href="video-watch.html" class="font-semibold line-clamp-2">   Amazing Little Girl Has Very Talent Voice Vocal Coach   </a>
+                        <div class="pt-2">
+                            <a href="#" class="text-sm font-medium"> Anoundi hellows</a>
+                            <div class="flex space-x-2 items-center text-sm mt-1">
+                                <div> 27 weeks ago</div>
+                                <div class="md:block hidden">·</div>
+                                <div> 156.9K views</div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <a href="video-watch.html" class="w-full md:h-36 h-28 overflow-hidden rounded-lg relative block">
+                        <img src="assets/images/video/img-6.png" alt="" class="w-full h-full absolute inset-0 object-cover">
+                        <span class="absolute bg-black bg-opacity-60 bottom-1 font-semibold px-1.5 py-0.5 right-1 rounded text-white text-xs"> 12:21</span>
+                        <img src="assets/images/icon-play.svg" class="w-12 h-12 uk-position-center" alt="">
+                    </a>
+                    <div class="pt-3">
+                        <a href="video-watch.html" class="font-semibold line-clamp-2"> TIMELAPSE OF THE FUTURE A Journey to the End of Time </a>
+                        <div class="pt-2">
+                            <a href="#" class="text-sm font-medium"> Morning Star</a>
+                            <div class="flex space-x-2 items-center text-sm mt-1">
+                                <div> 27 weeks ago</div>
+                                <div class="md:block hidden">·</div>
+                                <div> 156.9K views</div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <a href="video-watch.html" class="w-full md:h-36 h-28 overflow-hidden rounded-lg relative block">
+                        <img src="assets/images/video/img-4.png" alt="" class="w-full h-full absolute inset-0 object-cover">
+                        <span class="absolute bg-black bg-opacity-60 bottom-1 font-semibold px-1.5 py-0.5 right-1 rounded text-white text-xs">  12:21</span>
+                        <img src="assets/images/icon-play.svg" class="w-12 h-12 uk-position-center" alt="">
+                    </a>
+                    <div class="pt-3">
+                        <a href="video-watch.html" class="font-semibold line-clamp-2"> Cheesecake Eggless & Without oven｜HidaMari Cooking </a>
+                        <div class="pt-2">
+                            <a href="#" class="text-sm font-medium"> by <a href="#"> Smart waves </a> </a>
+                            <div class="flex space-x-2 items-center text-sm mt-1">
+                                <div> 27 weeks ago</div>
+                                <div class="md:block hidden">·</div>
+                                <div> 156.9K views</div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
 
-        <div>
-            <div class="bg-blue-400 max-w-full lg:h-64 h-40 rounded-md relative overflow-hidden shadow-sm"> 
-                <a href="#story-modal" uk-toggle>
-                    <img src="assets/images/post/img1.jpg" class="w-full h-full absolute object-cover inset-0">
-                </a>
-                <div class="absolut absolute bottom-0 flex items-center justify-between px-4 py-3 space-x-2 text-white w-full custom-overly1">   
-                    <a href="#">Jesse  </a>  
-                    <div class="flex space-x-3">  
-                      <a href="#" class="flex items-center"> <ion-icon name="heart" class="mr-1 md hydrated" role="img" aria-label="heart"></ion-icon>  150 </a>
-                      <a href="#" class="flex items-center"> <ion-icon name="chatbubble-ellipses" class="mr-1 md hydrated" role="img" aria-label="chatbubble ellipses"></ion-icon> 30 </a>         
-                    </div>        
-                </div>
-            </div>
-        </div>
-        <div>
-            <div class="bg-green-400 max-w-full lg:h-64 h-40 rounded-md relative overflow-hidden shadow-sm"> 
-                <a href="#story-modal" uk-toggle>
-                    <img src="assets/images/post/img3.jpg" class="w-full h-full absolute object-cover inset-0">
-                </a>
-                <div class="absolut absolute bottom-0 flex items-center justify-between px-4 py-3 space-x-2 text-white w-full custom-overly1">   
-                    <a href="#">Johnson </a>  
-                    <div class="flex space-x-3">  
-                      <a href="#" class="flex items-center"> <ion-icon name="heart" class="mr-1 md hydrated" role="img" aria-label="heart"></ion-icon>  150 </a>
-                      <a href="#" class="flex items-center"> <ion-icon name="chatbubble-ellipses" class="mr-1 md hydrated" role="img" aria-label="chatbubble ellipses"></ion-icon> 30 </a>         
-                    </div>        
-                </div>
-            </div>
-        </div>
-        <div>
-            <div class="bg-red-400 max-w-full lg:h-64 h-40 rounded-md relative overflow-hidden shadow-sm"> 
-                <a href="#story-modal" uk-toggle>
-                    <img src="assets/images/post/img8.jpg" class="w-full h-full absolute object-cover inset-0">
-                </a>
-                <div class="absolut absolute bottom-0 flex items-center justify-between px-4 py-3 space-x-2 text-white w-full custom-overly1">   
-                    <a href="#">James  </a>  
-                    <div class="flex space-x-3">  
-                      <a href="#" class="flex items-center"> <ion-icon name="heart" class="mr-1 md hydrated" role="img" aria-label="heart"></ion-icon>  150 </a>
-                      <a href="#" class="flex items-center"> <ion-icon name="chatbubble-ellipses" class="mr-1 md hydrated" role="img" aria-label="chatbubble ellipses"></ion-icon> 30 </a>         
-                    </div>        
-                </div>
-            </div>
-        </div>
-        <div>
-            <div class="bg-yellow-400 max-w-full lg:h-64 h-40 rounded-md relative overflow-hidden shadow-sm"> 
-                <a href="#story-modal" uk-toggle>
-                    <img src="assets/images/post/img5.jpg" class="w-full h-full absolute object-cover inset-0">
-                </a>
-                <div class="absolut absolute bottom-0 flex items-center justify-between px-4 py-3 space-x-2 text-white w-full custom-overly1">   
-                    <a href="#">Monroe  </a>  
-                    <div class="flex space-x-3">  
-                      <a href="#" class="flex items-center"> <ion-icon name="heart" class="mr-1 md hydrated" role="img" aria-label="heart"></ion-icon>  150 </a>
-                      <a href="#" class="flex items-center"> <ion-icon name="chatbubble-ellipses" class="mr-1 md hydrated" role="img" aria-label="chatbubble ellipses"></ion-icon> 30 </a>         
-                    </div>        
-                </div>
-            </div>
+            <a class="absolute bg-white top-16 flex items-center justify-center p-2 -left-4 rounded-full shadow-md text-xl w-9 z-10 dark:bg-gray-800 dark:text-white" href="#" uk-slider-item="previous"> <i class="icon-feather-chevron-left"></i></a>
+            <a class="absolute bg-white top-16 flex items-center justify-center p-2 -right-4 rounded-full shadow-md text-xl w-9 z-10 dark:bg-gray-800 dark:text-white" href="#" uk-slider-item="next"> <i class="icon-feather-chevron-right"></i></a>
+
         </div>
     </div>
 
-    <!-- Load more-->
-    <div class="flex justify-center mt-6">
-        <a href="#" class="bg-white font-semibold my-3 px-6 py-2 rounded-full shadow-md dark:bg-gray-800 dark:text-white"> Load more ..</a>
+    <br>  
+
+    <div class="md:mb-4 mb-3">
+        <h2 class="text-2xl font-semibold"> Your videos </h2>
+        <nav class="responsive-nav border-b md:m-0 -mx-4">
+            <ul>
+                <li class="active"><a href="#" class="lg:px-2">   Suggestions </a></li>
+                <li><a href="#" class="lg:px-2"> Newest </a></li>
+                <li><a href="#" class="lg:px-2"> My videos </a></li>
+            </ul>
+        </nav>
     </div>
+
+    <!--  videos  list -->
+
+    <div class="divide-y">
+
+        <div class="flex md:space-x-6 space-x-4 md:py-5 py-3 relative">
+            <a href="video-watch.html" class="md:w-64 md:h-40 w-36 h-24 overflow-hidden rounded-lg relative shadow-sm"> 
+                 <img src="assets/images/video/img-3.png" alt="" class="w-full h-full absolute inset-0 object-cover">
+                 <span class="absolute bg-black bg-opacity-60 bottom-1 font-semibold px-1.5 py-0.5 right-1 rounded text-white text-xs"> 12:21</span>
+                <img src="assets/images/icon-play.svg" class="w-12 h-12 uk-position-center" alt="">
+            </a>
+            <div class="flex-1 space-y-2"> 
+                 
+                <a href="video-watch.html" class="md:text-xl font-semibold line-clamp-2">   Exploring an Abandoned Water Park in China  </a>
+                <p class="leading-6 pr-4 line-clamp-2 md:block hidden"> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna . </p>
+                <a href="#" class="font-semibold block text-sm"> Stalla Johani</a>
+               
+               <div class="flex items-center justify-between">
+                    <div class="flex space-x-3 items-center text-sm md:pt-3">
+                        <div> 27 weeks ago</div>
+                        <div class="md:block hidden">·</div>
+                        <div> 156.9K views</div>
+                    </div>
+                    <a href="#" class="md:flex items-center justify-center h-9 px-8 rounded-md border hidden"> Add favorites </a>
+                </div>
+
+                <div class="absolute top-1 right-0 md:inline hidden">
+                    <a href="#" class="hover:bg-gray-200 p-1.5 inline-block rounded-full" aria-expanded="false"> 
+                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6">
+                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
+                     </svg>
+                    </a>
+                    <div class="bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden text-base border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700 uk-drop uk-drop-bottom-right" uk-drop="mode: hover;pos: top-right" style="left: -188px; top: -12px;">
+              
+                        <ul class="space-y-1">
+                          <li> 
+                              <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
+                               <i class="uil-share-alt mr-1"></i> Share
+                              </a> 
+                          </li>
+                          <li> 
+                              <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
+                               <i class="uil-edit-alt mr-1"></i>  Edit Post 
+                              </a> 
+                          </li>
+                          <li> 
+                              <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
+                               <i class="uil-comment-slash mr-1"></i>   Disable comments
+                              </a> 
+                          </li> 
+                          <li> 
+                              <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
+                               <i class="uil-favorite mr-1"></i>  Add favorites 
+                              </a> 
+                          </li>
+                          <li>
+                            <hr class="-mx-2 my-2 dark:border-gray-800">
+                          </li>
+                          <li> 
+                              <a href="#" class="flex items-center px-3 py-2 text-red-500 hover:bg-red-100 hover:text-red-500 rounded-md dark:hover:bg-red-600">
+                               <i class="uil-trash-alt mr-1"></i>  Delete
+                              </a> 
+                          </li>
+                        </ul>
+                    
+                    </div>
+                </div>
+
+            </div>
+        </div> 
+        <div class="flex md:space-x-6 space-x-4 md:py-5 py-3 relative">
+            <div class="md:w-64 md:h-40 w-36 h-24 overflow-hidden rounded-lg relative shadow-sm"> 
+                 <img src="assets/images/video/img-1.png" alt="" class="w-full h-full absolute inset-0 object-cover">
+                 <span class="absolute bg-black bg-opacity-60 bottom-1 font-semibold px-1.5 py-0.5 right-1 rounded text-white text-xs"> 12:21</span>
+                 <img src="assets/images/icon-play.svg" class="w-12 h-12 uk-position-center" alt="">
+            </div>
+            <div class="flex-1 space-y-2"> 
+                 
+                <a href="video-watch.html" class="md:text-xl font-semibold line-clamp-2">  Amazing House Construction From Foundation To Last Detail  </a>
+                <p class="leading-6 pr-4 line-clamp-2 md:block hidden"> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna . </p>
+                <a href="#" class="font-semibold block text-sm"> Stalla Johani</a>
+               
+               <div class="flex items-center justify-between">
+                    <div class="flex space-x-3 items-center text-sm md:pt-3">
+                        <div> 27 weeks ago</div>
+                        <div class="md:block hidden">·</div>
+                        <div> 156.9K views</div>
+                    </div>
+                    <a href="#" class="md:flex items-center justify-center h-9 px-8 rounded-md border hidden"> Add favorites </a>
+                </div>
+
+                <div class="absolute top-1 right-0 md:inline hidden">
+                    <a href="#" class="hover:bg-gray-200 p-1.5 inline-block rounded-full" aria-expanded="false"> 
+                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6">
+                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
+                     </svg>
+                    </a>
+                    <div class="bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden text-base border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700 uk-drop uk-drop-bottom-right" uk-drop="mode: hover;pos: top-right" style="left: -188px; top: -12px;">
+              
+                        <ul class="space-y-1">
+                          <li> 
+                              <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
+                               <i class="uil-share-alt mr-1"></i> Share
+                              </a> 
+                          </li>
+                          <li> 
+                              <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
+                               <i class="uil-edit-alt mr-1"></i>  Edit Post 
+                              </a> 
+                          </li>
+                          <li> 
+                              <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
+                               <i class="uil-comment-slash mr-1"></i>   Disable comments
+                              </a> 
+                          </li> 
+                          <li> 
+                              <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
+                               <i class="uil-favorite mr-1"></i>  Add favorites 
+                              </a> 
+                          </li>
+                          <li>
+                            <hr class="-mx-2 my-2 dark:border-gray-800">
+                          </li>
+                          <li> 
+                              <a href="#" class="flex items-center px-3 py-2 text-red-500 hover:bg-red-100 hover:text-red-500 rounded-md dark:hover:bg-red-600">
+                               <i class="uil-trash-alt mr-1"></i>  Delete
+                              </a> 
+                          </li>
+                        </ul>
+                    
+                    </div>
+                </div>
+
+            </div>
+        </div> 
+        <div class="flex md:space-x-6 space-x-4 md:py-5 py-3 relative">
+            <a href="video-watch.html" class="md:w-64 md:h-40 w-36 h-24 overflow-hidden rounded-lg relative shadow-sm"> 
+                 <img src="assets/images/video/img-4.png" alt="" class="w-full h-full absolute inset-0 object-cover">
+                 <span class="absolute bg-black bg-opacity-60 bottom-1 font-semibold px-1.5 py-0.5 right-1 rounded text-white text-xs"> 12:21</span>
+                 <img src="assets/images/icon-play.svg" class="w-12 h-12 uk-position-center" alt="">
+            </a>
+            <div class="flex-1 space-y-2"> 
+                 
+                <a href="video-watch.html" class="md:text-xl font-semibold line-clamp-2">   Cheesecake Eggless & Without oven｜HidaMari Cooking  </a>
+                <p class="leading-6 pr-4 line-clamp-2 md:block hidden"> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna . </p>
+                <a href="#" class="font-semibold block text-sm"> Stalla Johani</a>
+               
+               <div class="flex items-center justify-between">
+                    <div class="flex space-x-3 items-center text-sm md:pt-3">
+                        <div> 27 weeks ago</div>
+                        <div class="md:block hidden">·</div>
+                        <div> 156.9K views</div>
+                    </div>
+                    <a href="#" class="md:flex items-center justify-center h-9 px-8 rounded-md border hidden"> Add favorites </a>
+                </div>
+
+                <div class="absolute top-1 right-0 md:inline hidden">
+                    <a href="#" class="hover:bg-gray-200 p-1.5 inline-block rounded-full" aria-expanded="false"> 
+                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6">
+                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
+                     </svg>
+                    </a>
+                </div>
+
+            </div>
+        </div> 
+        <div class="flex md:space-x-6 space-x-4 md:py-5 py-3 relative">
+            <a href="video-watch.html" class="md:w-64 md:h-40 w-36 h-24 overflow-hidden rounded-lg relative shadow-sm"> 
+                 <img src="assets/images/video/img-5.png" alt="" class="w-full h-full absolute inset-0 object-cover">
+                 <span class="absolute bg-black bg-opacity-60 bottom-1 font-semibold px-1.5 py-0.5 right-1 rounded text-white text-xs"> 12:21</span>
+                 <img src="assets/images/icon-play.svg" class="w-12 h-12 uk-position-center" alt="">
+            </a>
+            <div class="flex-1 space-y-2"> 
+                 
+                <a href="video-watch.html" class="md:text-xl font-semibold line-clamp-2">    Amazing Little Girl Has Very Talent Voice Vocal Coach     </a>
+                <p class="leading-6 pr-4 line-clamp-2 md:block hidden"> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna . </p>
+                <a href="#" class="font-semibold block text-sm"> Stalla Johani</a>
+               
+               <div class="flex items-center justify-between">
+                    <div class="flex space-x-3 items-center text-sm md:pt-3">
+                        <div> 27 weeks ago</div>
+                        <div class="md:block hidden">·</div>
+                        <div> 156.9K views</div>
+                    </div>
+                    <a href="#" class="md:flex items-center justify-center h-9 px-8 rounded-md border hidden"> Add favorites </a>
+                </div>
+
+                <div class="absolute top-1 right-0 md:inline hidden">
+                    <a href="#" class="hover:bg-gray-200 p-1.5 inline-block rounded-full" aria-expanded="false"> 
+                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6">
+                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
+                     </svg>
+                    </a>
+                </div>
+
+            </div>
+        </div> 
+
+    </div> 
 
 </div>
 @endsection

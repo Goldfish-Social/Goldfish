@@ -1,0 +1,115 @@
+@media (max-width: 1024px) {
+
+    html { font-size: 15px; } 
+
+    header { border-bottom: 1px solid #f0f0f0;box-shadow: none;}
+    header .header_inner { height: 65px; align-items: center; padding: 12px 15px;}
+    header .header_inner .right_side{width: 100%; }
+
+    .header_widgets { position: fixed; width: 100%; justify-content: space-between; padding-right: 0; bottom:0 ; height:56px; padding: 0 18px !important;  background: white;border-top: 1px solid #e2dfdf;}
+    .header_widgets .is_icon svg { width: 25px; height: 25px;}
+ 
+    .header_dropdown{ right: -15px !important; width: calc(100% + 31px) !important; bottom: 50px !important; top: auto !important; box-shadow: none;border: 0; padding-left: 30px; padding-right: 11px !important;}
+    .header_dropdown .dropdown_scrollbar { max-height: 81vh !important;}
+    .header_dropdown.is_message .dropdown_scrollbar{ max-height:  75vh  !important;}
+    .header_dropdown.profile_dropdown {box-shadow: rgba(0, 0, 0, 0.24) 0px -300px 0px 300px;padding: 10px 25px !important;}
+    .dropdown_cart .dropdown_cart_scrollbar { max-height: 407px; }
+    .header_dropdown .drop_headline h4 { font-size: 21px;}
+    
+    header .header_inner .left_side{
+     #logo img { display: none; }
+     #logo img.logo_mobile {  display: inline !important;  }
+   }
+ 
+  }
+  
+  @media (min-width: 1024px) {
+    header {
+      .header_wrap {
+        margin-left: $sidebar-width;
+        width: calc(100% - 300px);
+      }
+
+      .header_inner .left_side {
+        position: absolute;
+        left: 20px;
+
+        #logo {
+          margin-right: 10px;
+        }
+
+        .slide_menu {
+          margin-right: 10px;
+        }
+      }
+
+    }
+
+  }
+
+  @media (min-width : 1200px) {
+
+    .main_content {
+      margin-left: $sidebar-width;
+    }
+
+    .container,
+    .mcontainer {
+      max-width: 1000px;
+      padding: 30px 10px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  @media (max-width : 1200px) {
+
+    .header_widgets .is_link,
+    .header_search {
+      display: none
+    }
+
+    .main_content {
+      padding-top: 65px !important;
+      padding-bottom: 50px
+    }
+
+    .container,
+    .mcontainer {
+      padding: 25px 15px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .header_search {
+      position: absolute;
+      width: 85%;
+
+      input {
+        width: 100%;
+        min-width: 100%;
+      }
+    }
+
+    .header-search-icon {
+      display: block !important;
+    }
+
+    .show-searchbox {
+      .header_search {
+        display: block;
+      }
+
+      .header-search-icon {
+        right: 8px;
+
+        &::before {
+          content: '\ea02';
+        }
+      }
+    }
+  }
+
+
+
+ 

@@ -1,0 +1,118 @@
+.main_content {
+    padding-top: $header-height;
+}
+ 
+  button.button.dark1 , 
+  a.button.dark1 {
+     background-color: palevioletred;
+     color: #fff;
+     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+   }
+   
+   input {
+     &[type="button"].dark1, &[type="submit"].dark1 {
+       background-color: palevioletred;
+       color: #fff;
+       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+     }
+   }
+   
+/* ---------------------------------- */
+/*  line clamps
+------------------------------------- */
+ .line-clamp-1 ,
+ .line-clamp-2 ,
+ .line-clamp-3{
+     overflow: hidden;
+   display: -webkit-box;
+   -webkit-box-orient: vertical;
+ }
+ .line-clamp-1{
+   -webkit-line-clamp: 1;
+ }
+ .line-clamp-2{
+     -webkit-line-clamp: 2;
+ }
+ .line-clamp-3{
+   -webkit-line-clamp: 3;
+ }
+ 
+/* ---------------------------------- */
+/*  user status icon
+------------------------------------- */
+ .user_status{
+   position: absolute;
+   content: "";
+   height: 14px;
+   width: 14px;
+   background-color: #c0c0c0;
+   bottom: 0;
+   right: 0;
+   display: block;
+   border: 2.5px solid #fff;
+   border-radius: 50%;
+   visibility: hidden;
+ 
+   &.status_online {
+     background-color: #38b653;
+     visibility: visible;
+   }
+ }
+   
+/* ---------------------------------- */
+/*  start-chat button
+------------------------------------- */
+ .start-chat {
+   background-color: #2563eb;
+   color:white;
+   border-radius:100%;
+   display:flex;
+   align-items:center;
+   justify-content:center;
+   position: fixed;
+   width:50px;
+   bottom:25px;
+   right:25px;
+   height:50px;
+   z-index: 1000;
+   cursor: pointer;
+ }
+ 
+ @media (max-width: 1024px) {
+   
+   .start-chat {
+     top: 12px;
+     bottom: auto;
+     width: 40px;
+     right: 16px;
+     height: 40px;
+     background: transparent;
+     color: #8a8989;
+ 
+     svg{
+       width: 24px;
+       height: 24px;
+     }
+   }
+ 
+ }
+
+/* ---------------------------------- */
+/*  embed video responsive 
+------------------------------------- */
+
+.embed-video {
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+  height: 0;
+}
+
+.embed-video iframe {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;  
+}
+ 

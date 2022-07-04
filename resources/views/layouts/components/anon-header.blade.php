@@ -6,12 +6,16 @@
         <div class="flex items-center lg:justify-between justify-around">
 
             <a href="/">
-                <img src="{{ asset('assets/images/logo.png') }}" alt="" class="w-32">
+                <img src="{{asset ('assets/images/logo.png') }}" alt="" class="w-32">
             </a>
-
+            
             <div class="capitalize flex font-semibold hidden lg:block my-2 space-x-3 text-center text-sm">
+            @auth
+                <a href="{{ route('home') }}" class="bg-purple-500 purple-500 px-6 py-3 rounded-md shadow text-white">Back</a>
+            @else
                 <a href="{{ route('login') }}" class="py-3 px-4">Login</a>
-                <a href="{{ route('register') }}" class="bg-pink-500 pink-500 px-6 py-3 rounded-md shadow text-white">Register</a>
+                <a href="{{ route('register') }}" class="bg-purple-500 purple-500 px-6 py-3 rounded-md shadow text-white">Register</a>
+            @endauth
             </div>
 
         </div>

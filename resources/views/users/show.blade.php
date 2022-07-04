@@ -29,7 +29,7 @@
             </div>
 
             <div class="profile_info">
-                <h1> Josephine Williams </h1>
+                <h1> {{$user->username}} </h1>
                 <p> Family , Food , Fashion , Fourever <a href="#">Edit </a></p>
             </div>
 

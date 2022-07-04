@@ -28,4 +28,34 @@ class UserController extends Controller
             'user' => $user
         ]); 
     }
+
+
+    // Settings user
+    public function settings() {
+        return view('settings.index');
+    }
+    // Settings profile
+    public function profile() {
+        return view('settings.profile');
+    }
+    // Settings password
+    public function password() {
+        return view('settings.password');
+    }
+    // Settings profile
+    public function avatar() {
+        return view('settings.avatar');
+    }
+    // Settings profile
+    public function security() {
+        return view('settings.security');
+    }
+    // Settings sessions
+    public function sessions() {
+        return view('settings.sessions');
+    }
+    // Settings danger
+    public function danger() {
+        return view('settings.danger');
+    }
 }

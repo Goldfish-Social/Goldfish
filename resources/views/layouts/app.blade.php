@@ -18,24 +18,20 @@
         <!-- Favicon -->
         <link href="{{ asset('assets/images/favicon.png') }}" rel="icon" type="image/png">
         <!-- CSS -->
+        <link rel="stylesheet" href="{{ asset('assets/css/uikit.css') }}">
         <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"> 
         <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-    
         <!-- icons -->
         <link rel="stylesheet" href="{{ asset('assets/css/icons.css') }}">
-        <script type="module" src="https://unpkg.com/ionicons@5.2.3/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule="" src="https://unpkg.com/ionicons@5.2.3/dist/ionicons/ionicons.js"></script>
-    
         <!-- Google font -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     </head>
     <body>
         <div id="wrapper">
             @include('layouts.components.header')
   
             @include('layouts.components.sidebar')
-
-
      
             <!-- contents -->
             <div class="main_content">
@@ -47,10 +43,10 @@
      
         </div>
         <!-- Wrapper / End -->
+        @include('posts.form')
+        @include('layouts.components.boxes')
 
-        @include('posts.modal')
-
-
+        <x-flash-message />
         <!-- For Night mode -->
         <script>
             (function (window, document, undefined) {
@@ -87,11 +83,13 @@
             })(window, document);
         </script>
         <!-- Javascript -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
         <script src="{{ asset('assets/js/tippy.all.min.js') }}"></script>
         <script src="{{ asset('assets/js/uikit.js') }}"></script>
         <script src="{{ asset('assets/js/simplebar.js') }}"></script>
         <script src="{{ asset('assets/js/custom.js') }}"></script>
         <script src="{{ asset('assets/js/bootstrap-select.min.js') }}"></script>
+        <script type="module" src="https://unpkg.com/ionicons@5.2.3/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule="" src="https://unpkg.com/ionicons@5.2.3/dist/ionicons/ionicons.js"></script>
 </body>
 </html>   
