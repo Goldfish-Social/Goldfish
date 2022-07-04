@@ -1,0 +1,105 @@
+.create-post {
+    align-items: flex-start;
+    padding-top:60px;
+    padding-bottom: 0;
+    display:none;
+
+    .uk-modal-dialog {
+        position: relative;
+        width: 660px;
+        padding: 0px;
+        border-radius: 0.5rem;
+    }
+    
+
+    &.uk-open {
+        display: flex !important;
+    }
+    /* modal body */ 
+    .create-post-modal-body {
+        height: 500px;
+        padding: 1.25rem;
+        overflow-x: hidden;
+        margin-right: 0.25rem;
+    }
+
+    /* select dropdown */ 
+    .bootstrap-select.btn-group {
+        button {
+            height: 38px;
+            max-width: 168px !important;
+            box-shadow: none;
+            padding: 0;
+            border: 1px solid #d8d8d8;
+            padding-left: 6px;
+        }
+        .dropdown-toggle {
+            .filter-option {
+                line-height: 35px;
+                height: 35px;
+                padding-left: 8px !important;
+                max-width: 100%;
+            }
+            .caret {
+                //left: 13px;
+                //right: auto !important;
+            }
+        } 
+        
+    }
+    .bootstrap-select:before{
+        background:transparent 
+    }
+    .dropdown-menu.open{
+        width: 210px !important;
+        min-width: 300px;
+        border: 1px solid #f1f3f4;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 25px -5px, rgba(0, 0, 0, 0.04) 0px 13px 10px -5px;
+    }
+}
+
+.create-post.is-story{
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0;
+
+    .uk-modal-dialog {
+        width: 500px;
+    }
+}
+
+@media (max-width: 767px) {
+    .create-post {
+        .uk-modal-body {
+            padding: 0px;
+            flex-direction: column;
+            height: 100%;
+            top: 0;
+            position: fixed;
+            left: 0;
+            display: flex;
+        }
+        .create-post-modal-body {
+            height: 100%;
+        }
+        .dropdown-menu.open {
+            bottom: 100% !important;
+            top: auto !important;
+        }
+
+        #veiw-more {
+            display: block !important;
+            margin-right: 8px;
+        }
+        #veiw-more:last-child {
+            visibility: hidden;
+            width: 0;
+            width: 0;
+            margin: 0;
+            padding: 0;
+        }
+
+       
+    }
+}

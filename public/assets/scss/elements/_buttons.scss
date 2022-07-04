@@ -1,0 +1,208 @@
+
+/* ---------------------------------- */
+/* Buttons
+------------------------------------- */
+
+button {
+  vertical-align: middle;
+}
+
+a.button, span.button, button.button {
+  background-color: $primary-color;
+  height: 38px;
+  padding: 0 20px;
+  line-height: 24px;
+  color: #fff;
+  position: relative;
+  font-size: $body-font-size;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  overflow: hidden;
+  border: none;
+  border-radius: $global-border-radius; 
+}
+
+input {
+  &[type="button"], &[type="submit"] {
+    background-color: $primary-color;
+    height: 38px;
+    padding: 0 20px;
+    line-height: 24px;
+    color: #fff;
+    position: relative;
+    font-size: $body-font-size;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    overflow: hidden;
+    border: none;
+    border-radius: $global-border-radius; 
+  }
+}
+ 
+
+/* Icons Aligment*/
+
+.button i[class^="icon-material"], button.button i[class^="icon-material"] {
+  font-size: 18px;
+  height: 0;
+  width: 18px;
+  line-height: 0;
+  top: 2px;
+  position: relative;
+  display: inline-block;
+  margin-left: 3px;
+}
+
+input {
+  &[type="button"] i[class^="icon-material"], &[type="submit"] i[class^="icon-material"] {
+    font-size: 18px;
+    height: 0;
+    width: 18px;
+    line-height: 0;
+    top: 2px;
+    position: relative;
+    display: inline-block;
+    margin-left: 3px;
+  }
+}
+
+a.button i[class^="icon-material"] {
+  font-size: 18px;
+  height: 0;
+  width: 18px;
+  line-height: 0;
+  top: 2px;
+  position: relative;
+  display: inline-block;
+  margin-left: 3px;
+}
+
+.button i[class^="icon-feather"], button.button i[class^="icon-feather"] {
+  font-size: $body-font-size;
+  height: 0;
+  width: 16px;
+  line-height: 0;
+  top: 2px;
+  position: relative;
+  display: inline-block;
+  margin-left: 3px;
+}
+
+input {
+  &[type="button"] i[class^="icon-feather"], &[type="submit"] i[class^="icon-feather"] {
+    font-size: $body-font-size;
+    height: 0;
+    width: 16px;
+    line-height: 0;
+    top: 2px;
+    position: relative;
+    display: inline-block;
+    margin-left: 3px;
+  }
+}
+
+a.button i[class^="icon-feather"] {
+  font-size: $body-font-size;
+  height: 0;
+  width: 16px;
+  line-height: 0;
+  top: 2px;
+  position: relative;
+  display: inline-block;
+  margin-left: 3px;
+}
+
+/* Dark Style */
+
+button.button.dark {
+  background-color: #333;
+  color: #fff; 
+}
+
+input {
+  &[type="button"].dark, &[type="submit"].dark {
+    background-color: #333;
+    color: #fff; 
+  }
+}
+
+a.button.dark {
+  background-color: #333;
+  color: #fff; 
+}
+
+/* Dark Style */
+
+button.button.gray {
+  background-color: #eaeaea;
+  color: $body-font-color; 
+}
+
+input {
+  &[type="button"].gray, &[type="submit"].gray {
+    background-color: #eaeaea;
+    color: $body-font-color; 
+  }
+}
+
+a.button.gray {
+  background-color: $secondary-color;
+  color: $body-font-color; 
+}
+
+button.button.gray:hover {
+  background-color: rgba($secondary-color, 0.8);;
+}
+
+input {
+  &[type="button"].gray:hover, &[type="submit"].gray:hover {
+    background-color: $secondary-color;
+  }
+}
+
+a.button.gray:hover {
+  background-color: rgba($secondary-color, 0.8);
+}
+
+body .button i.icon-material-outline-arrow-right-alt {
+  font-size: 22px;
+  top: 4px;
+}
+
+.button {
+  &.full-width {
+    max-width: 100%;
+    width: 100%;
+    text-align: center;
+    display: block;
+  }
+  &.big {
+    font-size: 18px;
+    height: 44px;
+    padding: 0 30px;
+  }
+  &.small {
+    font-size: 13px;
+    height: 34px;
+    padding: 0 15px;
+  }
+}
+
+/* Centered Button */
+
+.centered-button {
+  text-align: center;
+  display: block;
+  .button {
+    margin: 0 auto;
+  }
+}
+ 

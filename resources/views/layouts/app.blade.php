@@ -17,48 +17,50 @@
 
         <!-- Favicon -->
         <link href="{{ asset('assets/images/favicon.png') }}" rel="icon" type="image/png">
-        <link rel="stylesheet" href="{{ asset('assets/css/icons.css') }}">
         <!-- CSS -->
-        <link rel="stylesheet" href="{{ asset('assets/css/uikit.cs') }}s">
+        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"> 
         <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-        <link rel="stylesheet" href="{{ asset('assets/css/tailwind.css') }}">
-        <style>
-            @media (min-width: 1024px) {
-                .container {
-                    max-width: 950px !important;
-                    padding-top: 30px !important;
-                }
-            }
-        </style>
-
-        <script src="//unpkg.com/alpinejs" defer></script>
+    
+        <!-- icons -->
+        <link rel="stylesheet" href="{{ asset('assets/css/icons.css') }}">
+        <script type="module" src="https://unpkg.com/ionicons@5.2.3/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule="" src="https://unpkg.com/ionicons@5.2.3/dist/ionicons/ionicons.js"></script>
+    
+        <!-- Google font -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     </head>
     <body>
-        <!-- Wrapper -->
         <div id="wrapper">
+            @include('layouts.components.header')
+  
             @include('layouts.components.sidebar')
 
+
+     
+            <!-- contents -->
             <div class="main_content">
-                @include('layouts.components.header')
-                <div class="container m-auto">
+                <div class="mcontainer">
                     @yield('content')
+                    <!-- Footer  -->
                 </div>
             </div>
+     
         </div>
-        <!-- End Wrapper -->
+        <!-- Wrapper / End -->
 
-        <x-flash-message />
+        @include('posts.modal')
 
+
+        <!-- For Night mode -->
         <script>
             (function (window, document, undefined) {
                 'use strict';
                 if (!('localStorage' in window)) return;
                 var nightMode = localStorage.getItem('gmtNightMode');
                 if (nightMode) {
-                    document.documentElement.className += ' dark';
+                    document.documentElement.className += ' night-mode';
                 }
             })(window, document);
-        
         
             (function (window, document, undefined) {
         
@@ -84,13 +86,12 @@
         
             })(window, document);
         </script>
-        <!-- Scripts -->
-        <script src="{{ asset('assets/js/tippy.all.min.js') }}"></script>  
-        <script src="{{ asset('assets/js/jquery-3.3.1.min.js') }}"></script>
+        <!-- Javascript -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="{{ asset('assets/js/tippy.all.min.js') }}"></script>
         <script src="{{ asset('assets/js/uikit.js') }}"></script>
         <script src="{{ asset('assets/js/simplebar.js') }}"></script>
         <script src="{{ asset('assets/js/custom.js') }}"></script>
-        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    </body>
-</html>
+        <script src="{{ asset('assets/js/bootstrap-select.min.js') }}"></script>
+</body>
+</html>   

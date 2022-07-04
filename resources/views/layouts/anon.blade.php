@@ -21,17 +21,15 @@
         <!-- CSS -->
         <link rel="stylesheet" href="{{ asset('assets/css/uikit.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-        <link rel="stylesheet" href="{{ asset('assets/css/tailwind.css') }}">
+        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"> 
+ 
         <style>
-            @media (min-width: 1024px) {
-                .container {
-                    max-width: 950px !important;
-                    padding-top: 30px !important;
-                }
+            input , .bootstrap-select.btn-group button{
+                background-color: #f3f4f6  !important;
+                height: 44px  !important;
+                box-shadow: none  !important; 
             }
         </style>
-
-        <script src="//unpkg.com/alpinejs" defer></script>
     </head>
     <body class="bg-gray-100">
         <div id="wrapper" class="flex flex-col justify-between h-screen">

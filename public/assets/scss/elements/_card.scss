@@ -1,0 +1,45 @@
+.card {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow:0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+
+    .card-media {
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+    }
+    .card-media img {
+        height: 100%;
+        -o-object-fit: cover;
+        object-fit: cover;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%
+    }
+    .card-media-overly {
+        background-color: $secondary-color;
+        height: 100%;
+        width: 100%;
+        -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    .card-body {
+        padding: 0.875rem;
+        position: relative
+    }
+    
+    .box-title {
+        font-weight: 600;
+        font-size: 1.125rem;
+        line-height: 1.75rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap
+    }
+}
+
+ 
+

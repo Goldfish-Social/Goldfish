@@ -1,0 +1,316 @@
+/* ---------------------------------- */
+/* story  card   
+------------------------------------- */
+
+.single_story {
+    box-sizing: border-box;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    height: 170px;
+    display: flex;
+    align-items: flex-end;
+
+    &:before {
+        position: absolute;
+        content: '';
+        z-index: 1;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 44%;
+        opacity: 0.5;
+        border-radius: inherit;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #2b2b2b 60%);
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #2b2b2b 60%);
+        background-blend-mode: color-burn;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        object-fit: cover;
+    }
+
+    .story-avatar {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+
+        img {
+            width: 35px;
+            height: 35px;
+            border-radius: 100%;
+            position: relative;
+            border: 2px solid white;
+        }
+    }
+
+    .story-content {
+        position: relative;
+        width: 100%;
+        padding: 12px 13px;
+        z-index: 2;
+
+        h4 {
+            color: white;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-weight: 600;
+        }
+    }
+}
+
+.story-prev {
+    position: fixed;
+    background: #f1f3f4;
+    z-index: 12;
+    width: 100%;
+    margin-top: $header-height;
+    display: flex;
+    border-top: 1px solid #f1f3f4;
+    visibility: hidden;
+    display: none;
+    top: 0;
+
+    .story-sidebar {
+        width: 25%;
+        padding: 12px;
+        background-color: #ffffff;
+
+        .story-sidebar-scrollbar {
+            height: calc(100vh - 140px);
+            padding-left: 0.625rem;
+            padding-right: 0.625rem;
+            margin-left: -0.625rem;
+            margin-right: -0.625rem;
+        }
+
+        .story-sidebar-scrollbar .simplebar-scrollbar {
+            width: 6px;
+            z-index: 1000;
+        }
+    }
+
+    .story-content {
+        flex: 1;
+        min-width: 1px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .story-btn-close {
+        z-index: 100;
+        border-radius: 100%;
+        background: #dcdcdc;
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 20px;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        display: none
+    }
+
+}
+
+/* story clicked */
+body.story-active {
+    overflow: hidden;
+
+    .story-prev {
+        visibility: visible;
+        display: flex !important;
+
+        .story-btn-close {
+            display: flex !important;
+        }
+    }
+
+    header {
+        border-bottom-width: 1px;
+        box-shadow: none;
+
+        .left_side .slide_menu,
+        .header_search,
+        .header_widgets .is_link {
+            display: none
+        }
+    }
+}
+
+.story-users-list {
+    a {
+        display: flex;
+        align-items: center;
+        padding: 8px 0;
+        border-radius: 10px;
+        padding-left: 6px;
+
+        &:hover,
+        &.uk-active {
+            background: $secondary-color;
+        }
+
+        .story-media {
+            position: relative;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            border: 3px solid blue;
+
+            img {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                object-fit: cover;
+                border-radius: 50%;
+                border: solid white 2px;
+            }
+        }
+
+        .story-text {
+
+            flex: 1 1 0%;
+            font-size: 16px;
+            font-weight: 500;
+            color: #2d2d2d;
+
+            .story-username {
+                margin-bottom: 0;
+                font-size: 16px;
+                line-height: 1.2;
+            }
+
+            .story-count {
+                margin-right: 9px;
+                color: $primary-color;
+            }
+
+            .story-time {
+                color: #929292;
+            }
+
+            p {
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+
+.slider-icon {
+    width: 47px;
+    height: 47px;
+    background: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border-radius: 100%;
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    &::before {
+        font-family: "Feather-Icons";
+        font-size: 26px;
+        line-height: 30px;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        position: absolute;
+    }
+
+    &.is-left {
+        left: 0%;
+
+        &::before {
+            content: '\e92f';
+        }
+    }
+
+    &.is-right {
+        right: -10%;
+
+        &::before {
+            content: '\e930';
+        }
+    }
+}
+
+.story-slider-image,
+.story-slider-placeholder {
+    flex: 0 0 auto;
+    max-width: none;
+    max-height: 100%;
+    position: relative;
+    width: 450px;
+    height: 540px;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+ 
+
+
+@media (max-width: 992px) {
+    .story-prev{
+        background: #ffffff;
+        z-index: 99;
+        height: 100%;
+        margin-top: 0;
+        flex-direction: column;
+
+        .story-sidebar {
+           width: 100%;
+           background-color: transparent;
+    
+           .story-sidebar-scrollbar {
+               height: auto !important;
+           }
+       }
+       .story-users-list{
+           overflow-y: hidden;
+           overflow-x: scroll;
+           display: flex;
+           margin: 0 -10px;
+           padding-left: 10px;
+    
+           a .story-text{
+               display: none
+           }
+           a:hover {
+            background:transparent;
+           }
+           a .story-media { 
+            margin-right: 8px;
+           }
+       }
+    } 
+    .story-active{
+        header , .start-chat {
+            display: none;
+        }
+    }
+
+    .story-slider-image, .story-slider-placeholder {
+        width: 100%;
+        height: calc(100vh - 210px);
+    }
+
+}
+
+
+
+@media (max-width: 768px) {
+    .user_story a:nth-child(3) , 
+    .user_story a:nth-child(4){
+        display: none;
+    }
+}   

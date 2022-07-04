@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\DiscoverController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\TrendingController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -49,14 +51,22 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'i'], function (
     // Show Create Form
     Route::get('create', [PostController::class, 'create']);
     // Store Listing Data
-    Route::post('post', [PostController::class, 'store'])->name('post');
+    Route::post('submit', [PostController::class, 'store'])->name('submit');
     // Single post
     Route::get('posts/{post}', [PostController::class, 'show'])->whereAlphaNumeric('post');
-    // Users page
+    // Users group
     Route::group(['prefix' => 'users'], function () {
         Route::get('/', [UserController::class, 'index']);
         Route::get('{user}', [UserController::class, 'show']);
         Route::get('{username}', [UserController::class, 'show'])->name('username');
+    });
+    // Discover group
+    Route::group(['prefix' => 'discover'], function () {
+        Route::get('/', [DiscoverController::class, 'index'])->name('discover');
+    });
+    // Discover page
+    Route::group(['prefix' => 'trending'], function () {
+        Route::get('/', [TrendingController::class, 'index'])->name('trending');
     });
     // Profile page (demo)
     Route::group(['prefix' => 'profile'], function () {
