@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
-    protected $fillable = ['caption', 'visibility', 'user_id', 'media'];
+    protected $fillable = ['caption', 'visibility', 'user_id', 'media', 'nsfw', 'tags', 'title'];
 
     public function scopeFilter($query, array $filters) {
         if($filter['tags'] ?? false) {
@@ -16,8 +16,8 @@ class Post extends Model
         }
 
         if($filter['search'] ?? false) {
-            $query->where('title', 'like', '%' . request('search') . '%')
-                ->orWhere('description', 'like', '%' . request('search') . '%')
+            $query->where('caption', 'like', '%' . request('search') . '%')
+                ->orWhere('user_id', 'like', '%' . request('search') . '%')
                 ->orWhere('tags', 'like', '%' . request('search') . '%');
         }
     }

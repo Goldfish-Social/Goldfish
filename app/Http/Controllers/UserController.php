@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -27,6 +28,48 @@ class UserController extends Controller
         return view('users.show', [
             'user' => $user
         ]); 
+    }
+
+    // Change password
+    public function changePassword() {
+        return view('user.settings.password');
+    }
+
+    public function updatePassword(Request $request) {
+        # Validation
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required|confirmed',
+        ]);
+
+        # Match The Old Password
+        if(!Hash::check($request->old_password, auth()->user()->password)){
+            return back()->with("error", "Old password does not match.");
+        }
+
+        # Update the new Password
+        User::whereId(auth()->user()->id)->update([
+            'password' => Hash::make($request->new_password)
+        ]);
+
+        return back()->with("status", "Password changed successfully!");
+    }
+
+    // Update display name and bio
+    public function updateProfile(Request $request, User $user) {
+        // Validate fields
+        $formFields = $request->validate([
+            'name' => 'nullable|max:30',
+            'bio' => 'nullable|max:150'
+        ]);
+
+        # Update the name and bio
+        User::whereId(auth()->user()->id)->update([
+            'name' => $request->name,
+            'bio' => $request->bio
+        ]);
+
+        return back()->with('status', 'Profile updated.');
     }
 
 

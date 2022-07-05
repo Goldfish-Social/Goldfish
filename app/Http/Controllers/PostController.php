@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Post;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Redirect;
 
 
 class PostController extends Controller
@@ -19,7 +20,7 @@ class PostController extends Controller
     {
         return view('posts.index', [
             'posts' => Post::latest()->filter
-            (request(['tag', 'search']))->simplePaginate(6)
+            (request(['caption', 'search']))->simplePaginate(6)
         ]);
     }
 
@@ -39,8 +40,10 @@ class PostController extends Controller
         $formFields = $request->validate([
             'caption' => 'required',
             'visibility' => 'required',
-            'media' => ['required','mimes:mp4,mov','max:100048'],
+            'nsfw' => 'nullable|boolean',
+            'media' => ['required','mimes:mp4,mov','max:500048'],
         ]);
+
 
         if($request->hasFile('media')) {
             $formFields['media'] = $request->file('media')->store('media', 'public');
@@ -100,11 +103,11 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        if (! Gate::allows('update-post', $post)) {
+        if (! Gate::allows('delete-post', $post)) {
             abort(403);
         }
  
         $post->delete();
-        return redirect('/i/home')->with('message', 'Listing deleted successfully');
+        return redirect('/i/home')->with('message', 'Post deleted successfully');
     }
 }

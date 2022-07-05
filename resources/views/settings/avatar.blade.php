@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="mb-6">
-    <h2 class="text-2xl font-semibold"> Edit profile </h2>
+    <h2 class="text-2xl font-semibold"> Settings </h2>
 </div>
 
 <div class="bg-white lg:divide-x lg:flex lg:shadow-md rounded-md shadow lg:rounded-xl overflow-hidden lg:m-0 -mx-4">
@@ -22,12 +22,12 @@
 
             <!-- form header -->
             <div class="lg:px-10 lg:py-8 p-6">
-                <h3 class="font-bold mb-2 text-xl">Splended!</h3>
+                <h3 class="font-bold mb-2 text-xl">Update account info</h3>
                 <p class=""> This information will be dispalyed publicly so be carful what you share. </p>
                 
             </div>
             
-            <form action="{{ route('update-profile') }}" method="POST">
+            <form action="/" method="POST">
             @csrf
             <!-- form body -->
             <div class="lg:py-8 lg:px-20 flex-1 space-y-4 p-6">
@@ -42,25 +42,27 @@
                 @endif
                 <div>
                     <label> Display name  </label>
-                    <input name="name" type="text" class="with-border" placeholder="" value="{{ Auth()->user()->name }}">
+                    <input type="text" class="with-border" placeholder="">
                 </div>
-                @error('name')
+                @error('email')
                     <p class="class="text-red-500">{{ $message }}</p>
                 @enderror
-                <div class="col-span-2">
-                    <label for="about">Bio (max 150 characters)</label>
-                    <textarea id="about" name="bio" rows="3"  class="shadow-none bg-gray-100 with-border" placeholder="{{Auth()->user()->bio}}">
-                    </textarea>
-                @error('bio')
-                    <p class="class="text-red-500">{{ $message }}</p>
-                @enderror
-                </div>
-            
+
+                <div uk-form-custom class="w-full py-3">
+                    <label>Choose a avatar</label>
+                    <div class="bg-gray-100 border-2 border-dashed flex flex-col h-32 items-center justify-center relative w-full rounded-lg dark:bg-gray-800 dark:border-gray-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-12">
+                            <path d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                            <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
+                        </svg>
+                    </div>
+                <input type="file">
+            </div>
             </div>
 
-                <div class="bg-gray-10 p-6 pt-0 flex justify-end space-x-3">
-                    <button type="submit" class="button bg-blue-700"> Save </button>
-                </div>
+            <div class="bg-gray-10 p-6 pt-0 flex justify-end space-x-3">
+                <button type="submit" class="button bg-blue-700"> Save </button>
+            </div>
             </form>
 
         </div>

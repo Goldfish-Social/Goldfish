@@ -38,7 +38,7 @@
                     <input type="checkbox" id="chekcbox1" checked name="terms">
                     <label for="chekcbox1"><span class="checkbox-icon"></span> I Agree</label>
                 </div>
-                <a href="/about/terms"> Terms and Conditions</a>
+                <a href="{{ route('terms') }}"> Terms and Conditions</a>
             </div>
             <button type="submit" class="bg-gradient-to-br from-pink-500 py-3 rounded-md text-white text-xl to-red-400 w-full">{{ __('Register') }}</button>
             <div class="text-center mt-5 space-x-2">

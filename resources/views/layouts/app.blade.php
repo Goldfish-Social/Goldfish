@@ -40,13 +40,13 @@
                     <!-- Footer  -->
                 </div>
             </div>
-     
+            
         </div>
         <!-- Wrapper / End -->
         @include('posts.form')
         @include('layouts.components.boxes')
 
-        <x-flash-message />
+        
         <!-- For Night mode -->
         <script>
             (function (window, document, undefined) {

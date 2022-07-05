@@ -3,6 +3,7 @@
 use App\Http\Controllers\DiscoverController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RouteController;
@@ -10,7 +11,6 @@ use App\Http\Controllers\TrendingController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Symfony\Component\Routing\RouteCompiler;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,7 +44,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'i'], function () {
     // All under /i
-    Route::get('/', [HomeController::class, 'web']);
+    Route::get('/', [RouteController::class, 'web']);
     // /i/home
     Route::get('home', [PostController::class, 'index'])->name('home');
     // /i/account
@@ -55,12 +55,18 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'i'], function (
             // All under /i/account/settings
             Route::get('/', [UserController::class, 'settings'])->name('settings');
             Route::get('profile', [UserController::class, 'profile'])->name('profile');
+            Route::post('profile/update', [UserController::class, 'updateProfile'])->name('update-profile');
             Route::get('password', [UserController::class, 'password'])->name('password');
+            Route::post('password/update', [UserController::class, 'updatePassword'])->name('update-password');
             Route::get('avatar', [UserController::class, 'avatar'])->name('avatar');
             Route::get('security', [UserController::class, 'security'])->name('security');
             Route::get('sessions', [UserController::class, 'sessions'])->name('sessions');
             Route::get('danger', [UserController::class, 'danger'])->name('danger');
         });
+    });
+    // Notifications
+    Route::group(['prefix' => 'notifications'], function () {
+        Route::get('/', [NotificationController::class, 'index'])->name('notifications');
     });
     // All posts
     Route::get('web', [HomeController::class, 'index']);
