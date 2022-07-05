@@ -6,7 +6,8 @@
     <div class="profile user-profile">
 
         <div class="profiles_banner">
-            <img src="assets/images/avatars/profile-cover.jpg" alt="">
+            <img src="{{asset('storage/' . $user->header_bg)}}" alt="">
+            @if (Auth::user()->can('update-profile', $user))
             <div class="profile_action absolute bottom-0 right-0 space-x-1.5 p-3 text-sm z-50 hidden lg:flex">
               <a href="#" class="flex items-center justify-center h-8 px-3 rounded-md bg-gray-700 bg-opacity-70 text-white space-x-1.5"> 
                   <ion-icon name="crop-outline" class="text-xl"></ion-icon>
@@ -17,12 +18,13 @@
                   <span> Edit </span>
               </a>
           </div>
+          @endcan
         </div>
         <div class="profiles_content">
 
             <div class="profile_avatar">
                 <div class="profile_avatar_holder"> 
-                    <img src="assets/images/avatars/avatar-8.jpg" alt="">
+                    <img src="{{asset('storage/' . $user->avatar)}}" alt="">
                 </div>
                 <div class="user_status status_online"></div>
                 <div class="icon_change_photo" hidden> <ion-icon name="camera" class="text-xl"></ion-icon> </div>
@@ -30,7 +32,7 @@
 
             <div class="profile_info">
                 <h1> {{$user->username}} </h1>
-                <p> Family , Food , Fashion , Fourever <a href="#">Edit </a></p>
+                <p> Family , Food , Fashion , Fourever <a href="{{ route('settings') }}">Edit</a></p>
             </div>
 
         </div>

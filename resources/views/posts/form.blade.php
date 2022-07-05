@@ -11,7 +11,7 @@
         </div>
 
         <div class="flex flex-1 items-start space-x-4 p-5">
-            <img src="{{ asset('assets/images/avatars/avatar-2.jpg') }}"
+            <img src="{{asset('storage/' . Auth()->user()->avatar)}}"
                 class="bg-gray-200 border border-white rounded-full w-11 h-11">
 
         
