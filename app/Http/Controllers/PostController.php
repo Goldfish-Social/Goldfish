@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\Post;
+use Illuminate\Support\Facades\Gate;
+
 
 class PostController extends Controller
 {
@@ -97,6 +100,11 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        if (! Gate::allows('update-post', $post)) {
+            abort(403);
+        }
+ 
+        $post->delete();
+        return redirect('/i/home')->with('message', 'Listing deleted successfully');
     }
 }

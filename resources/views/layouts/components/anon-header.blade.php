@@ -6,7 +6,7 @@
         <div class="flex items-center lg:justify-between justify-around">
 
             <a href="/">
-                <img src="{{asset ('assets/images/logo.png') }}" alt="" class="w-32">
+                <img src="{{asset ('assets/images/logo.png') }}" alt="Goldfish" class="max-h-11">
             </a>
             
             <div class="capitalize flex font-semibold hidden lg:block my-2 space-x-3 text-center text-sm">

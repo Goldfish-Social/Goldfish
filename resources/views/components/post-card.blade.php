@@ -43,10 +43,14 @@
                     <li>
                     <hr class="-mx-2 my-2 dark:border-gray-800">
                     </li>
-                    <li> 
-                        <a href="#" class="flex items-center px-3 py-2 text-red-500 hover:bg-red-100 hover:text-red-500 rounded-md dark:hover:bg-red-600">
-                        <i class="uil-trash-alt mr-1"></i>  Delete
-                        </a> 
+                    <li>
+                        <form method="POST" action="/i/posts/{{$post->id}}">
+                            @csrf
+                            @method('DELETE')
+                            <button class="flex items-center px-3 py-2 text-red-500 hover:bg-red-100 hover:text-red-500 rounded-md dark:hover:bg-red-600">
+                            <i class="uil-trash-alt mr-1"></i>  Delete
+                            </button>
+                        </form>
                     </li>
                 </ul>
             
