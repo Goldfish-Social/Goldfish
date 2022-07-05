@@ -8,8 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Gate;
 
-class UserController extends Controller
-{
+class UserController extends Controller {
     // Logout
     public function logout(Request $request) {
         auth()->logout();

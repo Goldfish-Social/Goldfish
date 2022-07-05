@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Like;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 
-class PostController extends Controller
-{
+class PostController extends Controller {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         return view('posts.index', [
             'posts' => Post::latest()->filter
             (request(['caption', 'search']))->simplePaginate(6)
@@ -28,13 +28,11 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         return view('posts.form');
     }
 
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         // Validate form fields
         $formFields = $request->validate([
             'caption' => 'required',
@@ -57,14 +55,45 @@ class PostController extends Controller
         return redirect('/i/home')->with('message', 'Post published!');
     }
 
+    public function postLikePost(Request $request) {
+        $post_id = $request['postId'];
+        $is_like = $request['isLike'] === 'true';
+        $update = false;
+        $post = Post::find($post_id);
+        if (!$post) {
+            return null;
+        }
+        $user = Auth::user();
+        $like = $user->likes->where('post_id', $post_id)->first();
+        if ($like) {
+            $already_like = $like->like;
+            $update = true;
+            if ($already_like == $is_like) {
+                $like->delete();
+                return null;    
+            }
+        } else {
+            $like = new Like();
+            // $like->create($like);
+        }
+        $like->like = $is_like;
+        $like->user_id = $user->id;
+        $like->post_id = $post->id;
+        if ($update) {
+            $like->update();
+        } else {
+            $like->save();
+        }
+        return null;
+    }
+
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
-    {
+    public function show(Post $post) {
         return view('posts.show', [
             'post' => $post
         ]);
@@ -99,8 +128,7 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
-    {
+    public function destroy(Post $post) {
         if (! Gate::allows('delete-post', $post)) {
             abort(403);
         }

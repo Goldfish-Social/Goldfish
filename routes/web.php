@@ -74,6 +74,8 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'i'], function (
     Route::get('web', [HomeController::class, 'index']);
     // Show Create Form
     Route::get('create', [PostController::class, 'create']);
+    // Like / dislike
+    Route::post('posts/like', [PostController::class, 'postLikePost'])->name('like');
     // Store Listing Data
     Route::post('submit', [PostController::class, 'store'])->name('store');
     // Delete Listing Data

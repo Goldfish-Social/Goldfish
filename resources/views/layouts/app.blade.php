@@ -46,7 +46,10 @@
         @include('posts.form')
         @include('layouts.components.boxes')
 
-        
+        <script>
+            var token = '{{ Session::token() }}';
+            var urlLike = '{{ route('like') }}';
+        </script>
         <!-- For Night mode -->
         <script>
             (function (window, document, undefined) {
@@ -84,10 +87,12 @@
         </script>
         <!-- Javascript -->
         <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
+        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
         <script src="{{ asset('assets/js/tippy.all.min.js') }}"></script>
         <script src="{{ asset('assets/js/uikit.js') }}"></script>
         <script src="{{ asset('assets/js/simplebar.js') }}"></script>
         <script src="{{ asset('assets/js/custom.js') }}"></script>
+        <script src="{{ asset('assets/js/like.js') }}"></script>
         <script src="{{ asset('assets/js/bootstrap-select.min.js') }}"></script>
         <script type="module" src="https://unpkg.com/ionicons@5.2.3/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule="" src="https://unpkg.com/ionicons@5.2.3/dist/ionicons/ionicons.js"></script>

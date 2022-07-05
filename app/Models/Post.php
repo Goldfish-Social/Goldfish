@@ -22,8 +22,12 @@ class Post extends Model
         }
     }
 
-    // Relationship to User
+    // Relation to User
     public function user() {
         return $this->belongsTo(User::class, 'user_id');
+    }
+    // Relation to likes
+    public function likes() {
+        return $this->hasMany(Like::class, 'user_id');
     }
 }
