@@ -24,7 +24,7 @@
                 <!-- form header -->
                 <div class="lg:px-10 lg:py-8 p-6">
                     <h3 class="font-bold mb-2 text-xl">Change password</h3>
-                    <p class=""> This information will be dispalyed publicly so be carful what you share. </p>
+                    <p class="">Make sure to choose a strong and secure password you can remember.</p>
                     
                 </div>
                 

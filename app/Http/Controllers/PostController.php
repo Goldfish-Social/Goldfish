@@ -6,7 +6,6 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Redirect;
 
 
 class PostController extends Controller
@@ -43,7 +42,6 @@ class PostController extends Controller
             'nsfw' => 'nullable|boolean',
             'media' => ['required','mimes:mp4,mov','max:500048'],
         ]);
-
 
         if($request->hasFile('media')) {
             $formFields['media'] = $request->file('media')->store('media', 'public');

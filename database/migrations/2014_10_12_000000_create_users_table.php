@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->boolean('is_admin')->default(false);
             $table->text('bio', 150)->nullable();
             $table->string('website')->nullable();
-            $table->string('header_bg')->nullable();
+            $table->string('header_bg')->default('default-header.jpg');
             $table->string('avatar')->default('default.jpg');
             // ActivityPub
             $table->string('sharedInbox')->nullable()->index();

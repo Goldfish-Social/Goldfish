@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="mb-6">
-        <h2 class="text-2xl font-semibold"> Settings </h2>
+        <h2 class="text-2xl font-semibold">Email settings</h2>
     </div>
 
     <div class="bg-white lg:divide-x lg:flex lg:shadow-md rounded-md shadow lg:rounded-xl overflow-hidden lg:m-0 -mx-4">
@@ -22,9 +22,8 @@
 
                 <!-- form header -->
                 <div class="lg:px-10 lg:py-8 p-6">
-                    <h3 class="font-bold mb-2 text-xl">Update account info</h3>
-                    <p class=""> This information will be dispalyed publicly so be carful what you share. </p>
-                    
+                    <h3 class="font-bold mb-2 text-xl">Update account email</h3>
+                    <p class="">Make sure it's an email you own and can access.</p>
                 </div>
 
                 

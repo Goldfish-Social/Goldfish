@@ -59,6 +59,8 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'i'], function (
             Route::get('password', [UserController::class, 'password'])->name('password');
             Route::post('password/update', [UserController::class, 'updatePassword'])->name('update-password');
             Route::get('avatar', [UserController::class, 'avatar'])->name('avatar');
+            Route::post('avatar/update', [UserController::class, 'updateAvatar'])->name('update-avatar');
+            Route::post('avatar/update/cover', [UserController::class, 'updateCover'])->name('update-cover');
             Route::get('security', [UserController::class, 'security'])->name('security');
             Route::get('sessions', [UserController::class, 'sessions'])->name('sessions');
             Route::get('danger', [UserController::class, 'danger'])->name('danger');

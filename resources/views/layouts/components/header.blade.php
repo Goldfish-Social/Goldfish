@@ -93,13 +93,13 @@
 
 
                 <a href="#">
-                    <img src="{{asset ('assets/images/avatars/avatar-2.jpg') }}" class="is_avatar" alt="">
+                    <img src="{{asset('storage/' . Auth()->user()->avatar)}}" class="is_avatar" alt="">
                 </a>
                 <div uk-drop="mode: click;offset:5" class="header_dropdown profile_dropdown">
 
                     <a href="/i/users/{{auth()->user()->id}}" class="user">
                         <div class="user_avatar">
-                            <img src="assets/images/avatars/avatar-2.jpg" alt="">
+                            <img src="{{asset('storage/' . Auth()->user()->avatar)}}" alt="">
                         </div>
                         <div class="user_name">
                             <div> {{auth()->user()->name}} </div>

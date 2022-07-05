@@ -7,7 +7,7 @@
         <div class="flex justify-between items-center lg:p-4 p-2.5">
             <div class="flex flex-1 items-center space-x-4">
                 <a href="/i/users/{{$post->User->id}}">
-                    <img src="{{ asset('assets/images/avatars/avatar-2.jpg') }}" class="bg-gray-200 border border-white rounded-full w-10 h-10">
+                    <img src="{{asset('storage/' . $post->User->avatar)}}" class="bg-gray-200 border border-white rounded-full w-10 h-10">
                 </a>
                 <div class="flex-1 font-semibold capitalize">
                     <a href="/i/users/{{$post->User->id}}" class="text-black dark:text-gray-100"> {{$post->User->username}} </a>

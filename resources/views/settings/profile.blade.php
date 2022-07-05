@@ -41,7 +41,7 @@
                 </p>
                 @endif
                 <div>
-                    <label> Display name  </label>
+                    <label>Display name</label>
                     <input name="name" type="text" class="with-border" placeholder="" value="{{ Auth()->user()->name }}">
                 </div>
                 @error('name')
@@ -49,12 +49,18 @@
                 @enderror
                 <div class="col-span-2">
                     <label for="about">Bio (max 150 characters)</label>
-                    <textarea id="about" name="bio" rows="3"  class="shadow-none bg-gray-100 with-border" placeholder="{{Auth()->user()->bio}}">
-                    </textarea>
+                    <textarea id="about" name="bio" rows="3"  class="shadow-none bg-gray-100 with-border" placeholder="">{{Auth()->user()->bio}}</textarea>
                 @error('bio')
                     <p class="class="text-red-500">{{ $message }}</p>
                 @enderror
                 </div>
+                <div>
+                    <label>Website</label>
+                    <input name="website" type="text" class="with-border" placeholder="https://" value="{{ Auth()->user()->website }}">
+                </div>
+                @error('website')
+                    <p class="class="text-red-500">{{ $message }}</p>
+                @enderror
             
             </div>
 
