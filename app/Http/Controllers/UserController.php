@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
 use App\Models\User;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller {
@@ -32,13 +31,12 @@ class UserController extends Controller {
     }
     // Show User
     public function show(User $user) { 
-        $post = auth()->user()->posts;
+        $post = DB::table('posts')->get()->where('user_id') == $user->id;
         return view('users.show', [
             'user' => $user,
             'posts' => $post
         ]); 
     }
-
     // Change password view
     public function changePassword() {
         return view('user.settings.password');
