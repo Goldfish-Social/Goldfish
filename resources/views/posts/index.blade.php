@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
-@section('content')            
+@section('content')
     <!--  Feeds  -->
     <div class="lg:flex lg:space-x-10">
-        <div class="lg:w-3/4 lg:px-20 space-y-7">
+        <div class="lg:w-3/4 lg:px-20 space-y-7"> 
             
             @include('posts.create')
             
