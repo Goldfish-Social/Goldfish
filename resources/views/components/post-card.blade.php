@@ -10,8 +10,8 @@
                     <img src="{{asset('storage/' . $post->User->avatar)}}" class="bg-gray-200 border border-white rounded-full w-10 h-10">
                 </a>
                 <div class="flex-1 font-semibold capitalize">
-                    <a href="/i/users/{{$post->User->id}}" class="text-black dark:text-gray-100"> {{$post->User->username}} </a>
-                    <div class="text-gray-700 flex items-center space-x-2"><a href="/i/posts/{{$post->id}}"><span>{{$post->created_at}}</span></a> <ion-icon name="people"></ion-icon></div>
+                    <a href="/i/users/{{$post->User->id}}" class="text-black dark:text-gray-100"> {{$post->User->name}}</a>
+                    <div class="text-gray-700 flex items-center space-x-2"><a href="/i/posts/{{$post->id}}"><span>{{ \Carbon\Carbon::parse($post->created_at)->format('d/m/Y')}}</span></a> <ion-icon name="people"></ion-icon></div> 
                 </div>
             </div>
             <div>

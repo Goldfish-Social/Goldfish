@@ -1,7 +1,7 @@
 <!-- create post -->
 <div class="card lg:mx-0 p-4" uk-toggle="target: #create-post-modal">
     <div class="flex space-x-3">
-        <img src="{{ asset('assets/images/avatars/avatar-2.jpg') }}" class="w-10 h-10 rounded-full">
+        <img src="{{asset('storage/' . Auth()->user()->avatar)}}" class="w-10 h-10 rounded-full">
         <input placeholder="How meow are you?" class="bg-gray-100 hover:bg-gray-200 flex-1 h-12 px-6 rounded-full"> 
     </div>
     
