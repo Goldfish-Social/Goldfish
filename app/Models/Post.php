@@ -24,10 +24,10 @@ class Post extends Model
 
     // Relation to User
     public function user() {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class);
     }
     // Relation to likes
     public function likes() {
-        return $this->hasMany(Like::class, 'user_id');
+        return $this->hasMany(Like::class);
     }
 }

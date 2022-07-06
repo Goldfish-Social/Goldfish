@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller {
     // Logout
@@ -22,11 +23,19 @@ class UserController extends Controller {
  
         return view('users.index', ['users' => $users]);
     }
-
-    // Show User
-    public function show(User $user) {
-        return view('users.show', [
+    
+    // Redirect to /timeline
+    public function timeline(User $user) {
+        return redirect()->route('timeline', [
             'user' => $user
+        ]);
+    }
+    // Show User
+    public function show(User $user) { 
+        $post = auth()->user()->posts;
+        return view('users.show', [
+            'user' => $user,
+            'posts' => $post
         ]); 
     }
 

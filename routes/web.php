@@ -85,8 +85,11 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'i'], function (
     // Users group
     Route::group(['prefix' => 'users'], function () {
         Route::get('/', [UserController::class, 'index']);
-        Route::get('{user}', [UserController::class, 'show']);
-        Route::get('{username}', [UserController::class, 'show'])->name('username');
+        Route::get('{user}', [UserController::class, 'timeline']);
+        Route::get('/{user}/timeline', [UserController::class, 'show'])->name('timeline');
+        
+        Route::get('{username}', [UserController::class, 'username'])->name('username');
+        //Route::get('/{username}/timeline', [UserController::class, 'username'])->name('timeline');
     });
     // Discover group
     Route::group(['prefix' => 'discover'], function () {
