@@ -7,7 +7,7 @@
 
         <div class="profiles_banner">
             <img src="{{asset('storage/' . $user->header_bg)}}" alt="">
-            @if (Auth::user()->can('update-profile', $user))
+            @if(auth()->user()->username = $user->username)
             <div class="profile_action absolute bottom-0 right-0 space-x-1.5 p-3 text-sm z-50 hidden lg:flex">
               <a href="#" class="flex items-center justify-center h-8 px-3 rounded-md bg-gray-700 bg-opacity-70 text-white space-x-1.5"> 
                   <ion-icon name="crop-outline" class="text-xl"></ion-icon>
@@ -18,7 +18,7 @@
                   <span> Edit </span>
               </a>
           </div>
-          @endcan
+          @endif
           
         </div>
         <div class="profiles_content">
@@ -56,9 +56,6 @@
                 
                 <!-- add story -->
                 <button data-id="{{ $user->id }}" class="action-follow flex items-center justify-center h-10 px-5 rounded-md bg-blue-600 text-white space-x-1.5 hover:text-white"> 
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path>
-                    </svg>
                     <span>
                         @if(auth()->user()->isFollowing($user))
                             UnFollow
@@ -67,21 +64,6 @@
                         @endif
                     </span>
                 </button>
-
-                <form method="POST" action="{{ route('follow') }}">
-                @csrf
-                <button type="submit" class="flex items-center justify-center h-10 px-5 rounded-md bg-blue-600 text-white space-x-1.5 hover:text-white"> 
-                        @if(auth()->user()->isFollowing($user))
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path>
-                        </svg><span>Unfollow</span>
-                        @else
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path>
-                        </svg><span>Follow</span>
-                        @endif
-                </button>
-                </form>
                
                 <!-- search icon -->
                 <a href="#" class="flex items-center justify-center h-10 w-10 rounded-md bg-gray-100" uk-toggle="target: #profile-search;animation: uk-animation-slide-top-small"> 

@@ -2,10 +2,10 @@
 @foreach($users as $user)
 <div class="flex items-center space-x-4">
     <div class="w-20 h-20 flex-shrink-0 rounded-md relative mb-3"> 
-        <img src="assets/images/group/group-4.jpg" class="absolute w-full h-full inset-0 rounded-md object-cover shadow-sm" alt="">
+        <img src="{{ asset('storage/' . $user->avatar) }}" class="absolute w-full h-full inset-0 rounded-md object-cover shadow-sm" alt="">
     </div> 
     <div class="flex-1 border-b pb-3">
-        <a href="{{ route('user.view', $user->id) }}"  class="text-lg font-semibold capitalize"> {{ $user->name }}</a>
+        <a href="{{ route('user.view', $user->username) }}"  class="text-lg font-semibold capitalize"> {{ $user->name }}</a>
         <div class="flex space-x-2 items-center text-sm">
             <div> Following: {{ $user->followings()->get()->count() }} </div>
             <div>·</div>
