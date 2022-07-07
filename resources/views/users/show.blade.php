@@ -291,19 +291,10 @@
             </div>
         </div>
               
-        <!-- Friends  -->
+        <!-- Followers  -->
         <div class="card md:p-6 p-2 max-w-3xl mx-auto">
 
-            <h2 class="text-xl font-bold"> Friends</h2>
-
-            <nav class="responsive-nav border-b">
-                <ul>
-                    <li class="active"><a href="#" class="lg:px-2"> All Friends <span> 3,4510 </span> </a></li>
-                    <li><a href="#" class="lg:px-2"> Recently added </a></li>
-                    <li><a href="#" class="lg:px-2"> Family </a></li>
-                    <li><a href="#" class="lg:px-2"> University </a></li> 
-                </ul>
-            </nav>
+            <h2 class="text-xl font-bold"> Followers</h2> 
 
             <div class="grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-x-2 gap-y-4 mt-3">
 
@@ -413,21 +404,13 @@
 
         </div>
 
-        <!-- Photos  -->
+        <!-- Follows  -->
         <div class="card md:p-6 p-2 max-w-3xl mx-auto">
 
             <div class="flex justify-between items-start relative md:mb-4 mb-3">
                 <div class="flex-1">
-                    <h2 class="text-xl font-bold"> Photos </h2>
-                    <nav class="responsive-nav style-2 md:m-0 -mx-4">
-                        <ul>
-                            <li class="active"><a href="#">  Photos of you  <span> 230</span> </a></li>
-                            <li><a href="#"> Recently added </a></li>
-                            <li><a href="#"> Family </a></li>
-                            <li><a href="#"> University </a></li>
-                            <li><a href="#"> Albums </a></li>
-                        </ul>
-                    </nav>
+                    <h2 class="text-xl font-bold"> Follows </h2>
+
                 </div>
                 <a href="#offcanvas-create" uk-toggle class="flex items-center justify-center z-10 h-10 w-10 rounded-full bg-blue-600 text-white absolute right-0"
                 data-tippy-placement="left" title="Create New Album">
@@ -435,127 +418,105 @@
                 </a>
             </div>
 
-            <div class="grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-3 mt-5">
-                <div>
-                    <div class="bg-green-400 max-w-full lg:h-44 h-36 rounded-lg relative overflow-hidden shadow uk-transition-toggle">
-                        <img src="assets/images/post/img-1.jpg" class="w-full h-full absolute object-cover inset-0">
-                        <!-- overly-->
-                        <div class="-bottom-12 absolute bg-gradient-to-b from-transparent h-1/2 to-gray-800 uk-transition-slide-bottom-small w-full"></div>
-                        <div class="absolute bottom-0 w-full p-3 text-white uk-transition-slide-bottom-small">
-                            <div class="text-base"> Image description  </div>
-                            <div class="flex justify-between text-xs">
-                               <a href="#">  Like</a>
-                               <a href="#">  Comment </a>
-                               <a href="#">  Share </a> 
-                            </div>
-                        </div>
+            <div class="grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-x-2 gap-y-4 mt-3">
+
+                <div class="card p-2">
+                    <a href="timeline.html">
+                        <img src="assets/images/avatars/avatar-2.jpg" class="h-36 object-cover rounded-md shadow-sm w-full">
+                    </a>
+                    <div class="pt-3 px-1">
+                        <a href="timeline.html" class="text-base font-semibold mb-0.5">  James Lewis </a>
+                        <p class="font-medium text-sm">843K Following </p>
+                        <button class="bg-blue-100 w-full flex font-semibold h-8 items-center justify-center mt-3 px-3 rounded-md text-blue-600 text-sm mb-1">
+                            Following
+                        </button>
                     </div>
                 </div>
-                <div>
-                    <div class="bg-gray-200 max-w-full lg:h-44 h-36 rounded-lg relative overflow-hidden shadow uk-transition-toggle">
-                        <img src="assets/images/post/img-2.jpg" class="w-full h-full absolute object-cover inset-0">
-                        <!-- overly-->
-                        <div class="-bottom-12 absolute bg-gradient-to-b from-transparent h-1/2 to-gray-800 uk-transition-slide-bottom-small w-full"></div>
-                        <div class="absolute bottom-0 w-full p-3 text-white uk-transition-slide-bottom-small">
-                            <div class="text-base"> Image description  </div>
-                            <div class="flex justify-between text-xs">
-                               <a href="#">  Like</a>
-                               <a href="#">  Comment </a>
-                               <a href="#">  Share </a> 
-                            </div>
-                        </div>
+                <div class="card p-2">
+                    <a href="timeline.html">
+                        <img src="assets/images/avatars/avatar-3.jpg" class="h-36 object-cover rounded-md shadow-sm w-full">
+                    </a>
+                    <div class="pt-3 px-1">
+                        <a href="timeline.html" class="text-base font-semibold mb-0.5"> Monroe Parker  </a>
+                        <p class="font-medium text-sm">843K Following </p>
+                        <button class="bg-blue-100 w-full flex font-semibold h-8 items-center justify-center mt-3 px-3 rounded-md text-blue-600 text-sm mb-1">
+                            Following
+                        </button>
                     </div>
                 </div>
-                <div>
-                    <div class="bg-gray-200 max-w-full lg:h-44 h-36 rounded-lg relative overflow-hidden shadow uk-transition-toggle">
-                        <img src="assets/images/avatars/avatar-3.jpg" class="w-full h-full absolute object-cover inset-0">
-                        <!-- overly-->
-                        <div class="-bottom-12 absolute bg-gradient-to-b from-transparent h-1/2 to-gray-800 uk-transition-slide-bottom-small w-full"></div>
-                        <div class="absolute bottom-0 w-full p-3 text-white uk-transition-slide-bottom-small">
-                            <div class="text-base"> Image description  </div>
-                            <div class="flex justify-between text-xs">
-                               <a href="#">  Like</a>
-                               <a href="#">  Comment </a>
-                               <a href="#">  Share </a> 
-                            </div>
-                        </div>
+                <div class="card p-2">
+                    <a href="timeline.html">
+                        <img src="assets/images/avatars/avatar-4.jpg" class="h-36 object-cover rounded-md shadow-sm w-full">
+                    </a>
+                    <div class="pt-3 px-1">
+                        <a href="timeline.html" class="text-base font-semibold mb-0.5">  Martin Gray  </a>
+                        <p class="font-medium text-sm">843K Following </p>
+                        <button class="bg-blue-100 w-full flex font-semibold h-8 items-center justify-center mt-3 px-3 rounded-md text-blue-600 text-sm mb-1">
+                            Following
+                        </button>
                     </div>
                 </div>
-                <div>
-                    <div class="bg-gray-200 max-w-full lg:h-44 h-36 rounded-lg relative overflow-hidden shadow uk-transition-toggle">
-                        <img src="assets/images/post/img-4.jpg" class="w-full h-full absolute object-cover inset-0">
-                        <!-- overly-->
-                        <div class="-bottom-12 absolute bg-gradient-to-b from-transparent h-1/2 to-gray-800 uk-transition-slide-bottom-small w-full"></div>
-                        <div class="absolute bottom-0 w-full p-3 text-white uk-transition-slide-bottom-small">
-                            <div class="text-base"> Image description  </div>
-                            <div class="flex justify-between text-xs">
-                               <a href="#">  Like</a>
-                               <a href="#">  Comment </a>
-                               <a href="#">  Share </a> 
-                            </div>
-                        </div>
+                <div class="card p-2">
+                    <a href="timeline.html">
+                        <img src="assets/images/avatars/avatar-7.jpg" class="h-36 object-cover rounded-md shadow-sm w-full">
+                    </a>
+                    <div class="pt-3 px-1">
+                        <a href="timeline.html" class="text-base font-semibold mb-0.5">  Alex Michael </a>
+                        <p class="font-medium text-sm">843K Following </p>
+                        <button class="bg-blue-100 w-full flex font-semibold h-8 items-center justify-center mt-3 px-3 rounded-md text-blue-600 text-sm mb-1">
+                            Following
+                        </button>
                     </div>
                 </div>
-                <div>
-                    <div class="bg-gray-200 max-w-full lg:h-44 h-36 rounded-lg relative overflow-hidden shadow uk-transition-toggle">
-                        <img src="assets/images/avatars/avatar-7.jpg" class="w-full h-full absolute object-cover inset-0">
-                        <!-- overly-->
-                        <div class="-bottom-12 absolute bg-gradient-to-b from-transparent h-1/2 to-gray-800 uk-transition-slide-bottom-small w-full"></div>
-                        <div class="absolute bottom-0 w-full p-3 text-white uk-transition-slide-bottom-small">
-                            <div class="text-base"> Image description  </div>
-                            <div class="flex justify-between text-xs">
-                               <a href="#">  Like</a>
-                               <a href="#">  Comment </a>
-                               <a href="#">  Share </a> 
-                            </div>
-                        </div>
+                <div class="card p-2">
+                    <a href="timeline.html">
+                        <img src="assets/images/avatars/avatar-5.jpg" class="h-36 object-cover rounded-md shadow-sm w-full">
+                    </a>
+                    <div class="pt-3 px-1">
+                        <a href="timeline.html" class="text-base font-semibold mb-0.5"> Jesse Stevens  </a>
+                        <p class="font-medium text-sm">843K Following </p>
+                        <button class="bg-blue-100 w-full flex font-semibold h-8 items-center justify-center mt-3 px-3 rounded-md text-blue-600 text-sm mb-1">
+                            Following
+                        </button>
                     </div>
                 </div>
-                <div>
-                    <div class="bg-gray-200 max-w-full lg:h-44 h-36 rounded-lg relative overflow-hidden shadow uk-transition-toggle">
-                        <img src="assets/images/avatars/avatar-4.jpg" class="w-full h-full absolute object-cover inset-0">
-                        <!-- overly-->
-                        <div class="-bottom-12 absolute bg-gradient-to-b from-transparent h-1/2 to-gray-800 uk-transition-slide-bottom-small w-full"></div>
-                        <div class="absolute bottom-0 w-full p-3 text-white uk-transition-slide-bottom-small">
-                            <div class="text-base"> Image description  </div>
-                            <div class="flex justify-between text-xs">
-                               <a href="#">  Like</a>
-                               <a href="#">  Comment </a>
-                               <a href="#">  Share </a> 
-                            </div>
-                        </div>
+                <div class="card p-2">
+                    <a href="timeline.html">
+                        <img src="assets/images/avatars/avatar-6.jpg" class="h-36 object-cover rounded-md shadow-sm w-full">
+                    </a>
+                    <div class="pt-3 px-1">
+                        <a href="timeline.html" class="text-base font-semibold mb-0.5"> Erica Jones  </a>
+                        <p class="font-medium text-sm">843K Following </p>
+                        <button class="bg-blue-100 w-full flex font-semibold h-8 items-center justify-center mt-3 px-3 rounded-md text-blue-600 text-sm mb-1">
+                            Following
+                        </button>
                     </div>
                 </div>
-                <div>
-                    <div class="bg-gray-200 max-w-full lg:h-44 h-36 rounded-lg relative overflow-hidden shadow uk-transition-toggle">
-                        <img src="assets/images/post/img-1.jpg" class="w-full h-full absolute object-cover inset-0">
-                        <!-- overly-->
-                        <div class="-bottom-12 absolute bg-gradient-to-b from-transparent h-1/2 to-gray-800 uk-transition-slide-bottom-small w-full"></div>
-                        <div class="absolute bottom-0 w-full p-3 text-white uk-transition-slide-bottom-small">
-                            <div class="text-base"> Image description  </div>
-                            <div class="flex justify-between text-xs">
-                               <a href="#">  Like</a>
-                               <a href="#">  Comment </a>
-                               <a href="#">  Share </a> 
-                            </div>
-                        </div>
+                <div class="card p-2">
+                    <a href="timeline.html">
+                        <img src="assets/images/avatars/avatar-2.jpg" class="h-36 object-cover rounded-md shadow-sm w-full">
+                    </a>
+                    <div class="pt-3 px-1">
+                        <a href="timeline.html" class="text-base font-semibold mb-0.5">  James Lewis </a>
+                        <p class="font-medium text-sm">843K Following </p>
+                        <button class="bg-blue-100 w-full flex font-semibold h-8 items-center justify-center mt-3 px-3 rounded-md text-blue-600 text-sm mb-1">
+                            Following
+                        </button>
                     </div>
                 </div>
-                <div>
-                    <div class="bg-gray-200 max-w-full lg:h-44 h-36 rounded-lg relative overflow-hidden shadow uk-transition-toggle">
-                        <img src="assets/images/post/img-2.jpg" class="w-full h-full absolute object-cover inset-0">
-                        <!-- overly-->
-                        <div class="-bottom-12 absolute bg-gradient-to-b from-transparent h-1/2 to-gray-800 uk-transition-slide-bottom-small w-full"></div>
-                        <div class="absolute bottom-0 w-full p-3 text-white uk-transition-slide-bottom-small">
-                            <div class="text-base"> Image description  </div>
-                            <div class="flex justify-between text-xs">
-                               <a href="#">  Like</a>
-                               <a href="#">  Comment </a>
-                               <a href="#">  Share </a> 
-                            </div>
-                        </div>
+                <div class="card p-2">
+                    <a href="timeline.html">
+                        <img src="assets/images/avatars/avatar-3.jpg" class="h-36 object-cover rounded-md shadow-sm w-full">
+                    </a>
+                    <div class="pt-3 px-1">
+                        <a href="timeline.html" class="text-base font-semibold mb-0.5"> Monroe Parker  </a>
+                        <p class="font-medium text-sm">843K Following </p>
+                        <button class="bg-blue-100 w-full flex font-semibold h-8 items-center justify-center mt-3 px-3 rounded-md text-blue-600 text-sm mb-1">
+                            Following
+                        </button>
                     </div>
                 </div>
+
             </div>
 
             <div class="flex justify-center mt-6">

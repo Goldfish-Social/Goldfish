@@ -7,22 +7,112 @@
                     
                     <div class="md:space-y-6 space-y-4 text-gray-400 md:text-lg">
                          
-                        <div class="md:leading-8 leading-7"> Updated July 09, 2021</div>
-                        <div class="font-semibold md:text-2xl text-xl text-gray-700"> Privacy Policy </div>
-                        <div class="md:leading-8 leading-7"> Version 2.1, Revision 4</div>
-
-                        <div class="font-semibold md:text-2xl text-2xl text-gray-700 md:pt-12 pt-10"> Using our services </div>
-                        <div class="md:leading-8 leading-7"> You must follow any policies made available to you within the Services.</div>
-                        <div class="md:leading-8 leading-7"> Don't misuse our Services. For example, don't interfere with our Services or try to access them using a method other than the interface and the instructions that we provide. You may use our Services only as permitted by law, including applicable export and re-export control laws and regulations. We may suspend or stop providing our Services to you if you do not comply with our terms or policies or if we are investigating suspected misconduct. </div>
-                        <div class="md:leading-8 leading-7"> Using our Services does not give you ownership of any intellectual property rights in our Services or the content you access. You may not use content from our Services unless you obtain permission from its owner or are otherwise permitted by law. These terms do not grant you the right to use any branding or logos used in our Services. Don't remove, obscure, or alter any legal notices displayed in or along with our Services. </div>
-                    
-                        <div class="font-semibold md:text-2xl text-2xl text-gray-700">Your content in our services</div>
-                        <div class="md:leading-8 leading-7"> Some of our Services allow you to upload, submit, store, send or receive content. You retain ownership of any intellectual property rights that you hold in that content. In short, what belongs to you stays yours.</div>
-                        <div class="md:leading-8 leading-7"> When you upload, submit, store, send or receive content to or through our Services, you give Front (and those we work with) a worldwide license to use, host, store, reproduce, modify, create derivative works (such as those resulting from translations, adaptations or other changes we make so that your content works better with our Services), communicate, publish, publicly perform, publicly display and distribute such content. The rights you grant in this license are for the limited purpose of operating, promoting, and improving our Services, and to develop new ones. This license continues even if you stop using our Services (for example, for a business listing you have added to Front Maps). Some Services may offer you ways to access and remove content that has been provided to that Service. Also, in some of our Services, there are terms or settings that narrow the scope of our use of the content submitted in those Services.</div>
+                        <div class="md:leading-8 leading-7"> Updated July 08, 2022</div>
+                        <div class="font-semibold md:text-2xl text-xl text-gray-700"> Code of Conduct </div>
+                        <div class="md:leading-8 leading-7"> Version 1.0</div>
+                        <p>
+                            The following guidelines are not a legal document, and final interpretation
+                            is up to the administration of {{ config('app.url', 'https://goldfish.social') }}; they are here to provide you
+                            with an insight into our content moderation policies:
+                        </p>
+                        <ol>
+                            <li>
+                                The following types of content will be removed from the public
+                                timeline:
+                                <ol type="a">
+                                    <li>
+                                        Excessive advertising
+                                    </li>
+                                    <li>
+                                        Uncurated news bots posting from third-party news sources
+                                    </li>
+                                    <li>
+                                        Untagged nudity, pornography and sexually explicit content,
+                                        including artistic depictions
+                                    </li>
+                                    <li>
+                                        Untagged gore and extremely graphic violence, including
+                                        artistic depictions
+                                    </li>
+                                    <li>
+                                        Fake news, anti-vaccination spam
+                                    </li>
+                                </ol>
+                            </li>
+                            <li>
+                                The following types of content will be removed from the public
+                                timeline, and may result in account suspension and revocation of access
+                                to the service:
+                                <ol type="a">
+                                    <li>
+                                        Racism or advocation of racism
+                                    </li>
+                                    <li>
+                                        Sexism or advocation of sexism
+                                    </li>
+                                    <li>
+                                        Casteism or advocation of casteism
+                                    </li>
+                                    <li>
+                                        Discrimination against gender and sexual minorities, or
+                                        advocation thereof
+                                    </li>
+                                    <li>
+                                        Xenophobic and/or violent nationalism
+                                    </li>
+                                </ol>
+                            </li>
+                            <li>
+                                The following types of content are explicitly disallowed and will
+                                result in revocation of access to the service:
+                                <ol type="a">
+                                    <li>
+                                        Sexual depictions of children
+                                    </li>
+                                    <li>
+                                        Content illegal in Germany and/or France, such as holocaust
+                                        denial or Nazi symbolism
+                                    </li>
+                                    <li>
+                                        Conduct promoting the ideology of National Socialism
+                                    </li>
+                                </ol>
+                            </li>
+                            <li>
+                                Any conduct intended to stalk or harass other users, or to impede other
+                                users from utilizing the service, or to degrade the performance of the
+                                service, or to harass other users, or to incite other users to perform
+                                any of the aforementioned actions, is also disallowed, and subject to
+                                punishment up to and including revocation of access to the service.
+                                This includes, but is not limited to, the following behaviors:
+                                <ol type="a">
+                                    <li>
+                                        Continuing to engage in conversation with a user that has
+                                        specifically has requested for said engagement with that user
+                                        to cease and desist may be considered harassment, regardless of
+                                        platform-specific privacy tools employed.
+                                    </li>
+                                    <li>
+                                        Aggregating, posting, and/or disseminating a person's
+                                        demographic, personal, or private data without express
+                                        permission (informally called doxing or dropping dox) may be
+                                        considered harassment.
+                                    </li>
+                                    <li>
+                                        Inciting users to engage another user in continued interaction
+                                        or discussion after a user has requested for said engagement
+                                        with that user to cease and desist (informally called brigading
+                                        or dogpiling) may be considered harassment.
+                                    </li>
+                                </ol>
+                            </li>
+                        </ol>
+                        <p>
+                            These provisions notwithstanding, the administration of the service
+                            reserves the right to revoke any user's access permissions, at any time,
+                            for any reason, except as limited by law.
+                        </p>
                         
-                        <div class="font-semibold md:text-2xl text-xl text-gray-700"> Pay Attention </div>
-                        <div class="md:leading-8 leading-7"> Our Services are very diverse, so sometimes additional terms or product requirements (including age requirements) may apply. Additional terms will be available with the relevant Services, and those additional terms become part of your agreement with us if you use.</div>
-                    
                     </div>
      
                 </div>

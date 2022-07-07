@@ -19,7 +19,7 @@ class PostController extends Controller {
      */
     public function index() {
         return view('posts.index', [
-            'posts' => Post::latest()->with(['likes', 'user'])->get()
+            'posts' => Post::latest('created_at')->filter(request(['search']))->get()
         ]);
     }
 
@@ -52,7 +52,7 @@ class PostController extends Controller {
         Post::create($formFields);
 
         // Return after success
-        return redirect('/i/home')->with('message', 'Post published!');
+        return back()->with('message', 'Post published!');
     }
 
     public function postLikePost(Request $request) {

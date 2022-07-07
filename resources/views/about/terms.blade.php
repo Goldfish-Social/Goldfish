@@ -7,22 +7,157 @@
         
         <div class="md:space-y-6 space-y-4 text-gray-400 md:text-lg">
              
-            <div class="md:leading-8 leading-7"> Updated July 09, 2021</div>
-            <div class="font-semibold md:text-2xl text-xl text-gray-700"> Privacy Policy </div>
-            <div class="md:leading-8 leading-7"> Version 2.1, Revision 4</div>
+            <div class="md:leading-8 leading-7"> Updated July 09, 2022</div>
+            <div class="font-semibold md:text-2xl text-xl text-gray-700"> Terms of Service </div>
+            <div class="md:leading-8 leading-7"> Version 1.0</div>
 
-            <div class="font-semibold md:text-2xl text-2xl text-gray-700 md:pt-12 pt-10"> Using our services </div>
-            <div class="md:leading-8 leading-7"> You must follow any policies made available to you within the Services.</div>
-            <div class="md:leading-8 leading-7"> Don't misuse our Services. For example, don't interfere with our Services or try to access them using a method other than the interface and the instructions that we provide. You may use our Services only as permitted by law, including applicable export and re-export control laws and regulations. We may suspend or stop providing our Services to you if you do not comply with our terms or policies or if we are investigating suspected misconduct. </div>
-            <div class="md:leading-8 leading-7"> Using our Services does not give you ownership of any intellectual property rights in our Services or the content you access. You may not use content from our Services unless you obtain permission from its owner or are otherwise permitted by law. These terms do not grant you the right to use any branding or logos used in our Services. Don't remove, obscure, or alter any legal notices displayed in or along with our Services. </div>
-        
-            <div class="font-semibold md:text-2xl text-2xl text-gray-700">Your content in our services</div>
-            <div class="md:leading-8 leading-7"> Some of our Services allow you to upload, submit, store, send or receive content. You retain ownership of any intellectual property rights that you hold in that content. In short, what belongs to you stays yours.</div>
-            <div class="md:leading-8 leading-7"> When you upload, submit, store, send or receive content to or through our Services, you give Front (and those we work with) a worldwide license to use, host, store, reproduce, modify, create derivative works (such as those resulting from translations, adaptations or other changes we make so that your content works better with our Services), communicate, publish, publicly perform, publicly display and distribute such content. The rights you grant in this license are for the limited purpose of operating, promoting, and improving our Services, and to develop new ones. This license continues even if you stop using our Services (for example, for a business listing you have added to Front Maps). Some Services may offer you ways to access and remove content that has been provided to that Service. Also, in some of our Services, there are terms or settings that narrow the scope of our use of the content submitted in those Services.</div>
+            <div>
+                <div>
+                    <div>
+                        <h5>
+                            1. Terms
+                        </h5>
+                        <p>
+            By accessing the website at                <a href="{{ config('app.url', 'https://goldfish.social') }}">{{ config('app.url', 'https://goldfish.social') }}</a>, you are
+                            agreeing to be bound by these terms of service, all applicable
+                            laws and regulations, and agree that you are responsible for
+                            compliance with any applicable local laws. If you do not agree
+                            with any of these terms, you are prohibited from using or
+                            accessing this site. The materials contained in this website
+                            are protected by applicable copyright and trademark law.
+                        </p>
+                        <h5>
+                            2. Use License
+                        </h5>
+                        <ol type="a">
+                            <li>
+                                Permission is granted to temporarily download one copy of
+                                the materials (information or software) on Pixelfed's
+                                website for personal, non-commercial transitory viewing
+                                only. This is the grant of a license, not a transfer of
+                                title, and under this license you may not:
+                                <ol type="i">
+                                    <li>
+                                        modify or copy the materials;
+                                    </li>
+                                    <li>
+                                        use the materials for any commercial purpose, or
+                                        for any public display (commercial or
+                                        non-commercial);
+                                    </li>
+                                    <li>
+                                        attempt to decompile or reverse engineer any
+                                        software contained on Pixelfed's website;
+                                    </li>
+                                    <li>
+                                        remove any copyright or other proprietary notations
+                                        from the materials; or
+                                    </li>
+                                    <li>
+                                        transfer the materials to another person or
+                                        "mirror" the materials on any other server.
+                                    </li>
+                                </ol>
+                            </li>
+                            <li>
+                                This license shall automatically terminate if you violate
+                                any of these restrictions and may be terminated by Pixelfed
+                                at any time. Upon terminating your viewing of these
+                                materials or upon the termination of this license, you must
+                                destroy any downloaded materials in your possession whether
+                                in electronic or printed format.
+                            </li>
+                        </ol>
+                        <h5>
+                            3. Disclaimer
+                        </h5>
+                        <ol type="a">
+                            <li>
+                                The materials on Pixelfed's website are provided on an 'as
+                                is' basis. Pixelfed makes no warranties, expressed or
+                                implied, and hereby disclaims and negates all other
+                                warranties including, without limitation, implied
+                                warranties or conditions of merchantability, fitness for a
+                                particular purpose, or non-infringement of intellectual
+                                property or other violation of rights.
+                            </li>
+                            <li>
+                                Further, Pixelfed does not warrant or make any
+                                representations concerning the accuracy, likely results, or
+                                reliability of the use of the materials on its website or
+                                otherwise relating to such materials or on any sites linked
+                                to this site.
+                            </li>
+                        </ol>
+                        <h5>
+                            4. Limitations
+                        </h5>
+                        <p>
+                            In no event shall Pixelfed or its suppliers be liable for any
+                            damages (including, without limitation, damages for loss of
+                            data or profit, or due to business interruption) arising out of
+                            the use or inability to use the materials on Pixelfed's
+                            website, even if Pixelfed or a Pixelfed authorized
+                            representative has been notified orally or in writing of the
+                            possibility of such damage. Because some jurisdictions do not
+                            allow limitations on implied warranties, or limitations of
+                            liability for consequential or incidental damages, these
+                            limitations may not apply to you.
+                        </p>
+                        <h5>
+                            5. Accuracy of materials
+                        </h5>
+                        <p>
+                            The materials appearing on Pixelfed's website could include
+                            technical, typographical, or photographic errors. Pixelfed does
+                            not warrant that any of the materials on its website are
+                            accurate, complete or current. Pixelfed may make changes to the
+                            materials contained on its website at any time without notice.
+                            However Pixelfed does not make any commitment to update the
+                            materials.
+                        </p>
+                        <h5>
+                            6. Links
+                        </h5>
+                        <p>
+                            Pixelfed has not reviewed all of the sites linked to its
+                            website and is not responsible for the contents of any such
+                            linked site. The inclusion of any link does not imply
+                            endorsement by Pixelfed of the site. Use of any such linked
+                            website is at the user's own risk.
+                        </p>
+                        <h5>
+                            7. Modifications
+                        </h5>
+                        <p>
+                            Pixelfed may revise these terms of service for its website at
+                            any time without notice. By using this website you are agreeing
+                            to be bound by the then current version of these terms of
+                            service.
+                        </p>
+                        <h5>
+                            8. Governing Law
+                        </h5>
+                        <p>
+                            These terms and conditions are governed by and construed in
+                            accordance with the laws of Canada and you irrevocably submit
+                            to the exclusive jurisdiction of the courts in that State or
+                            location.
+                        </p>
+                        <h5>
+                            9. Community Guidelines
+                        </h5>
+                        <p>
+                            You can view our Community Guidelines
+                            <a href="{{ route('guidelines') }}">
+                                here
+                            </a>
+                            .
+                        </p>
+                    </div>
+                </div>
+            </div>
             
-            <div class="font-semibold md:text-2xl text-xl text-gray-700"> Pay Attention </div>
-            <div class="md:leading-8 leading-7"> Our Services are very diverse, so sometimes additional terms or product requirements (including age requirements) may apply. Additional terms will be available with the relevant Services, and those additional terms become part of your agreement with us if you use.</div>
-        
         </div>
 
     </div>
