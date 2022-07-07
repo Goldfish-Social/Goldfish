@@ -65,8 +65,8 @@
         <div class="p-4 space-y-3" data-postid="{{ $post->id }}">
             
             <div class="flex space-x-4 lg:font-bold">
-                <a href="#" class="like">{{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 1 ? 'LIKE' : 'LIKE' : 'LIKED'  }}</a>
-                <a href="#" class="like">{{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 0 ? 'HEART' : 'HEART' : 'HEARTED'  }}</a>
+                <a href="#" class="like">#</a>
+                <a href="#" class="like">#</a>
                 <a href="#" class="flex items-center space-x-2 justify-end">
                     <div class="p-2 rounded-full  text-black lg:bg-gray-100 dark:bg-gray-600">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="22" height="22" class="dark:text-gray-100">
