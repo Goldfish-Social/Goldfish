@@ -12,7 +12,7 @@ class Post extends Model
     use HasFactory;
     protected $fillable = ['caption', 'visibility', 'user_id', 'media', 'nsfw', 'tags', 'title'];
 
-    protected $with = ['user', 'likes'];
+    protected $with = ['user'];
 
     public function scopeFilter($query, array $filters) {
         if($filter['tags'] ?? false) {
