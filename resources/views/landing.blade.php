@@ -34,7 +34,7 @@
     
                 <div class="lg:mb-12 flex-1 lg:text-left text-center">
                     <img src="assets/images/logo.png" alt="" class="lg:mx-0 lg:w-52 mx-auto w-40">
-                    <p class="font-medium lg:mx-0 md:text-2xl mt-6 mx-auto sm:w-3/4 text-xl"> Connect with friends and the world around you on Socialite.</p>
+                    <p class="font-medium lg:mx-0 md:text-2xl mt-6 mx-auto sm:w-3/4 text-xl">Video shorts but social.</p>
                 </div>
                 <div class="lg:mt-0 lg:w-96 md:w-1/2 sm:w-2/3 mt-10 w-full">
                     <form method="POST" action="{{ route('login') }}" class="p-6 space-y-4 relative bg-white shadow-lg rounded-lg"> 

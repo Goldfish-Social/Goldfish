@@ -13,8 +13,10 @@ class Post extends Model
     protected $with = ['user'];
 
     public function scopeFilter($query, array $filters) {
-        $query
+        if ($filters['search'] ?? false) {
+            $query
             ->where('caption', 'like', '%' . request('search') . '%');
+        }
     }
 
     // Relation to User
