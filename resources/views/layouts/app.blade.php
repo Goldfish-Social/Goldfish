@@ -49,6 +49,7 @@
         <script>
             var token = '{{ Session::token() }}';
             var urlLike = '{{ route('like') }}';
+            var urlFollow = '{{ route('follow') }}';
         </script>
         <!-- For Night mode -->
         <script>
@@ -86,6 +87,7 @@
             })(window, document);
         </script>
         <!-- Javascript -->
+        
         <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
         <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
         <script src="{{ asset('assets/js/tippy.all.min.js') }}"></script>

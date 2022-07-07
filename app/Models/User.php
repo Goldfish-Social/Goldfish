@@ -2,15 +2,20 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Hypefactors\Laravel\Follow\Traits\CanFollow;
+use Hypefactors\Laravel\Follow\Contracts\CanFollowContract;
+use Hypefactors\Laravel\Follow\Traits\CanBeFollowed;
+use Hypefactors\Laravel\Follow\Contracts\CanBeFollowedContract;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail, CanFollowContract, CanBeFollowedContract
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, CanFollow, CanBeFollowed;
 
     /**
      * The attributes that are mass assignable.
@@ -53,6 +58,6 @@ class User extends Authenticatable implements MustVerifyEmail
     }
     // Relation to likes
     public function likes() {
-        return $this->hasMany(Like::class);
+        return $this->hasMany(Like::class, 'user_id');
     }
 }

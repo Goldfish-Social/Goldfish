@@ -4,11 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Post;
+use Hypefactors\Laravel\Follow\Contracts\CanFollowContract;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller {
+    // Set username as route
+    // public function getRouteKeyName() {
+    //     return 'username';
+    // }
     // Logout
     public function logout(Request $request) {
         auth()->logout();
@@ -30,8 +37,8 @@ class UserController extends Controller {
         ]);
     }
     // Show User
-    public function show(User $user) { 
-        $post = DB::table('posts')->get()->where('user_id') == $user->id;
+    public function show(User $user, Post $post) { 
+        $post = auth()->user()->posts;
         return view('users.show', [
             'user' => $user,
             'posts' => $post
@@ -85,6 +92,7 @@ class UserController extends Controller {
         User::whereId(auth()->user()->id)->update([
             'avatar' => $avatar
         ]);
+        
         // Return back
         return back()->with('status', 'Avatar updated.');
     }
@@ -100,6 +108,19 @@ class UserController extends Controller {
         ]);
         // Return back
         return back()->with('status', 'Cover updated.');
+    }
+    // Follow user
+    public function follow(Request $request) {
+        $user = User::find($request->user_id);
+        dd(Auth::user());
+        $response = auth()->user()->Followable::toggleFollow($user);
+        return response()->json(['following' => Auth::user()->Followble::isFollowing($user)]);
+    }
+    // Follow user
+    public function followUser(CanFollowContract $request) {
+        $follow = User::find($request->user_id);
+        auth()->user()->Followable::follow($follow);
+        return back()->with('message', 'Followed!');
     }
 
 

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -25,6 +27,20 @@ class HomeController extends Controller
     {
         return view('posts.index');
     }
+
+    public function users() {
+        $users = User::get();
+        return view('users.index', [
+            'users' => $users
+        ]);
+    }
+    public function user(User $user) { 
+        return view('users.show', [
+            'posts' => $user->posts,
+            'user' => $user
+        ]);
+    }
+    
 
     
 }

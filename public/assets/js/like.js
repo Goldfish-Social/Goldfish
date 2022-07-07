@@ -18,3 +18,18 @@ $('.like').on('click', function(event) {
             }
         });
 });
+
+$('.action-follow').click(function() {
+    let user_id = $(this).data('id');
+    let object = $(this);
+
+    $.ajax({
+        type: 'POST',
+        url: urlFollow,
+        data: { user_id: user_id, _token: token },
+        dataType: 'json',
+        success: function(data) {
+            console.log(data.success);
+        },
+    });
+});

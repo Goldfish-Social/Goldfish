@@ -97,7 +97,7 @@
                 </a>
                 <div uk-drop="mode: click;offset:5" class="header_dropdown profile_dropdown">
 
-                    <a href="/i/users/{{auth()->user()->id}}" class="user">
+                    <a href="/{{'@' .auth()->user()->username}}" class="user">
                         <div class="user_avatar">
                             <img src="{{asset('storage/' . Auth()->user()->avatar)}}" alt="">
                         </div>

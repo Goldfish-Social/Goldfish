@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+<script src="{{ asset('assets/js/follow.js') }}" defer></script>
     <!-- Profile cover -->
     <div class="profile user-profile">
 
@@ -43,8 +43,8 @@
             <nav class="responsive-nav pl-3">
                 <ul  uk-switcher="connect: #timeline-tab; animation: uk-animation-fade">
                     <li><a href="#">Timeline</a></li>
-                    <li><a href="#">Friend <span>3,243</span> </a></li>
-                    <li><a href="#">Photoes </a></li>
+                    <li><a href="#"><span>{{$user->followers()->count();}} </span> Followers</a></li>
+                    <li><a href="#"><span>{{$user->followings()->count();}} </span> Following</a></li>
                     <li><a href="#">Pages</a></li> 
                     <li><a href="#">Groups</a></li> 
                     <li><a href="#">Videos</a></li> 
@@ -55,12 +55,33 @@
             <div class="flex items-center space-x-1.5 flex-shrink-0 pr-4 mb-2 justify-center order-1 relative">
                 
                 <!-- add story -->
-                <a href="#" class="flex items-center justify-center h-10 px-5 rounded-md bg-blue-600 text-white space-x-1.5 hover:text-white"  uk-toggle="target: #create-post-modal"> 
+                <button data-id="{{ $user->id }}" class="action-follow flex items-center justify-center h-10 px-5 rounded-md bg-blue-600 text-white space-x-1.5 hover:text-white"> 
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5">
                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path>
                     </svg>
-                    <span> Publish </span>
-                </a>
+                    <span>
+                        @if(auth()->user()->isFollowing($user))
+                            UnFollow
+                        @else
+                            Follow
+                        @endif
+                    </span>
+                </button>
+
+                <form method="POST" action="{{ route('follow') }}">
+                @csrf
+                <button type="submit" class="flex items-center justify-center h-10 px-5 rounded-md bg-blue-600 text-white space-x-1.5 hover:text-white"> 
+                        @if(auth()->user()->isFollowing($user))
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path>
+                        </svg><span>Unfollow</span>
+                        @else
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path>
+                        </svg><span>Follow</span>
+                        @endif
+                </button>
+                </form>
                
                 <!-- search icon -->
                 <a href="#" class="flex items-center justify-center h-10 w-10 rounded-md bg-gray-100" uk-toggle="target: #profile-search;animation: uk-animation-slide-top-small"> 
@@ -126,13 +147,13 @@
                 @include('posts.create')
             
                 @if(count($posts) == 0) 
-                <p>No posts found.</p>
-                @endif
-          
-                @foreach($posts as $post)
-                  <x-post-card :post="$post" />
-                @endforeach
-       
+            <p>No posts found.</p>
+            @endif
+      
+            @foreach($posts as $post)
+              <x-post-card :post="$post" />
+            @endforeach 
+
                <div class="flex justify-center mt-6">
                    <a href="#" class="bg-white font-semibold my-3 px-6 py-2 rounded-full shadow-md dark:bg-gray-800 dark:text-white">
                        Load more ..</a>
@@ -161,7 +182,7 @@
                         </li>
                         <li class="flex items-center space-x-2"> 
                             <ion-icon name="logo-rss" class="rounded-full bg-gray-200 text-xl p-1 mr-3"></ion-icon>
-                            Flowwed By <strong> 3,240 People </strong>
+                            Flowwed By <strong> {{$user->followers()->count();}} </strong>
                         </li>                                
                     </ul>
                     <div class="gap-3 grid grid-cols-3 mt-4">
@@ -182,6 +203,8 @@
                         <a href="#" class="text-blue-600 ">See all</a>
                     </div>
                     <div class="grid grid-cols-3 gap-3 text-gray-600 font-semibold">
+
+
                         <a href="#">  
                             <div class="avatar relative rounded-md overflow-hidden w-full h-24 mb-2"> 
                                 <img src="assets/images/avatars/avatar-1.jpg" alt="" class="w-full h-full object-cover absolute">

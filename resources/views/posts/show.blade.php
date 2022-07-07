@@ -20,7 +20,7 @@
             </div>
             
             <div class="md:flex items-center justify-between">
-                <a href="/i/users/{{$post->User->id}}" class="flex items-center space-x-3">
+                <a href="/{{'@' . $post->user->username}}" class="flex items-center space-x-3">
                     <img src="{{asset('storage/' . $post->User->avatar)}}" alt="" class="w-10 rounded-full">
                     <div class="">
                         <div class="text-base font-semibold">{{$post->User->username}}</div>

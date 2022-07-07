@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Like;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -18,8 +19,7 @@ class PostController extends Controller {
      */
     public function index() {
         return view('posts.index', [
-            'posts' => Post::latest()->filter
-            (request(['caption', 'search']))->simplePaginate(6)
+            'posts' => Post::latest()->with(['likes', 'user'])->get()
         ]);
     }
 

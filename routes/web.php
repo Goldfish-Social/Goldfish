@@ -36,6 +36,8 @@ Route::group(['prefix' => 'about'], function () {
     Route::get('contact', [RouteController::class, 'contact'])->name('contact');
 });
 
+Route::get('@{user:username}', [HomeController::class, 'user'])->name('user.view');
+
 Auth::routes(['verify' => true]);
 Route::group(['middleware' => 'auth'], function () {
     // Logout
@@ -71,7 +73,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'i'], function (
         Route::get('/', [NotificationController::class, 'index'])->name('notifications');
     });
     // All posts
-    Route::get('web', [HomeController::class, 'index']);
+    Route::get('web', [PostController::class, 'index']);
     // Show Create Form
     Route::get('create', [PostController::class, 'create']);
     // Like / dislike
@@ -84,12 +86,12 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'i'], function (
     Route::get('posts/{post}', [PostController::class, 'show'])->whereAlphaNumeric('post');
     // Users group
     Route::group(['prefix' => 'users'], function () {
-        Route::get('/', [UserController::class, 'index']);
-        Route::get('{user}', [UserController::class, 'timeline']);
-        Route::get('/{user}/timeline', [UserController::class, 'show'])->name('timeline');
+        Route::get('/', [HomeController::class, 'users'])->name('users');
         
-        Route::get('{username}', [UserController::class, 'username'])->name('username');
-        //Route::get('/{username}/timeline', [UserController::class, 'username'])->name('timeline');
+        Route::post('follow', [[UserController::class, 'follow']])->name('follow');
+
+        Route::get('/{user}/timeline', [UserController::class, 'show'])->name('timeline');
+  
     });
     // Discover group
     Route::group(['prefix' => 'discover'], function () {

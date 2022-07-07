@@ -4,11 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Overtrue\LaravelFollow\Traits\Follower;
+use Overtrue\LaravelFollow\Traits\Followable;
 
 class Post extends Model
 {
     use HasFactory;
     protected $fillable = ['caption', 'visibility', 'user_id', 'media', 'nsfw', 'tags', 'title'];
+
+    protected $with = ['user', 'likes'];
 
     public function scopeFilter($query, array $filters) {
         if($filter['tags'] ?? false) {
@@ -28,6 +32,6 @@ class Post extends Model
     }
     // Relation to likes
     public function likes() {
-        return $this->hasMany(Like::class);
+        return $this->hasMany(Like::class, 'post_id');
     }
 }
