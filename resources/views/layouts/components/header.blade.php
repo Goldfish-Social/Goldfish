@@ -17,7 +17,7 @@
       @include('layouts.components.search')
 
         <div class="right_side">
-
+        @auth
             <div class="header_widgets">
                 <a href="#" class="is_link" uk-toggle="target: #create-post-modal">Publish</a> 
             
@@ -144,7 +144,11 @@
                 </div>
 
             </div>
-            
+        @else
+        <div class="header_widgets">
+            <a href="{{ route('login') }}" class="is_link">Login</a>
+        </div>
+        @endauth
         </div>
     </div>
 </div>

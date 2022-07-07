@@ -35,8 +35,16 @@ Route::group(['prefix' => 'about'], function () {
     Route::get('guidelines', [RouteController::class, 'guidelines'])->name('guidelines');
     Route::get('contact', [RouteController::class, 'contact'])->name('contact');
 });
-
-Route::get('@{user:username}', [HomeController::class, 'user'])->name('user.view');
+Route::group(['prefix' => 'i'], function () {
+    // /i/home
+    Route::get('home', [PostController::class, 'index'])->name('home');
+    // Single post
+    Route::get('posts/{post}', [PostController::class, 'show'])->whereAlphaNumeric('post');
+    // Users page
+    Route::get('users', [UserController::class, 'users'])->name('users');
+});
+// User profile page
+Route::get('@{user:username}', [UserController::class, 'user'])->name('user.view');
 
 Auth::routes(['verify' => true]);
 Route::group(['middleware' => 'auth'], function () {
@@ -47,8 +55,6 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'i'], function () {
     // All under /i
     Route::get('/', [RouteController::class, 'web']);
-    // /i/home
-    Route::get('home', [PostController::class, 'index'])->name('home');
     // /i/account
     Route::group(['prefix' => 'account'], function () {
         // All under /i/account
@@ -82,17 +88,6 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'i'], function (
     Route::post('submit', [PostController::class, 'store'])->name('store');
     // Delete Listing Data
     Route::delete('posts/{post}', [PostController::class, 'destroy']);
-    // Single post
-    Route::get('posts/{post}', [PostController::class, 'show'])->whereAlphaNumeric('post');
-    // Users group
-    Route::group(['prefix' => 'users'], function () {
-        Route::get('/', [HomeController::class, 'users'])->name('users');
-        
-        Route::post('follow', [[UserController::class, 'follow']])->name('follow');
-
-        Route::get('/{user}/timeline', [UserController::class, 'show'])->name('timeline');
-  
-    });
     // Discover group
     Route::group(['prefix' => 'discover'], function () {
         Route::get('/', [DiscoverController::class, 'index'])->name('discover');

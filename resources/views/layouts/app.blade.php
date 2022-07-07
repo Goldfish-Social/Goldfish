@@ -43,13 +43,13 @@
             
         </div>
         <!-- Wrapper / End -->
-        @include('posts.form')
-        @include('layouts.components.boxes')
-
+        @auth
+            @include('posts.form')
+            @include('layouts.components.boxes')
+        @endauth
         <script>
             var token = '{{ Session::token() }}';
             var urlLike = '{{ route('like') }}';
-            var urlFollow = '{{ route('follow') }}';
         </script>
         <!-- For Night mode -->
         <script>

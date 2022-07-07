@@ -7,7 +7,7 @@
 
         <div class="profiles_banner">
             <img src="{{asset('storage/' . $user->header_bg)}}" alt="">
-            @if(auth()->user()->username = $user->username)
+            @auth
             <div class="profile_action absolute bottom-0 right-0 space-x-1.5 p-3 text-sm z-50 hidden lg:flex">
               <a href="#" class="flex items-center justify-center h-8 px-3 rounded-md bg-gray-700 bg-opacity-70 text-white space-x-1.5"> 
                   <ion-icon name="crop-outline" class="text-xl"></ion-icon>
@@ -18,7 +18,7 @@
                   <span> Edit </span>
               </a>
           </div>
-          @endif
+          @endauth
           
         </div>
         <div class="profiles_content">
@@ -33,8 +33,11 @@
 
             <div class="profile_info">
                 <h1>{{$user->name}}</h1>
-                <p>{{$user->bio}}<br />
-                <a href="{{ route('settings') }}">Edit</a></p>
+            <p>{{$user->bio}}<br />
+                @auth
+                    <a href="{{ route('settings') }}">Edit</a>
+                @endauth
+            </p>
             </div>
 
         </div>
@@ -53,7 +56,7 @@
 
             <!-- button actions -->
             <div class="flex items-center space-x-1.5 flex-shrink-0 pr-4 mb-2 justify-center order-1 relative">
-                
+                @auth
                 <!-- add story -->
                 <button data-id="{{ $user->id }}" class="action-follow flex items-center justify-center h-10 px-5 rounded-md bg-blue-600 text-white space-x-1.5 hover:text-white"> 
                     <span>
@@ -64,6 +67,7 @@
                         @endif
                     </span>
                 </button>
+                @endauth
                
                 <!-- search icon -->
                 <a href="#" class="flex items-center justify-center h-10 w-10 rounded-md bg-gray-100" uk-toggle="target: #profile-search;animation: uk-animation-slide-top-small"> 
@@ -125,8 +129,9 @@
         <!-- Timeline -->
         <div class="md:flex md:space-x-6 lg:mx-16">
             <div class="space-y-5 flex-shrink-0 md:w-7/12">
-
-                @include('posts.create')
+                @auth
+                    @include('posts.create')
+                @endauth
             
                 @if(count($posts) == 0) 
             <p>No posts found.</p>

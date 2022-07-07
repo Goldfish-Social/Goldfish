@@ -16,6 +16,7 @@ class UserController extends Controller {
     // public function getRouteKeyName() {
     //     return 'username';
     // }
+
     // Logout
     public function logout(Request $request) {
         auth()->logout();
@@ -43,6 +44,20 @@ class UserController extends Controller {
             'user' => $user,
             'posts' => $post
         ]); 
+    }
+    // Fetch users
+    public function users() {
+        $users = User::get();
+        return view('users.index', [
+            'users' => $users
+        ]);
+    }
+    // Fetch user profile
+    public function user(User $user) { 
+        return view('users.show', [
+            'posts' => $user->posts,
+            'user' => $user
+        ]);
     }
     // Change password view
     public function changePassword() {

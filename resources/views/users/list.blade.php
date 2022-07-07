@@ -16,6 +16,7 @@
         </div>
 
     </div>
+        @auth
             <button class="flex items-center justify-center h-9 px-3 rounded-md bg-blue-100 text-blue-500 action-follow" data-id="{{ $user->id }}">
                 @if(auth()->user()->isFollowing($user))
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 mr-2">
@@ -27,6 +28,7 @@
                     </svg> Follow
                     @endif
             </button>
+        @endauth
 </div>
 @endforeach
 @endif

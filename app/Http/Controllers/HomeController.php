@@ -15,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth', 'verified']);
+        $this->middleware(['auth', 'verified']); 
     }
 
     /**
@@ -28,19 +28,6 @@ class HomeController extends Controller
         return view('posts.index');
     }
 
-    public function users() {
-        $users = User::get();
-        return view('users.index', [
-            'users' => $users
-        ]);
-    }
-    public function user(User $user) { 
-        return view('users.show', [
-            'posts' => $user->posts,
-            'user' => $user
-        ]);
-    }
     
-
     
 }

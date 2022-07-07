@@ -10,11 +10,13 @@
                 </svg>
                 <span> Home </span> </a> 
             </li>
+            @auth
             <li class="{{ (request()->is('@*')) ? 'active' : '' }}">  <a href="/{{'@' .auth()->user()->username}}">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="text-green-500">
                     <path d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z" />
                 </svg>  <span>  Profile </span></a> 
-            </li> 
+            </li>
+            @endauth
             <li class="{{ (request()->is('i/trending*')) ? 'active' : '' }}"><a href="{{ route('trending') }}">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="text-blue-500">
                     <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" />
@@ -118,6 +120,7 @@
         </div>
 
         <ul class="side_links" data-sub-title="Quick access">
+            @auth
             <li><a href="{{ route('settings') }}"> <ion-icon name="settings-outline" class="side-icon"></ion-icon>  <span> Settings  </span> </a> 
                 <ul>
                     <li><a href="{{ route('profile') }}">Profile</a></li>
@@ -127,6 +130,7 @@
                     <li><a href="{{ route('sessions') }}">Sessions</a></li>
                 </ul>
             </li>
+            @endauth
             <li><a href="#"> <ion-icon name="albums-outline" class="side-icon"></ion-icon> <span> Information  </span> </a>
                 <ul> 
                     <li><a href="{{ route('about') }}">About</a></li>
@@ -135,7 +139,8 @@
                     <li><a href="{{ route('privacy') }}">Privacy</a></li>
                     <li><a href="{{ route('contact') }}">Contact</a></li>
                 </ul>
-            </li> 
+            </li>
+            @auth
             <li><a href="#"> <ion-icon name="document-outline" class="side-icon"></ion-icon> <span> Create Content </span>  </a> 
                 <ul>
                     <li><a href="{{ route('create-group') }}"> Create Group </a></li>
@@ -149,7 +154,7 @@
                     <li><a href="#"> API </a></li>
                 </ul>
             </li>
-            
+            @endauth
         </ul>
 
         <div class="footer-links">

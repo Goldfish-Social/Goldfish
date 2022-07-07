@@ -21,8 +21,8 @@
             
                 <ul class="space-y-1">
                     <li> 
-                        <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
-                        <i class="uil-share-alt mr-1"></i> Share
+                        <a href="/i/posts/{{$post->id}}" class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
+                        <i class="uil-share-alt mr-1"></i> Go to post
                         </a> 
                     </li>
                     
@@ -52,7 +52,7 @@
         </div>
 
         <div class="w-full h-full">
-            <video frameborder="0" controls loop playsinline uk-video="autoplay: inview" allowfullscreen uk-responsive class="w-full">
+            <video frameborder="0" controls loop muted playsinline uk-video="autoplay: inview" allowfullscreen uk-responsive class="w-full">
                 <source src="{{asset('storage/' . $post->media) }}" type="video/mp4">
             Your browser does not support the video tag.
             </video>

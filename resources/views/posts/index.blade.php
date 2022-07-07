@@ -4,8 +4,9 @@
     <!--  Feeds  -->
     <div class="lg:flex lg:space-x-10">
         <div class="lg:w-3/4 lg:px-20 space-y-7"> 
-            
-            @include('posts.create')
+            @auth
+                @include('posts.create')
+            @endauth
             
             @if(count($posts) == 0) 
             <p>No posts found.</p>
