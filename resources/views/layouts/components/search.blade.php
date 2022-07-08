@@ -1,4 +1,4 @@
-<form method="GET" action="#">
+<form method="GET" action="/i/home">
 <!-- search icon for mobile -->
 <div class="header-search-icon" uk-toggle="target: #wrapper ; cls: show-searchbox"> </div>
 <div class="header_search"><i class="uil-search-alt"></i>

@@ -10,14 +10,14 @@ class Post extends Model
     use HasFactory;
     protected $fillable = ['caption', 'visibility', 'user_id', 'media', 'nsfw', 'tags', 'title'];
 
+    // Also load default related tabled
     protected $with = ['user'];
-
-    public function scopeFilter($query, array $filters) {
-        // Check if query 'search' is ran
-        $query->when($filters['search'] ?? false, function($query, $search) {
+    // Post search function
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false, fn($query, $search) =>
             $query
-            ->where('caption', 'like', '%' . $search . '%');
-        });
+                ->where('caption', 'like', '%' . $search . '%'));
     }
 
     // Relation to User

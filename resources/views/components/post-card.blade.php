@@ -11,7 +11,7 @@
                 </a>
                 <div class="flex-1 font-semibold capitalize">
                     <a href="/{{'@' . $post->user->username}}" class="text-black dark:text-gray-100"> {{$post->User->name}}</a>
-                    <div class="text-gray-700 flex items-center space-x-2"><a href="/i/posts/{{$post->id}}"><span>{{ \Carbon\Carbon::parse($post->created_at)->format('d/m/Y')}}</span></a> <ion-icon name="people"></ion-icon></div> 
+                    <div class="text-gray-700 flex items-center space-x-2"><a href="/i/posts/{{$post->id}}"><span>{{ $post->created_at->diffForHumans() }}</span></a> <ion-icon name="people"></ion-icon></div> 
                 </div>
             </div>
             <div>
