@@ -31,12 +31,6 @@ class UserController extends Controller {
         return view('users.index', ['users' => $users]);
     }
     
-    // Redirect to /timeline
-    public function timeline(User $user) {
-        return redirect()->route('timeline', [
-            'user' => $user
-        ]);
-    }
     // Show User
     public function show(User $user, Post $post) { 
         $post = auth()->user()->posts;
