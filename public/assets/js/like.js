@@ -19,6 +19,8 @@ $('.like').on('click', function(event) {
         });
 });
 
+
+
 $('.action-follow').click(function() {
     let user_id = $(this).data('id');
     let object = $(this);
