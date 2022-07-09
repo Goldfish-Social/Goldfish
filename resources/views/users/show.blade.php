@@ -137,7 +137,7 @@
             <p>No posts found.</p>
             @endif
       
-            @foreach($posts as $post)
+            @foreach($posts->reverse() as $post)
               <x-post-card :post="$post" />
             @endforeach 
 

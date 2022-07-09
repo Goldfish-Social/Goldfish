@@ -19,7 +19,7 @@ class PostController extends Controller {
      */
     public function index() {
         return view('posts.index', [
-            'posts' => Post::latest('created_at')->filter(request(['search']))->get()
+            'posts' => Post::latest('created_at')->filter(request(['search', 'user', 'username']))->get()
         ]);
     }
 
