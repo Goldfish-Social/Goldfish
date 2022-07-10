@@ -5,8 +5,10 @@
     <!-- Profile cover -->
     <div class="profile user-profile">
 
-        <div class="profiles_banner">
-            <img src="{{asset('storage/' . $user->header_bg)}}" alt="">
+        <div uk-lightbox class="profiles_banner">
+            <a href="{{asset('storage/' . $user->header_bg)}}">
+                <img src="{{asset('storage/' . $user->header_bg)}}" alt="">
+            </a>
             @auth
             @if(auth()->user()->id == $user->id)
             <div class="profile_action absolute bottom-0 right-0 space-x-1.5 p-3 text-sm z-50 hidden lg:flex">
@@ -23,8 +25,10 @@
         <div class="profiles_content">
 
             <div class="profile_avatar">
-                <div class="profile_avatar_holder"> 
-                    <img src="{{asset('storage/' . $user->avatar)}}" alt="">
+                <div uk-lightbox class="profile_avatar_holder">
+                    <a href="{{asset('storage/' . $user->avatar)}}">
+                        <img src="{{asset('storage/' . $user->avatar)}}" alt="">
+                    </a>
                 </div>
                 <div class="user_status status_online"></div>
                 <div class="icon_change_photo" hidden> <ion-icon name="camera" class="text-xl"></ion-icon> </div>
@@ -70,6 +74,7 @@
                 </button>
                 @endauth
                
+                <form action="/{{ '@' . $user->username }}/" method="GET">
                 <!-- search icon -->
                 <a href="#" class="flex items-center justify-center h-10 w-10 rounded-md bg-gray-100" uk-toggle="target: #profile-search;animation: uk-animation-slide-top-small"> 
                   <ion-icon name="search" class="text-xl"></ion-icon>
@@ -77,9 +82,10 @@
                 <!-- search dropdown -->
                 <div class="absolute right-3 bg-white z-10 w-full flex items-center border rounded-md"
                     id="profile-search" hidden>
-                    <input type="text" placeholder="Search.." class="flex-1">
+                    <input type="text" name="search" placeholder="Search.." class="flex-1">
                     <ion-icon name="close-outline" class="text-2xl hover:bg-gray-100 p-1 rounded-full mr-2 cursor-pointer" uk-toggle="target: #profile-search;animation: uk-animation-slide-top-small"></ion-icon>
                 </div>
+                </form>
                 
                 <!-- more icon -->
                 <a href="#" class="flex items-center justify-center h-10 w-10 rounded-md bg-gray-100"> 
@@ -94,8 +100,10 @@
                                <ion-icon name="arrow-redo-outline" class="pr-2 text-xl"></ion-icon> Share Profile
                             </a> 
                         </li>
+                        @auth
+                        @if(auth()->user()->id == $user->id)
                         <li> 
-                            <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-100 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
+                            <a href="{{ route('settings') }}" class="flex items-center px-3 py-2 hover:bg-gray-100 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
                               <ion-icon name="create-outline" class="pr-2 text-xl"></ion-icon>  Account setting 
                             </a> 
                         </li>
@@ -103,20 +111,15 @@
                             <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-100 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
                               <ion-icon name="notifications-off-outline" class="pr-2 text-lg"></ion-icon>   Disable notifications
                             </a> 
-                        </li> 
+                        </li>
+                        @endif
+                        @endauth
                         <li> 
                             <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-100 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
                               <ion-icon name="star-outline"  class="pr-2 text-xl"></ion-icon>  Add favorites 
                             </a> 
                         </li>
-                        <li>
-                          <hr class="-mx-2 my-2 dark:border-gray-800">
-                        </li>
-                        <li> 
-                            <a href="#" class="flex items-center px-3 py-2 text-red-500 hover:bg-red-50 hover:text-red-500 rounded-md dark:hover:bg-red-600">
-                              <ion-icon name="stop-circle-outline" class="pr-2 text-xl"></ion-icon>  Unfriend
-                            </a> 
-                        </li>
+
                       </ul>
                 </div>
             </div>
@@ -160,35 +163,31 @@
                     <ul class="text-gray-600 space-y-3 mt-3">
                         <li class="flex items-center space-x-2"> 
                             <ion-icon name="home-sharp" class="rounded-full bg-gray-200 text-xl p-1 mr-3"></ion-icon>
-                            Live In <strong> Cairo , Eygept  </strong>
+                            <strong> {{ $user->name }}  </strong>
                         </li>
                         <li class="flex items-center space-x-2"> 
                             <ion-icon name="globe" class="rounded-full bg-gray-200 text-xl p-1 mr-3"></ion-icon>
-                            From <strong> Aden , Yemen  </strong>
+                            <strong><a href="{{ $user->website }}" target="_blank">{{ $user->website }}</a></strong>
                         </li>
                         <li class="flex items-center space-x-2"> 
                             <ion-icon name="heart-sharp" class="rounded-full bg-gray-200 text-xl p-1 mr-3"></ion-icon>
-                            From <strong> Relationship  </strong>
+                            Posts <strong> {{$user->posts()->count();}}  </strong>
                         </li>
                         <li class="flex items-center space-x-2"> 
                             <ion-icon name="logo-rss" class="rounded-full bg-gray-200 text-xl p-1 mr-3"></ion-icon>
-                            Flowwed By <strong> {{$user->followers()->count();}} </strong>
+                            <strong>Get RSS  link</strong>
                         </li>                                
                     </ul>
-                    <div class="gap-3 grid grid-cols-3 mt-4">
-                      <img src="assets/images/avatars/avatar-lg-2.jpg" alt="" class="object-cover rounded-lg col-span-full">
-                      <img src="assets/images/avatars/avatar-2.jpg" alt="" class="rounded-lg">
-                      <img src="assets/images/avatars/avatar-4.jpg" alt="" class="rounded-lg">
-                      <img src="assets/images/avatars/avatar-5.jpg" alt="" class="rounded-lg"> 
-                  </div>
-                  <a href="#" class="button gray mt-3 w-full"> Edit </a>
+                @if(auth()->user()->id == $user->id)
+                    <a href="{{ route('settings') }}" class="button gray mt-3 w-full"> Edit </a>
+                @endauth
                 </div>
             
+                <!-- Pages -->
                 <div class="widget card p-5 border-t">
                     <div class="flex items-center justify-between mb-4">
                         <div>
-                            <h4 class="text-lg font-semibold"> Friends </h4>
-                            <p class="text-sm"> 3,4510 Friends</p>
+                            <h4 class="text-lg font-semibold"> Pages </h4>
                         </div>
                         <a href="#" class="text-blue-600 ">See all</a>
                     </div>
@@ -199,42 +198,43 @@
                             <div class="avatar relative rounded-md overflow-hidden w-full h-24 mb-2"> 
                                 <img src="assets/images/avatars/avatar-1.jpg" alt="" class="w-full h-full object-cover absolute">
                             </div>
-                            <div class="text-sm truncate"> Dennis Han </div>
+                            <div class="text-sm truncate"> Goldfish </div>
                         </a>
                         <a href="#">  
                             <div class="avatar relative rounded-md overflow-hidden w-full h-24 mb-2"> 
                                 <img src="assets/images/avatars/avatar-2.jpg" alt="" class="w-full h-full object-cover absolute">
                             </div>
-                            <div class="text-sm truncate"> Erica Jones </div>
+                            <div class="text-sm truncate"> Mastodon </div>
                         </a>
                         <a href="#">  
                             <div class="avatar relative rounded-md overflow-hidden w-full h-24 mb-2"> 
                                 <img src="assets/images/avatars/avatar-3.jpg" alt="" class="w-full h-full object-cover absolute">
                             </div>
-                            <div class="text-sm truncate"> Stella Johnson </div>
+                            <div class="text-sm truncate"> Fediverse </div>
                         </a>
                         <a href="#">  
                             <div class="avatar relative rounded-md overflow-hidden w-full h-24 mb-2"> 
                                 <img src="assets/images/avatars/avatar-4.jpg" alt="" class="w-full h-full object-cover absolute">
                             </div>
-                            <div class="text-sm truncate"> Alex Dolgove</div>
+                            <div class="text-sm truncate"> Nature </div>
                         </a>
                         <a href="#">  
                             <div class="avatar relative rounded-md overflow-hidden w-full h-24 mb-2"> 
                                 <img src="assets/images/avatars/avatar-5.jpg" alt="" class="w-full h-full object-cover absolute">
                             </div>
-                            <div class="text-sm truncate"> Jonathan Ali </div>
+                            <div class="text-sm truncate"> Animals </div>
                         </a>
                         <a href="#">  
                             <div class="avatar relative rounded-md overflow-hidden w-full h-24 mb-2"> 
                                 <img src="assets/images/avatars/avatar-6.jpg" alt="" class="w-full h-full object-cover absolute">
                             </div>
-                            <div class="text-sm truncate"> Erica Han </div>
+                            <div class="text-sm truncate"> Humour </div>
                         </a>
                     </div>
                   <a href="#" class="button gray mt-3 w-full">  See all </a>
                 </div>
 
+                <!-- Groups -->
                 <div class="widget card p-5 border-t">
                     <div class="flex items-center justify-between mb-2">
                         <div>
@@ -245,50 +245,50 @@
                     <div>
                   
                       <div class="flex items-center space-x-4 rounded-md -mx-2 p-2 hover:bg-gray-50">
-                          <a href="timeline-group.html" class="w-12 h-12 flex-shrink-0 overflow-hidden rounded-full relative">
+                          <a href="#" class="w-12 h-12 flex-shrink-0 overflow-hidden rounded-full relative">
                               <img src="assets/images/group/group-3.jpg" class="absolute w-full h-full inset-0 " alt="">
                           </a>
                           <div class="flex-1">
                               <a href="timeline-page.html" class="text-base font-semibold capitalize"> Graphic Design  </a>
-                              <div class="text-sm text-gray-500 mt-0.5"> 345K  Following</div>
+                              <div class="text-sm text-gray-500 mt-0.5"> 345K  Members</div>
                           </div>
                           <a href="timeline-page.html" class="flex items-center justify-center h-8 px-3 rounded-md text-sm border font-semibold bg-blue-500 text-white">
                               Join
                           </a>
                       </div>
                       <div class="flex items-center space-x-4 rounded-md -mx-2 p-2 hover:bg-gray-50">
-                          <a href="timeline-group.html" class="w-12 h-12 flex-shrink-0 overflow-hidden rounded-full relative">
+                          <a href="#" class="w-12 h-12 flex-shrink-0 overflow-hidden rounded-full relative">
                               <img src="assets/images/group/group-4.jpg" class="absolute w-full h-full inset-0 " alt="">
                           </a>
                           <div class="flex-1">
                               <a href="timeline-page.html" class="text-base font-semibold capitalize"> Mountain Riders </a>
-                              <div class="text-sm text-gray-500 mt-0.5"> 452k Following </div>
+                              <div class="text-sm text-gray-500 mt-0.5"> 452k Members </div>
                           </div>
                           <a href="timeline-page.html" class="flex items-center justify-center h-8 px-3 rounded-md text-sm border font-semibold bg-blue-500 text-white">
                               Join
                           </a>
                       </div>
                       <div class="flex items-center space-x-4 rounded-md -mx-2 p-2 hover:bg-gray-50">
-                          <a href="timeline-group.html" class="w-12 h-12 flex-shrink-0 overflow-hidden rounded-full relative">
+                          <a href="#" class="w-12 h-12 flex-shrink-0 overflow-hidden rounded-full relative">
                               <img src="assets/images/group/group-2.jpg" class="absolute w-full h-full inset-0" alt="">
                           </a>
                           <div class="flex-1">
                               <a href="timeline-page.html" class="text-base font-semibold capitalize">  Coffee Addicts  </a>
-                              <div class="text-sm text-gray-500 mt-0.5"> 845K Following</div>
+                              <div class="text-sm text-gray-500 mt-0.5"> 845K Members</div>
                           </div>
                           <a href="timeline-page.html" class="flex items-center justify-center h-8 px-3 rounded-md text-sm border font-semibold bg-blue-500 text-white">
                               Join
                           </a>
                       </div>
                       <div class="flex items-center space-x-4 rounded-md -mx-2 p-2 hover:bg-gray-50">
-                          <a href="timeline-group.html" class="w-12 h-12 flex-shrink-0 overflow-hidden rounded-full relative">
+                          <a href="#" class="w-12 h-12 flex-shrink-0 overflow-hidden rounded-full relative">
                               <img src="assets/images/group/group-1.jpg" class="absolute w-full h-full inset-0" alt="">
                           </a>
                           <div class="flex-1">
                               <a href="timeline-page.html" class="text-base font-semibold capitalize"> Architecture    </a>
-                              <div class="text-sm text-gray-500 mt-0.5"> 237K Following</div>
+                              <div class="text-sm text-gray-500 mt-0.5"> 237K Members</div>
                           </div>
-                          <a href="timeline-page.html" class="flex items-center justify-center h-8 px-3 rounded-md text-sm border font-semibold bg-blue-500 text-white">
+                          <a href="#" class="flex items-center justify-center h-8 px-3 rounded-md text-sm border font-semibold bg-blue-500 text-white">
                               Join
                           </a>
                       </div>
