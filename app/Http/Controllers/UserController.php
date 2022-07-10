@@ -23,7 +23,7 @@ class UserController extends Controller {
     // Get user data
     public function index() {
         //$users = DB::table('users')->get();
-        $users = User::with('posts')->get(); 
+        $users = User::with('posts', 'comments')->simplePaginate(10); 
         return view('users.index', ['users' => $users]);
     }
     
