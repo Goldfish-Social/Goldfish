@@ -2,9 +2,9 @@
 
 use App\Http\Controllers\DiscoverController;
 use App\Http\Controllers\GroupController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PostCommentsController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\TrendingController;
@@ -12,16 +12,6 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::group(['middleware' => 'guest'], function() {
     Route::get('/', [RouteController::class, 'landing'])->name('landing');
@@ -36,11 +26,9 @@ Route::group(['prefix' => 'about'], function () {
     Route::get('contact', [RouteController::class, 'contact'])->name('contact');
 });
 Route::group(['prefix' => 'i'], function () {
-    // /i/home
     Route::get('home', [PostController::class, 'index'])->name('home');
-    // Single post
     Route::get('posts/{post}', [PostController::class, 'show'])->whereAlphaNumeric('post');
-    // Users page
+    Route::post('posts/{post}/reply', [PostCommentsController::class, 'store'])->name('reply');
     Route::get('users', [UserController::class, 'users'])->name('users');
 });
 // User profile page
@@ -86,6 +74,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'i'], function (
     Route::post('posts/like', [PostController::class, 'postLikePost'])->name('like');
     // Store Listing Data
     Route::post('submit', [PostController::class, 'store'])->name('store');
+    
     // Delete Listing Data
     Route::delete('posts/{post}', [PostController::class, 'destroy']);
     // Discover group

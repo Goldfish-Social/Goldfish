@@ -25,12 +25,13 @@
                         <i class="uil-share-alt mr-1"></i> Go to post
                         </a> 
                     </li>
-                    
+                    @auth
                     <li> 
                         <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
                         <i class="uil-favorite mr-1"></i>  Add favorites 
                         </a> 
                     </li>
+                    @endauth
                     @can('delete-post', $post)
                     <li>
                     <hr class="-mx-2 my-2 dark:border-gray-800">
@@ -62,8 +63,8 @@
             {{$post->caption}}
         </div>
 
-        <div class="p-4 space-y-3" data-postid="{{ $post->id }}">
-            
+        <div class="p-4 space-y-3">
+            @auth
             <div class="flex space-x-4 lg:font-bold">
                 <a href="#" class="flex items-center space-x-2">
                     <div class="p-2 rounded-full  text-black lg:bg-gray-100 dark:bg-gray-600">
@@ -73,7 +74,7 @@
                     </div>
                     <div> Like</div>
                 </a>
-                <a href="#" class="flex items-center space-x-2 justify-end">
+                <a href="/i/posts/{{$post->id}}#reply" class="flex items-center space-x-2 justify-end">
                     <div class="p-2 rounded-full  text-black lg:bg-gray-100 dark:bg-gray-600">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="22" height="22" class="dark:text-gray-100">
                             <path fill-rule="evenodd" d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z" clip-rule="evenodd" />
@@ -90,6 +91,7 @@
                     <div> Share</div>
                 </a>
             </div>
+            @endauth
             <div class="flex items-center space-x-3 pt-2"> 
 
                 <div class="dark:text-gray-100">
@@ -98,6 +100,6 @@
             </div>
 
         </div>
-
+        
     </div>
 </x-card>

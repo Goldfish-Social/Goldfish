@@ -50,6 +50,7 @@
             @include('posts.form')
             @include('layouts.components.boxes')
         @endauth
+        
         <script>
             var token = '{{ Session::token() }}';
             var urlLike = '{{ route('like') }}';

@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\Post;
-use Hypefactors\Laravel\Follow\Contracts\CanFollowContract;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
+use Hypefactors\Laravel\Follow\Contracts\CanFollowContract;
 
 class UserController extends Controller {
     // Set username as route

@@ -36,10 +36,14 @@ class Post extends Model
 
     // Relation to User
     public function user() {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    // Relation to comments
+    public function comments() {
+        return $this->hasMany(Comment::class);
     }
     // Relation to likes
-    public function likes() {
+    public function like() {
         return $this->hasMany(Like::class, 'post_id');
     }
 }
