@@ -13,10 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
-Route::group(['middleware' => 'guest'], function() {
-    Route::get('/', [RouteController::class, 'landing'])->name('landing');
-});
-
+Route::get('/', [PostController::class, 'index'])->name('landing');
 // About, terms & privacy
 Route::group(['prefix' => 'about'], function () {
     Route::get('/', [RouteController::class, 'about'])->name('about');
