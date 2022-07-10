@@ -7,6 +7,7 @@
 
             <a href="/">
                 <img src="{{asset ('assets/images/logo.png') }}" alt="Goldfish" class="max-h-11">
+                <img src="{{asset ('assets/images/logo.png') }}" class="logo_mobile" alt="">
             </a>
             
             <div class="capitalize flex font-semibold hidden lg:block my-2 space-x-3 text-center text-sm">

@@ -14,7 +14,11 @@
       
             @foreach($posts as $post)
               <x-post-card :post="$post" />
-            @endforeach 
+            @endforeach
+
+            <div class="flex justify-center mt-6">
+                {{ $posts->links() }}
+            </div>
     
             <!--<div class="flex justify-center mt-6">
                 <a href="#" class="bg-white dark:bg-gray-900 font-semibold my-3 px-6 py-2 rounded-full shadow-md dark:text-white">
