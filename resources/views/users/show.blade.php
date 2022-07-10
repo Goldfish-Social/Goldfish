@@ -10,7 +10,7 @@
             @auth
             @if(auth()->user()->id == $user->id)
             <div class="profile_action absolute bottom-0 right-0 space-x-1.5 p-3 text-sm z-50 hidden lg:flex">
-              <a href="{{ route('profile') }}" class="flex items-center justify-center h-8 px-3 rounded-md bg-gray-700 bg-opacity-70 text-white space-x-1.5"> 
+              <a href="{{ route('avatar') }}" class="flex items-center justify-center h-8 px-3 rounded-md bg-gray-700 bg-opacity-70 text-white space-x-1.5"> 
                   <ion-icon name="create-outline" class="text-xl"></ion-icon>
                   <span> Edit </span>
               </a>
@@ -34,7 +34,9 @@
                 <h1 class="text-center">{{$user->name}}</h1>
             <p class="max-w-sm">{{$user->bio}}<br />
                 @auth
-                    <a href="{{ route('settings') }}">Edit</a>
+                    @if(auth()->user()->id == $user->id)
+                    <a href="{{ route('profile') }}">Edit</a>
+                    @endif
                 @endauth
             </p>
             </div>
