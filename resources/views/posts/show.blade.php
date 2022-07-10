@@ -95,8 +95,7 @@
         <div class="flex items-center space-x-3 pt-2"> 
 
             <div class="dark:text-gray-100">
-                <strong>{{$post->likes_count}}</strong> Likes  <strong>{{$post->reblogs_count}}</strong> Shares
-            </div>
+                <strong>{{$post->likes_count}}</strong> Likes · <strong>{{$post->reblogs_count}}</strong> Shares · <strong>{{$post->comments()->count();}}</strong> Comments            </div>
         </div>
 
         <div class="border-t py-4 space-y-4 dark:border-gray-600">

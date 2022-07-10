@@ -95,7 +95,7 @@
             <div class="flex items-center space-x-3 pt-2"> 
 
                 <div class="dark:text-gray-100">
-                    <strong>{{$post->likes_count}}</strong> Likes  <strong>{{$post->reblogs_count}}</strong> Shares
+                    <strong>{{$post->likes_count}}</strong> Likes · <strong>{{$post->reblogs_count}}</strong> Shares · <a href="/i/posts/{{$post->id}}#reply"><strong>{{$post->comments()->count();}}</strong> Comments</a>
                 </div>
             </div>
 

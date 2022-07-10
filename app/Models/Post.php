@@ -34,6 +34,10 @@ class Post extends Model
             $query->where('username', $username)));
     }
 
+    public function getReplyCountAttribute(){
+        return $this->comments()->count();
+    }
+
     // Relation to User
     public function user() {
         return $this->belongsTo(User::class, 'user_id');

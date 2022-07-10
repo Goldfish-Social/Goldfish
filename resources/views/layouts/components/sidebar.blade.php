@@ -91,40 +91,7 @@
                 See Less 
             </span>
         </a>  
-        @auth
-        <h3 class="side-title"> See also </h3>
 
-        <div class="contact-list my-2 ml-1">
-            
-            <a href="#">
-                <div class="contact-avatar">
-                    <img src="assets/images/avatars/avatar-1.jpg" alt="">
-                    <span class="user_status status_online"></span>
-                </div>
-                <div class="contact-username"> @stux</div>
-            </a>
-            <a href="#">
-                <div class="contact-avatar">
-                    <img src="assets/images/avatars/avatar-2.jpg" alt="">
-                    <span class="user_status"></span>
-                </div>
-                <div class="contact-username"> @stux</div>
-            </a>
-            <a href="#">
-                <div class="contact-avatar">
-                    <img src="assets/images/avatars/avatar-7.jpg" alt="">
-                </div>
-                <div class="contact-username"> @stux</div>
-            </a>
-            <a href="#">
-                <div class="contact-avatar">
-                    <img src="assets/images/avatars/avatar-4.jpg" alt="">
-                </div>
-                <div class="contact-username"> @stux</div>
-            </a>
-
-        </div>
-        @endauth
 
         <ul class="side_links" data-sub-title="Quick access">
             @auth
