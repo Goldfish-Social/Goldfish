@@ -1,5 +1,5 @@
 @props(['comment'])
-<div class="flex">
+<div class="flex border-b-1 border-gray-800 p-3">
 <div class="w-10 h-10 rounded-full relative flex-shrink-0">
     <a href="/{{'@' . $comment->user->username }}">
     <img src="{{ asset('storage/' . $comment->user->avatar) }}" alt="" class="absolute h-full rounded-full w-full">

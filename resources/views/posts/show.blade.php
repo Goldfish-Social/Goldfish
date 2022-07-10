@@ -104,11 +104,11 @@
                     <x-post-comment :comment="$comment"/>
                 @endforeach
         </div>
-
+        @auth
         <div id="reply" class="bg-gray-100 rounded-full relative dark:bg-gray-800 border-t">
             <form action="/i/posts/{{ $post->id }}/reply" method="POST">
             @csrf
-            <textarea name="comment" rows="1" placeholder="Add your Comment.." class="bg-transparent max-h-10 shadow-none px-5"></textarea>
+            <input type="text" name="comment" rows="1" placeholder="Add your Comment.." class="bg-transparent max-h-10 shadow-none px-5" />
             @error('comment')
                     <span class="text-xs text-red-500">{{ $message }}</span>
                 @enderror
@@ -119,6 +119,7 @@
             </div>
             </form>
         </div>
+        @endauth
 
     </div>
     
