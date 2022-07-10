@@ -6,17 +6,12 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Hypefactors\Laravel\Follow\Contracts\CanFollowContract;
 
 class UserController extends Controller {
-    // Set username as route
-    // public function getRouteKeyName() {
-    //     return 'username';
-    // }
 
     // Logout
     public function logout(Request $request) {
@@ -27,8 +22,8 @@ class UserController extends Controller {
     }
     // Get user data
     public function index() {
-        $users = DB::table('users')->get();
- 
+        //$users = DB::table('users')->get();
+        $users = User::with('posts')->get(); 
         return view('users.index', ['users' => $users]);
     }
     
@@ -76,7 +71,8 @@ class UserController extends Controller {
     }
 
     // Update display name, bio and website
-    public function updateProfile(Request $request) {
+    public function updateProfile(Request $request, User $user) {
+        
         // Validate fields
         $request->validate([
             'name' => 'nullable|max:30',

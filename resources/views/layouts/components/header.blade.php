@@ -9,7 +9,8 @@
 
             <div id="logo">
                 <a href="/i/home"> 
-                    Goldfish
+                    <img src="{{ asset('assets/images/logo.png') }}" alt="">
+                    <img src="{{ asset('assets/images/logo.png') }}" class="logo_mobile" alt="">
                 </a>
             </div>
         </div>

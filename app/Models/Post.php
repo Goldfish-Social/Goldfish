@@ -11,8 +11,8 @@ class Post extends Model
     protected $fillable = ['caption', 'visibility', 'user_id', 'media', 'nsfw', 'tags', 'title'];
 
     // Also load default related tabled
-    protected $with = ['user'];
-    // Post search function
+    protected $with = ['user', 'comments'];
+
     // Search function
     public function scopeFilter($query, array $filters)
     {

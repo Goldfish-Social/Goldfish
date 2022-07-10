@@ -7,7 +7,8 @@
 
         <div class="profiles_banner">
             <img src="{{asset('storage/' . $user->header_bg)}}" alt="">
-            @can('update-profile', $user) 
+            @auth
+            @if(auth()->user()->id == $user->id)
             <div class="profile_action absolute bottom-0 right-0 space-x-1.5 p-3 text-sm z-50 hidden lg:flex">
               <a href="#" class="flex items-center justify-center h-8 px-3 rounded-md bg-gray-700 bg-opacity-70 text-white space-x-1.5"> 
                   <ion-icon name="crop-outline" class="text-xl"></ion-icon>
@@ -18,7 +19,9 @@
                   <span> Edit </span>
               </a>
           </div>
-          @endcan
+          @endif
+          @endauth
+          
           
         </div>
         <div class="profiles_content">
@@ -45,9 +48,9 @@
         <div class="flex justify-between lg:border-t border-gray-100 flex-col-reverse lg:flex-row pt-2">
             <nav class="responsive-nav pl-3">
                 <ul  uk-switcher="connect: #timeline-tab; animation: uk-animation-fade">
-                    <li><a href="#">Timeline</a></li>
-                    <li><a href="#"><span>{{$user->followers()->count();}} </span> Followers</a></li>
-                    <li><a href="#"><span>{{$user->followings()->count();}} </span> Following</a></li>
+                    <li><a href="#">Posts <span>{{$user->posts()->count();}} </span></a></li>
+                    <li><a href="#">Followers <span>{{$user->followers()->count();}} </span></a></li>
+                    <li><a href="#">Following <span>{{$user->followings()->count();}} </span></a></li>
                     <li><a href="#">Pages</a></li> 
                     <li><a href="#">Groups</a></li> 
                     <li><a href="#">Videos</a></li> 
@@ -141,10 +144,12 @@
               <x-post-card :post="$post" />
             @endforeach 
 
+            <!--
                <div class="flex justify-center mt-6">
                    <a href="#" class="bg-white font-semibold my-3 px-6 py-2 rounded-full shadow-md dark:bg-gray-800 dark:text-white">
                        Load more ..</a>
                </div>
+            -->
            
 
             </div>
@@ -401,11 +406,13 @@
                 </div>
 
             </div>
-                 
+            
+            <!--
             <div class="flex justify-center mt-6">
                 <a href="#" class="bg-white font-semibold my-3 px-6 py-2 rounded-full shadow-md dark:bg-gray-800 dark:text-white">
                     Load more ..</a>
             </div>
+            -->
 
         </div>
 
@@ -524,10 +531,12 @@
 
             </div>
 
+            <!--
             <div class="flex justify-center mt-6">
                 <a href="#" class="bg-white dark:bg-gray-900 font-semibold my-3 px-6 py-2 rounded-full shadow-md dark:bg-gray-800 dark:text-white">
                     Load more ..</a>
             </div>
+            -->
 
         </div>
 
@@ -535,14 +544,6 @@
         <div class="card md:p-6 p-2 max-w-3xl mx-auto">
 
             <h2 class="text-xl font-bold"> Pages</h2>
-            <nav class="responsive-nav border-b md:m-0 -mx-4">
-                <ul>
-                    <li class="active"><a href="#" class="lg:px-2"> Following </a></li>
-                    <li><a href="#" class="lg:px-2"> Newest </a></li>
-                    <li><a href="#" class="lg:px-2"> My pages</a></li>
-                    <li><a href="#" class="lg:px-2"> Suggestions</a></li>
-                </ul>
-            </nav>
 
             <div class="grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-4 mt-5">
                 
@@ -663,13 +664,6 @@
             <div class="flex justify-between items-start relative md:mb-4 mb-3">
                 <div class="flex-1">
                     <h2 class="text-xl font-bold"> Groups </h2>
-                    <nav class="responsive-nav style-2 md:m-0 -mx-4">
-                        <ul>
-                            <li class="active"><a href="#"> Joined <span> 230</span> </a></li>
-                            <li><a href="#"> My Groups </a></li>
-                            <li><a href="#"> Discover </a></li> 
-                        </ul>
-                    </nav>
                 </div>
                 <a href="create-group.html" data-tippy-placement="left" data-tippy="" data-original-title="Create New Album" class="bg-blue-100 font-semibold py-2 px-6 rounded-md text-sm md:mt-0 mt-3 text-blue-600">
                     Create       
@@ -787,14 +781,7 @@
          <!-- Videos -->
         <div class="card md:p-6 p-2 max-w-3xl mx-auto">  
             
-            <h2 class="text-xl font-semibold"> Friend</h2>
-            <nav class="responsive-nav border-b">
-                <ul>
-                    <li class="active"><a href="#" class="lg:px-2">   Suggestions </a></li>
-                    <li><a href="#" class="lg:px-2"> Newest </a></li>
-                    <li><a href="#" class="lg:px-2"> My Videos </a></li>
-                </ul>
-            </nav>
+            <h2 class="text-xl font-semibold"> Latest videos</h2>
 
             <div class="grid md:grid-cols-3 grid-cols-2  gap-x-2 gap-y-4 mt-3">  
                 <div>
@@ -869,7 +856,6 @@
             </div>
             
         </div>
-
 
     </div>
 

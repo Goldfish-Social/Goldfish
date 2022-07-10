@@ -100,6 +100,9 @@
         </div>
 
         <div class="border-t py-4 space-y-4 dark:border-gray-600">
+            @if(count($post->comments) == 0)
+            No comments yet.
+            @endif
             @foreach ($post->comments as $comment)
                     <x-post-comment :comment="$comment"/>
                 @endforeach
@@ -108,7 +111,7 @@
         <div id="reply" class="bg-gray-100 rounded-full relative dark:bg-gray-800 border-t">
             <form action="/i/posts/{{ $post->id }}/reply" method="POST">
             @csrf
-            <input type="text" name="comment" rows="1" placeholder="Add your Comment.." class="bg-transparent max-h-10 shadow-none px-5" />
+            <input type="text" name="comment" rows="1" placeholder="Add your Comment.." class="bg-transparent max-h-10 shadow-none px-5" required/>
             @error('comment')
                     <span class="text-xs text-red-500">{{ $message }}</span>
                 @enderror

@@ -16,6 +16,9 @@ class User extends Authenticatable implements MustVerifyEmail, CanFollowContract
 {
     use HasApiTokens, HasFactory, Notifiable, CanFollow, CanBeFollowed;
 
+    // Also load default related tabled
+    //protected $with = ['posts', 'comments'];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -58,5 +61,8 @@ class User extends Authenticatable implements MustVerifyEmail, CanFollowContract
     // Relation to likes
     public function likes() {
         return $this->hasMany(Like::class, 'user_id');
+    }
+    public function getPostsCountAttribute(){
+        return $this->posts()->count();
     }
 }
