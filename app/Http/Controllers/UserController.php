@@ -7,9 +7,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
-use Hypefactors\Laravel\Follow\Contracts\CanFollowContract;
+
 
 class UserController extends Controller {
 
@@ -116,17 +115,12 @@ class UserController extends Controller {
         return back()->with('status', 'Cover updated.');
     }
     // Follow user
-    public function follow(Request $request) {
-        $user = User::find($request->user_id);
-        dd(Auth::user());
-        $response = auth()->user()->Followable::toggleFollow($user);
-        return response()->json(['following' => Auth::user()->Followble::isFollowing($user)]);
-    }
-    // Follow user
-    public function followUser(CanFollowContract $request) {
+    public function followUser(Request $request, User $user) {
         $follow = User::find($request->user_id);
-        auth()->user()->Followable::follow($follow);
-        return back()->with('message', 'Followed!');
+        $user = auth()->user()->id;
+        $user->follow($follow);
+        // Return back
+        return back()->with('status', 'Cover updated.');      
     }
 
 

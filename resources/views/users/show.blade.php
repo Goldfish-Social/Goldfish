@@ -61,17 +61,22 @@
 
             <!-- button actions -->
             <div class="flex items-center space-x-1.5 flex-shrink-0 pr-4 mb-2 justify-center order-1 relative">
+                
                 @auth
-                <!-- add story -->
-                <button data-id="{{ $user->id }}" class="action-follow flex items-center justify-center h-10 px-5 rounded-md bg-blue-600 text-white space-x-1.5 hover:text-white"> 
+                @if(auth()->user()->id !== $user->id)
+                <form method="POST" action="/{{'@' . $user->username }}/follow">
+                @csrf
+                <button type="submit" class="action-follow flex items-center justify-center h-10 px-5 rounded-md bg-blue-600 text-white space-x-1.5 hover:text-white"> 
                     <span>
                         @if(auth()->user()->isFollowing($user))
-                            UnFollow
+                            Unfollow -
                         @else
-                            Follow
+                            Follow +
                         @endif
                     </span>
                 </button>
+                </form>
+                @endif
                 @endauth
                
                 <form action="/{{ '@' . $user->username }}/" method="GET">
@@ -178,8 +183,10 @@
                             <strong>Get RSS  link</strong>
                         </li>                                
                     </ul>
+                @auth
                 @if(auth()->user()->id == $user->id)
                     <a href="{{ route('settings') }}" class="button gray mt-3 w-full"> Edit </a>
+                @endif
                 @endauth
                 </div>
             

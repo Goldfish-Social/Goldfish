@@ -7,14 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Hypefactors\Laravel\Follow\Traits\CanFollow;
-use Hypefactors\Laravel\Follow\Contracts\CanFollowContract;
-use Hypefactors\Laravel\Follow\Traits\CanBeFollowed;
-use Hypefactors\Laravel\Follow\Contracts\CanBeFollowedContract;
+use Overtrue\LaravelFollow\Traits\Follower;
+use Overtrue\LaravelFollow\Traits\Followable;
 
-class User extends Authenticatable implements MustVerifyEmail, CanFollowContract, CanBeFollowedContract
+
+class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable, CanFollow, CanBeFollowed;
+    use HasApiTokens, HasFactory, Notifiable, Follower, Followable;
 
     // Also load default related tabled
     //protected $with = ['posts', 'comments'];
@@ -63,6 +62,6 @@ class User extends Authenticatable implements MustVerifyEmail, CanFollowContract
         return $this->hasMany(Like::class, 'user_id');
     }
     public function getPostsCountAttribute(){
-        return $this->posts()->count();
+    return $this->posts()->count();
     }
 }

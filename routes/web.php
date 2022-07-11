@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DiscoverController;
+use App\Http\Controllers\FollowsController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PageController;
@@ -27,9 +28,13 @@ Route::group(['prefix' => 'i'], function () {
     Route::get('users', [UserController::class, 'users'])->name('users');
 });
 Route::get('@{user:username}', [UserController::class, 'user'])->name('user.view');
+
 Auth::routes(['verify' => true]);
 Route::group(['middleware' => 'auth'], function () {
     Route::post('logout', [UserController::class, 'logout'])->name('logout');
+});
+Route::group(['middleware' => ['auth', 'verified']], function () {
+    Route::post('@{user:username}/follow', [FollowsController::class, 'store'])->name('follow');
 });
 Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'i'], function () {
     Route::get('/', [RouteController::class, 'web']);
