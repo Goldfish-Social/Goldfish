@@ -14,7 +14,7 @@ use App\Jobs\ConvertVideoForDownloading;
 
 class PostController extends Controller
 {
-    public function index(Post $post, User $user)
+    public function index(Post $post, Request $request)
     {
         return Inertia::render('Posts/Index', [
             'posts' => Post::query()       
@@ -40,7 +40,21 @@ class PostController extends Controller
     public function show(Post $post)
     {
         return Inertia::render('Posts/Show', [
-            'posts' => Post::query()       
+            'post' => [
+                'id'                =>  $post->id,
+                'description'       =>  $post->description,
+                'avatar'            =>  $post->user->getProfilePhotoUrlAttribute(),
+                'time'              =>  $post->created_at->diffForHumans(),
+                'username'          =>  $post->user->username,
+                'video'             =>  Storage::disk('public')->url('uploads/' . $post->user->id . '/' . 'videos/' . $post->id . '.mp4'),
+            ]
+            ]);
+    }
+
+    public function shower(Post $post)
+    {
+        return Inertia::render('Posts/Show', [
+            'post' => Post::query()       
             ->latest()
             ->paginate(50)
             ->withQueryString()

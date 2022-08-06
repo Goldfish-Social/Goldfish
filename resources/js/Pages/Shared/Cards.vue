@@ -16,22 +16,32 @@
                         <div class="card-body">
 
                             <h3 class="card-title">
+                                <InertiaLink :href="route('user-profile', { id: post.username })">
                                 <div class="avatar">
                                     <div class="w-12 rounded-full">
                                         <img :src="post.avatar" />
                                     </div>
                                 </div>
+                                </InertiaLink>
                                 <div class="ml-3">
-                                    {{ post.username }}
+                                    <InertiaLink :href="route('user-profile', { id: post.username })">
+                                        {{ post.username }}
+                                    </InertiaLink>
                                     <div>
+                                        <InertiaLink :href="route('show-post', { id: post.id })">
                                         <div class="badge badge-sm badge-outline">
                                             {{ post.time }}
                                         </div>
+                                        </InertiaLink>
                                     </div>
                                 </div>
                             </h3>
 
-                            <p class="mt-3">{{ post.description }}</p>
+                            <p class="mt-3">
+                                <InertiaLink :href="route('show-post', { id: post.id })">
+                                    {{ post.description }}
+                                </InertiaLink>
+                                </p>
                             <div class="divider"></div> 
                             <div class="card-actions justify-start">
                                 <button class="btn btn-sm btn-outline btn-success">0 Likes</button>

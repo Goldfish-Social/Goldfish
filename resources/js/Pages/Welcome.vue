@@ -14,6 +14,10 @@ defineProps({
 <GuestLayout>
     <Head title="Welcome" />
 
+    <template #header>
+            What's new
+        </template>
+
     <section class="bg-gray-800 dark:bg-gray-800 min-h-screen">
             <Cards v-bind:posts="posts" />
         </section>

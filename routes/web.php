@@ -26,11 +26,12 @@ Route::get('/', [HomeController::class, 'landing'])->name('landing')->middleware
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {
     Route::get('/home', [PostController::class, 'index'])->name('home');
     Route::post('/home', [PostController::class, 'store']);
-    Route::get('@{user:username}', [UserController::class, 'show']);
+    Route::get('@{user:username}', [UserController::class, 'show'])->name('user-profile');
     Route::get('/posts', [PostController::class, 'index']);
-    Route::get('/posts/{post}', [PostController::class, 'show']);
+    Route::get('/posts/{post}', [PostController::class, 'show'])->name('show-post');
     Route::get('dashboard', [PostController::class, 'index'])->name('dashboard');
     Route::delete('/posts/{post}/delete', [PostController::class, 'destroy'])->name('posts.destroy');
+    Route::get('/community', [UserController::class, 'index']);
     Route::get('/users', function () {
         return Inertia::render('Users/Index', [
             'users' => User::query()
@@ -43,7 +44,10 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
             ->withQueryString()
             ->through(fn($user) => [
                 'id'    =>  $user->id,
-                'name'  =>  $user->name
+                'name'  =>  $user->name,
+                'username'  =>  $user->username,
+                'avatar'    => $user->getProfilePhotoUrlAttribute(),
+                'about'     => $user->about
             ]),
 
             'filters' => Request::only(['search'])

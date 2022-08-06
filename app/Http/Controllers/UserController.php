@@ -21,13 +21,31 @@ class UserController extends Controller
             ->withQueryString()
             ->through(fn($user) => [
                 'id'    =>  $user->id,
-                'name'  =>  $user->name
+                'name'  =>  $user->name,
+                'avatar'    => $user->getProfilePhotoUrlAttribute(),
+                'about'     => $user->about
             ]),
 
             'filters' => $request->only(['search'])
         ]);
     }
-    public function show()
+
+    public function show(User $user)
+    {
+        return Inertia::render('Users/Show', [
+            'user' => [
+                'id'                =>  $user->id,
+                'name'              =>  $user->name,
+                'about'             => $user->about,
+                'avatar'            =>  $user->getProfilePhotoUrlAttribute(),
+                'time'             =>  $user->created_at->diffForHumans(),
+                'username'          =>  $user->username,
+            ]
+            ]);
+    }
+
+
+    public function shower()
     {
         return Inertia::render('Users/Show', [
             'users' => User::all()->map(function ($user) {
