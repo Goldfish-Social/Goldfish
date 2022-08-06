@@ -160,7 +160,6 @@ const logout = () => {
       <header
         v-if="$slots.header"
         class="
-    
           border-gray-200
           px-4
           lg:px-6

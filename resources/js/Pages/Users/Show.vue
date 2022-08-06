@@ -26,7 +26,7 @@ let props = defineProps({
                         </figure>
                     <div class="card-body">
                         <h2 class="card-title">
-                            <InertiaLink :href="route('user-profile', { id: post.username })">
+                            <InertiaLink :href="route('user-profile', { id: user.username })">
                                 <div class="avatar">
                                     <div class="w-12 rounded-full">
                                         <img :src="user.avatar" />
@@ -34,8 +34,8 @@ let props = defineProps({
                                 </div>
                             </InertiaLink>
                             <div class="ml-3">
-                                <InertiaLink :href="route('user-profile', { id: post.username })">
-                                    {{ post.username }}
+                                <InertiaLink :href="route('user-profile', { id: user.username })">
+                                    {{ user.username }}
                                 </InertiaLink>
                             </div>
                         </h2>
