@@ -5,11 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\User;
 use Inertia\Inertia;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
+use App\Jobs\ConvertVideoForDownloading;
 
 class PostController extends Controller
 {
-    public function index(Post $post)
+    public function index(Post $post, User $user)
     {
         return Inertia::render('Posts/Index', [
             'posts' => Post::query()       
@@ -17,6 +22,7 @@ class PostController extends Controller
             ->paginate(50)
             ->withQueryString()
             ->through(fn($post) => [
+                'id'        => $post->id,
                 'name'    =>  $post->user->name,
                 'username'    =>  $post->user->username,
                 'title'        => $post->title,
@@ -25,6 +31,8 @@ class PostController extends Controller
                 'avatar'    =>  $post->user->getProfilePhotoUrlAttribute(),
                 'userlink'  =>  '@' . $post->user->username,
                 'media'     =>  'storage/' . $post->files,
+                'video'     =>  Storage::disk('public')->url('uploads/' . $post->user->id . '/' . 'videos/' . $post->id . '.mp4'),
+                'delete'    =>  Auth::user()->id === $post->user_id
             ])
         ]);
     }
@@ -37,14 +45,15 @@ class PostController extends Controller
             ->paginate(50)
             ->withQueryString()
             ->through(fn($post) => [
+                'id'        => $post->id,
                 'name'    =>  $post->user->name,
                 'username'    =>  $post->user->username,
-                'title'        => $post->title,
                 'description'  =>  $post->description,
                 'time'      =>  $post->created_at->diffForHumans(),
                 'avatar'    =>  $post->user->getProfilePhotoUrlAttribute(),
                 'userlink'  =>  '@' . $post->user->username,
                 'media'     =>  'storage/' . $post->files,
+                'video'     =>  Storage::disk('public')->url('uploads/' . $post->user->id . '/' . 'videos/' . $post->id . '.mp4'),
             ])
         ]);
     }
@@ -52,20 +61,42 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $attributes = $request->validate([
-            'title'  => 'required|min:1',
             'description'  => 'required|min:1',
-            'files'    => ['nullable','mimes:jpg,jpeg,png,gif','max:500048'],
+            'video'    => 'required|file|mimetypes:video/mp4,video/mpeg,video/x-matroska',
         ]);
 
-        if($request->hasFile('files')) 
-        {
-            $attributes['files'] = $request->file('files')->store('uploads/images/', 'public');
-        }
+        // if($request->hasFile('files')) 
+        // {
+        //    $attributes['files'] = $request->file('files')->store('uploads/images/', 'public');
+        // }
 
         $attributes['user_id'] = auth()->user()->id;
 
-        Post::create($attributes);
+        $storeURL = Str::random(16);
 
+        // $attributes['video'] = $request->file('uploads/' . $request['user_id'] . '/' . 'videos/' . $storeURL, 'public');
+        
+        $attributes = Post::create([
+            'user_id'       => auth()->user()->id,
+            'disk'          => 'public',
+            'original_name' => $request->file('video')->getClientOriginalName(),
+            'path'          => $request->file('video')->store('uploads/' . $request['user_id'] . '/' . 'videos/' . $storeURL, 'public'),
+            'description'   => $request->description
+        ]);
+
+        $this->dispatch(new ConvertVideoForDownloading($attributes));
+        
         return redirect(('/home'));
+    }
+
+    // Delete item
+    public function destroy(Post $post) 
+    {
+        if (! Gate::allows('delete-post', $post)) {
+            abort(403);
+        }
+
+        $post->delete();
+        return redirect('/home')->with('message', 'Post deleted successfully.');
     }
 }

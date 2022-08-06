@@ -19,9 +19,8 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('title')->nullable();
             $table->text('description')->nullable();
-            $table->longText('content')->nullable();
             $table->string('tags')->nullable();
-            $table->string('files')->nullable();
+            $table->string('video')->nullable();
             $table->string('original_name')->nullable();
             $table->string('disk')->nullable();
             $table->string('path')->nullable();

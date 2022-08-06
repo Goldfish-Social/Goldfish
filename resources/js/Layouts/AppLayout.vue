@@ -101,7 +101,7 @@ const logout = () => {
         </div>
 
         <div class="navbar-center">
-          <Link :href="route('home')" class="btn btn-ghost normal-case text-xl">Vuer</Link>
+          <Link :href="route('home')" class="btn btn-ghost normal-case text-xl">{{$page.props.appName}}</Link>
         </div>
 
         <div class="navbar-end">

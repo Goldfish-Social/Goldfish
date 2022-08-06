@@ -52,7 +52,7 @@ const showingNavigationDropdown = ref(false);
             </div>
 
             <div class="navbar-center">
-                <Link :href="route('landing')" class="btn btn-ghost normal-case text-xl">Vuer</Link>
+                <Link :href="route('landing')" class="btn btn-ghost normal-case text-xl">{{$page.props.appName}}</Link>
             </div>
            
 

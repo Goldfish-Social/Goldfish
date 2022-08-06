@@ -3,7 +3,7 @@
         <!-- Put this part before </body> tag -->
         <form @submit.prevent="submit">
              
-            <h3 class="font-bold text-lg">Upload Content</h3>
+            <h3 class="font-bold text-lg">Upload Something {{$page.props.user.name}}</h3>
             <div class="py-4">
                 <div class="form-control py-2">
                     <label
@@ -20,24 +20,16 @@
                             {{ form.progress.percentage }}%
                             </progress>
                     </div>
-                    <input type="file" @input="form.files = $event.target.files[0]" name="files" id="files" class="opacity-0" />
+                    <input type="file" @input="form.video = $event.target.files[0]" name="video" id="video" class="opacity-0" />
                 </label>
                 <div
-                    v-if="form.errors.files"
-                    v-text="form.errors.files"
+                    v-if="form.errors.video"
+                    v-text="form.errors.video"
                     class="text-red-500 mt-1"
                 ></div>
                 </div>
                 <div class="form-control py-2">
-                    <input name="title" v-model="form.title" id="title" type="text" placeholder="Enter a title" class="input input-bordered input-primary w-full" />
-                    <div
-                    v-if="form.errors.title"
-                    v-text="form.errors.title"
-                    class="text-red-500 mt-1"
-                ></div>
-                </div>
-                <div class="form-control py-2">
-                    <textarea v-model="form.description" id="description" name="description" class="textarea textarea-primary" placeholder="Write a description"></textarea>
+                    <textarea v-model="form.description" id="description" name="description" class="textarea textarea-primary" placeholder="How meow are you?"></textarea>
                 <div
                     v-if="form.errors.description"
                     v-text="form.errors.description"
@@ -51,7 +43,7 @@
             :disabled="form.processing"
             class="btn"
             >
-            <span class="font-bold text-sm">Submit</span>
+            <span class="font-bold text-sm">Publish</span>
           </button>
             </div>
         </form>
@@ -62,14 +54,13 @@ import { useForm } from "@inertiajs/inertia-vue3";
 
 let form = useForm({
   description: "",
-  files: "",
-  title: "",
+  video: "",
 });
 
 let submit = () => {
   form.post("/home", {
     forceFormData: true,
-    onSuccess: () => form.reset("title", "description", "files"),
+    onSuccess: () => form.reset("description", "video"),
   });
 };
 </script>
