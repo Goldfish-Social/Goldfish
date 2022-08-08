@@ -1,6 +1,6 @@
 <script setup>
 import { Head, Link } from '@inertiajs/inertia-vue3';
-import GuestLayout from '../Layouts/GuestLayout.vue';
+import AppLayout from '../Layouts/AppLayout.vue';
 
 
 defineProps({
@@ -11,16 +11,16 @@ defineProps({
 </script>
 
 <template>
-<GuestLayout>
-    <Head title="Welcome" />
-
-    <template #header>
-            What's new
+<AppLayout title="Home">
+        <template #header>
+            Browse the feed
         </template>
+
+    <Head title="Explore & Discover" />
 
     <section>
             <Cards v-bind:posts="posts" />
         </section>
 
-    </GuestLayout>
+    </AppLayout>
 </template>

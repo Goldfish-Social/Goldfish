@@ -6,7 +6,7 @@ import JetButton from '@/Jetstream/Button.vue';
 import JetInput from '@/Jetstream/Input.vue';
 import JetLabel from '@/Jetstream/Label.vue';
 import JetValidationErrors from '@/Jetstream/ValidationErrors.vue';
-import GuestLayout from '../../Layouts/GuestLayout.vue';
+import AppLayout from '../../Layouts/AppLayout.vue';
 
 defineProps({
     status: String,
@@ -22,7 +22,11 @@ const submit = () => {
 </script>
 
 <template>
-<GuestLayout>
+<AppLayout title="Home">
+        <template #header>
+            Forgot your password?
+        </template>
+
     <Head title="Forgot Password" />
 
     <JetAuthenticationCard>
@@ -57,5 +61,5 @@ const submit = () => {
             </div>
         </form>
     </JetAuthenticationCard>
-    </GuestLayout>
+    </AppLayout>
 </template>

@@ -7,7 +7,7 @@ import JetInput from '@/Jetstream/Input.vue';
 import JetCheckbox from '@/Jetstream/Checkbox.vue';
 import JetLabel from '@/Jetstream/Label.vue';
 import JetValidationErrors from '@/Jetstream/ValidationErrors.vue';
-import GuestLayout from '../../Layouts/GuestLayout.vue';
+import AppLayout from '../../Layouts/AppLayout.vue';
 
 defineProps({
     canResetPassword: Boolean,
@@ -31,7 +31,11 @@ const submit = () => {
 </script>
 
 <template>
-<GuestLayout>
+<AppLayout title="Home">
+        <template #header>
+            Login to your account
+        </template>
+        
     <Head title="Log in" />
 
     <JetAuthenticationCard>
@@ -85,5 +89,5 @@ const submit = () => {
             </div>
         </form>
     </JetAuthenticationCard>
-    </GuestLayout>
+    </AppLayout>
 </template>

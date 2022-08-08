@@ -6,6 +6,7 @@ import JetButton from '@/Jetstream/Button.vue';
 import JetInput from '@/Jetstream/Input.vue';
 import JetLabel from '@/Jetstream/Label.vue';
 import JetValidationErrors from '@/Jetstream/ValidationErrors.vue';
+import AppLayout from '../../Layouts/AppLayout.vue';
 
 const props = defineProps({
     email: String,
@@ -27,6 +28,11 @@ const submit = () => {
 </script>
 
 <template>
+<AppLayout title="Home">
+        <template #header>
+            Reset your password
+        </template>
+
     <Head title="Reset Password" />
 
     <JetAuthenticationCard>
@@ -80,4 +86,5 @@ const submit = () => {
             </div>
         </form>
     </JetAuthenticationCard>
+    </AppLayout>
 </template>

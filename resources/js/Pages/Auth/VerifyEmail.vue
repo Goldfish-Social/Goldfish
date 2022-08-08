@@ -4,6 +4,7 @@ import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 import JetAuthenticationCard from '@/Jetstream/AuthenticationCard.vue';
 import JetAuthenticationCardLogo from '@/Jetstream/AuthenticationCardLogo.vue';
 import JetButton from '@/Jetstream/Button.vue';
+import AppLayout from '../../Layouts/AppLayout.vue';
 
 const props = defineProps({
     status: String,
@@ -19,12 +20,14 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
 </script>
 
 <template>
+<AppLayout title="Home">
+        <template #header>
+            Verify your email
+        </template>
+
     <Head title="Email Verification" />
 
     <JetAuthenticationCard>
-        <template #logo>
-            <JetAuthenticationCardLogo />
-        </template>
 
         <div class="mb-4 text-sm text-gray-600">
             Before continuing, could you verify your email address by clicking on the link we just emailed to you? If you didn't receive the email, we will gladly send you another.
@@ -59,4 +62,5 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
             </div>
         </form>
     </JetAuthenticationCard>
+    </AppLayout>
 </template>

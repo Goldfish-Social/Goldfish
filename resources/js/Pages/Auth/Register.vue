@@ -7,7 +7,7 @@ import JetInput from '@/Jetstream/Input.vue';
 import JetCheckbox from '@/Jetstream/Checkbox.vue';
 import JetLabel from '@/Jetstream/Label.vue';
 import JetValidationErrors from '@/Jetstream/ValidationErrors.vue';
-import GuestLayout from '../../Layouts/GuestLayout.vue';
+import AppLayout from '../../Layouts/AppLayout.vue';
 
 const form = useForm({
     name: '',
@@ -26,7 +26,11 @@ const submit = () => {
 </script>
 
 <template>
-<GuestLayout>
+<AppLayout title="Home">
+        <template #header>
+            Signup for free
+        </template>
+
     <Head title="Register" />
 
     <JetAuthenticationCard>
@@ -117,5 +121,5 @@ const submit = () => {
             </div>
         </form>
     </JetAuthenticationCard>
-    </GuestLayout>
+    </AppLayout>
 </template>
