@@ -16,7 +16,7 @@ let props = defineProps({
             Post by {{ post.username }}
         </template>
 
-        <section class="bg-gray-800 dark:bg-gray-800 min-h-screen">
+        <section class="bg-gray-100 dark:bg-gray-800 min-h-screen">
             <div class="py-2 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
                 <div
                     

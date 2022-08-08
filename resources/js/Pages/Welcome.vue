@@ -18,7 +18,7 @@ defineProps({
             What's new
         </template>
 
-    <section class="bg-gray-800 dark:bg-gray-800 min-h-screen">
+    <section>
             <Cards v-bind:posts="posts" />
         </section>
 

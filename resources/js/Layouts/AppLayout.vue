@@ -39,8 +39,8 @@ const logout = () => {
 
     <JetBanner />
 
-    <div class="min-h-screen bg-gray-700">
-      <nav class="navbar sticky top-0 z-50 bg-base-100 border-gray-200 px-4 lg:px-6 py-2.5">
+    <div class="min-h-screen bg-white dark:bg-gray-700">
+      <nav class="navbar sticky top-0 z-50 bg-base-100 border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-900">
         <div class="navbar-start">
           <div class="dropdown">
             <label tabindex="0" class="btn btn-ghost btn-circle">
@@ -59,7 +59,27 @@ const logout = () => {
                 />
               </svg>
             </label>
+                <ul 
+                v-if="$page.props.auth.user === null"
+                tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                        <li>
+                            <JetNavLink :href="route('landing')" :active="route().current('landing')">
+                                        Home
+                            </JetNavLink>
+                        </li>
+                        <li>
+                            <JetNavLink :href="route('login')" :active="route().current('login')">
+                                        Login
+                            </JetNavLink>
+                        </li>
+                        <li>
+                            <JetNavLink :href="route('register')" :active="route().current('register')">
+                                        Register
+                            </JetNavLink>
+                        </li>
+                    </ul>
             <ul
+              v-else
               tabindex="0"
               class="
                 menu menu-compact
@@ -68,6 +88,7 @@ const logout = () => {
                 p-2
                 shadow
                 bg-base-100
+                dark:bg-white
                 rounded-box
                 w-52
               "
@@ -101,11 +122,20 @@ const logout = () => {
         </div>
 
         <div class="navbar-center">
-          <Link :href="route('home')" class="btn btn-ghost normal-case text-xl">{{$page.props.appName}}</Link>
+          <Link :href="route('home')" class="btn btn-ghost text-gray-900 dark:text-white normal-case text-xl">{{$page.props.appName}}</Link>
         </div>
 
-        <div class="navbar-end">
+        <div 
+        v-if="$page.props.auth.user === null"
+        class="navbar-end"
+        >
+                <Link :href="route('register')" class="btn">Register</Link>
+          </div>
 
+        <div 
+        v-else
+        class="navbar-end"
+        >
 
           <div class="dropdown dropdown-end">
             <label tabindex="0" class="btn btn-ghost btn-circle avatar">
@@ -164,20 +194,20 @@ const logout = () => {
           px-4
           lg:px-6
           py-2.5
-          bg-gray-800
+          bg-gray-100
           dark:bg-gray-800
           shadow
         "
       >
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <h3 class="font-semibold text-xl text-white leading-tight">
+          <h3 class="font-semibold text-xl dark:text-white text-base-900 leading-tight">
             <slot name="header" />
           </h3>
         </div>
       </header>
 
       <!-- Page Content -->
-      <main class="dark:bg-gray-900 bg-gray-900">
+      <main class="dark:bg-gray-900 bg-white">
         <slot />
       </main>
     </div>

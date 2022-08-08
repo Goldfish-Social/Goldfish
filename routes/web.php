@@ -21,14 +21,14 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', [HomeController::class, 'landing'])->name('landing')->middleware('guest');
+Route::get('@{user:username}', [UserController::class, 'show'])->name('user-profile');
+Route::get('/posts', [PostController::class, 'index']);
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('show-post');
 
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {
     Route::get('/home', [PostController::class, 'index'])->name('home');
     Route::post('/home', [PostController::class, 'store']);
-    Route::get('@{user:username}', [UserController::class, 'show'])->name('user-profile');
-    Route::get('/posts', [PostController::class, 'index']);
-    Route::get('/posts/{post}', [PostController::class, 'show'])->name('show-post');
     Route::get('dashboard', [PostController::class, 'index'])->name('dashboard');
     Route::delete('/posts/{post}/delete', [PostController::class, 'destroy'])->name('posts.destroy');
     Route::get('/community', [UserController::class, 'index']);

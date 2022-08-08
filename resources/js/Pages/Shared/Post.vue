@@ -3,7 +3,7 @@
         <!-- Put this part before </body> tag -->
         <form @submit.prevent="submit">
              
-            <h3 class="font-bold text-lg">Upload Something {{$page.props.user.name}}</h3>
+            <h3 class="font-bold text-lg">Upload a video {{$page.props.user.name}}</h3>
             <div class="py-4">
                 <div class="form-control py-2">
                     <label
@@ -15,7 +15,7 @@
                                 d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                         </svg>
                         <p class="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
-                            Attach a file</p>
+                            Upload a video(max 10MB)</p>
                             <progress v-if="form.progress" :value="form.progress.percentage" max="100">
                             {{ form.progress.percentage }}%
                             </progress>
