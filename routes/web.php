@@ -37,7 +37,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
             'users' => User::query()
 
             ->when(Request::input('search'), function ($query, $search) {
-                $query->where('name', 'like', "%{$search}%");
+                $query->where('username', 'like', "%{$search}%");
             })
             
             ->paginate(10)
