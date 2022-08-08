@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use IntlChar;
+use App\Models\Post;
 use App\Models\User;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -13,7 +16,7 @@ class UserController extends Controller
         return Inertia::render('Users/Index', [
             'users' => User::query()
 
-            ->when($request('search'), function ($query, $search) {
+            ->when(Request::only('search'), function ($query, $search) {
                 $query->where('name', 'like', "%{$search}%");
             })
             
@@ -26,35 +29,36 @@ class UserController extends Controller
                 'about'     => $user->about
             ]),
 
-            'filters' => $request->only(['search'])
+            'filters' => Request::only(['search'])
         ]);
     }
 
-    public function show(User $user)
+    public function show(User $user, Post $post)
     {
         return Inertia::render('Users/Show', [
             'user' => [
-                'id'                =>  $user->id,
-                'name'              =>  $user->name,
-                'about'             => $user->about,
-                'avatar'            =>  $user->getProfilePhotoUrlAttribute(),
-                'time'             =>  $user->created_at->diffForHumans(),
-                'username'          =>  $user->username,
-            ]
-            ]);
-    }
+                'id'        =>  $user->id,
+                'name'      =>  $user->name,
+                'about'     =>  $user->about,
+                'pic'       =>  $user->getProfilePhotoUrlAttribute(),
+                'time'      =>  $user->created_at->diffForHumans(),
+                'username'  =>  $user->username,
+                'posts' => Post::query()
+                ->where('user_id', $user->id)
+                ->latest()
+                ->paginate(10)
+                ->through(fn($post) => [
+                    'id'                =>  $post->id,
+                    'description'       =>  $post->description,
+                    'avatar'            =>  $post->user->getProfilePhotoUrlAttribute(),
+                    'time'              =>  $post->created_at->diffForHumans(),
+                    'username'          =>  $post->user->username,
+                    'video'             =>  Storage::disk('public')->url('uploads/' . $post->user->id . '/' . 'videos/' . $post->id . '.mp4'),
+                ]),
 
-
-    public function shower()
-    {
-        return Inertia::render('Users/Show', [
-            'users' => User::all()->map(function ($user) {
-                return [
-                    'id' => $user->id,
-                    'name' => $user->name,
-                    'username' => $user->username
-                ];
-            })
+            ],
         ]);
     }
+
+
 }
