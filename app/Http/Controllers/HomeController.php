@@ -17,7 +17,8 @@ class HomeController extends Controller
         return Inertia::render('Welcome', [
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
-            'posts' => Post::query()    
+            'posts' => Post::query()
+            ->latest()
             ->where('status', 'Public')
             ->where('is_nsfw', null)
             ->when($request->input('search'), function ($query, $search) {
@@ -26,17 +27,17 @@ class HomeController extends Controller
             ->paginate(20)
             ->withQueryString()
             ->through(fn($post) => [
-                'id'        => $post->id,
-                'name'    =>  $post->user->name,
-                'username'    =>  $post->user->username,
-                'title'        => $post->title,
-                'description'  =>  $post->description,
-                'time'      =>  $post->created_at->diffForHumans(),
-                'avatar'    =>  $post->user->getProfilePhotoUrlAttribute(),
-                'userlink'  =>  '@' . $post->user->username,
-                'media'     =>  'storage/' . $post->files,
-                'video'     =>  Storage::disk('public')->url('uploads/' . $post->user->id . '/' . 'videos/' . $post->id . '.mp4'),
-                'delete'    =>  false,
+                'id'            =>  $post->id,
+                'name'          =>  $post->user->name,
+                'username'      =>  $post->user->username,
+                'title'         =>  $post->title,
+                'description'   =>  $post->description,
+                'time'          =>  $post->created_at->diffForHumans(),
+                'avatar'        =>  $post->user->getProfilePhotoUrlAttribute(),
+                'userlink'      =>  '@' . $post->user->username,
+                'media'         =>  'storage/' . $post->files,
+                'video'         =>  Storage::disk('public')->url('uploads/' . $post->user->id . '/' . 'videos/' . $post->id . '.mp4'),
+                'delete'        =>  false,
                 'status'        =>  $post->status
             ]),
             'filters' => $request->only(['search'])
@@ -48,17 +49,17 @@ class HomeController extends Controller
         return Inertia::render('Home', [
             'posts' => Post::query()       
             ->latest()
-            ->paginate(50)
+            ->paginate(20)
             ->withQueryString()
             ->through(fn($post) => [
-                'name'    =>  $post->user->name,
-                'username'    =>  $post->user->username,
-                'title'        => $post->title,
-                'description'  =>  $post->description,
-                'time'      =>  $post->created_at->diffForHumans(),
-                'avatar'    =>  $post->user->getProfilePhotoUrlAttribute(),
-                'userlink'  =>  '@' . $post->user->username,
-                'media'     =>  'storage/' . $post->files,
+                'name'          =>  $post->user->name,
+                'username'      =>  $post->user->username,
+                'title'         =>  $post->title,
+                'description'   =>  $post->description,
+                'time'          =>  $post->created_at->diffForHumans(),
+                'avatar'        =>  $post->user->getProfilePhotoUrlAttribute(),
+                'userlink'      =>  '@' . $post->user->username,
+                'media'         =>  'storage/' . $post->files,
             ])
         ]);
     }

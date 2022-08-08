@@ -14,6 +14,7 @@ class TimelineController extends Controller
     {
         return Inertia::render('Timeline/Public', [
             'posts' => Post::query()
+            ->latest()
             ->where('status', 'Public')
             ->where('is_nsfw', null)
             ->when($request->input('search'), function ($query, $search) {

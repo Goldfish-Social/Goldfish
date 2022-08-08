@@ -33,7 +33,8 @@ class PostController extends Controller
                 'userlink'      =>  '@' . $post->user->username,
                 'media'         =>  'storage/' . $post->files,
                 'video'         =>  Storage::disk('public')->url('uploads/' . $post->user->id . '/' . 'videos/' . $post->id . '.mp4'),
-                'delete'        =>  Auth::user()->id === $post->user_id
+                'delete'        =>  Auth::user()->id === $post->user_id,
+                'status'        =>  $post->status
             ])
         ]);
     }

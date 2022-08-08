@@ -4,6 +4,7 @@ import AppLayout from '../Layouts/AppLayout.vue';
 import throttle from "lodash/throttle";
 import { ref, watch } from "vue";
 import { Inertia } from "@inertiajs/inertia";
+import Pagination from './Shared/Pagination.vue';
 
 let props = defineProps({
     canLogin: Boolean,
@@ -59,8 +60,10 @@ watch(
     <Head title="Explore & Discover" />
 
     <section>
-            <Cards v-bind:posts="posts" />
-        </section>
+        <Cards v-bind:posts="posts" />
+
+        <Pagination :links="posts.links" />
+    </section>
 
     </AppLayout>
 </template>

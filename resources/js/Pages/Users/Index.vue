@@ -66,12 +66,9 @@ watch(
                   </div>
                 </div>
               </div>
-
-            <Pagination :links="users.links" class="mt-5 px-4" />
-
             </div>
+            <Pagination :links="users.links" />
         </section>
-
 
   </AppLayout>
 </template>
