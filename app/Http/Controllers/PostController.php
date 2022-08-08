@@ -51,32 +51,11 @@ class PostController extends Controller
             ]);
     }
 
-    public function shower(Post $post)
-    {
-        return Inertia::render('Posts/Show', [
-            'post' => Post::query()       
-            ->latest()
-            ->paginate(50)
-            ->withQueryString()
-            ->through(fn($post) => [
-                'id'        => $post->id,
-                'name'    =>  $post->user->name,
-                'username'    =>  $post->user->username,
-                'description'  =>  $post->description,
-                'time'      =>  $post->created_at->diffForHumans(),
-                'avatar'    =>  $post->user->getProfilePhotoUrlAttribute(),
-                'userlink'  =>  '@' . $post->user->username,
-                'media'     =>  'storage/' . $post->files,
-                'video'     =>  Storage::disk('public')->url('uploads/' . $post->user->id . '/' . 'videos/' . $post->id . '.mp4'),
-            ])
-        ]);
-    }
-
     public function store(Request $request)
     {
         $attributes = $request->validate([
             'description'  => 'required|min:1',
-            'video'    => 'required|file|mimetypes:video/mp4,video/mpeg,video/x-matroska',
+            'video'    => 'required|file|mimetypes:video/x-ms-asf,video/x-flv,video/mp4,video/mpeg,application/x-mpegURL,video/MP2T,video/3gpp,video/quicktime,video/x-msvideo,video/x-ms-wmv,video/avi|max:10240',
         ]);
 
         // if($request->hasFile('files')) 
