@@ -11,7 +11,7 @@ import '@cloudgeek/vue3-video-player/dist/vue3-video-player.css'
 import Cards from './Pages/Shared/Cards.vue';
 
 
-const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Vuer';
+const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Goldfish';
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
@@ -32,10 +32,6 @@ createInertiaApp({
 
 InertiaProgress.init({
     color: '#FF0000',
-  
-    // Whether to include the default NProgress styles.
     includeCSS: true,
-  
-    // Whether the NProgress spinner will be shown.
     showSpinner: true,
-  })
+});

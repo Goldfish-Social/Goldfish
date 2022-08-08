@@ -8,6 +8,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use App\Jobs\ConvertVideoForDownloading;
@@ -88,6 +89,11 @@ class PostController extends Controller
         if (! Gate::allows('delete-post', $post)) {
             abort(403);
         }
+
+        File::delete(public_path('uploads/videos/') . $post->id . '.mp4');
+
+        // Delete the file
+        File::delete($post->path);
 
         $post->delete();
         return redirect('/home')->with('message', 'Post deleted successfully.');
