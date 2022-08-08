@@ -9,15 +9,16 @@ use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
+
 class UserController extends Controller
 {
     public function index(Request $request)
     {
-        return Inertia::render('Users/Index', [
+        return Inertia::render('Users/Community', [
             'users' => User::query()
 
-            ->when(Request::only('search'), function ($query, $search) {
-                $query->where('name', 'like', "%{$search}%");
+            ->when($request->input('search'), function ($query, $search) {
+                $query->where('username', 'like', "%{$search}%");
             })
             
             ->paginate(10)
@@ -25,11 +26,12 @@ class UserController extends Controller
             ->through(fn($user) => [
                 'id'    =>  $user->id,
                 'name'  =>  $user->name,
+                'username'  =>  $user->username,
                 'avatar'    => $user->getProfilePhotoUrlAttribute(),
                 'about'     => $user->about
             ]),
 
-            'filters' => Request::only(['search'])
+            'filters' => $request->only(['search'])
         ]);
     }
 

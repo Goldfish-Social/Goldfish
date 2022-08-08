@@ -103,16 +103,16 @@ const logout = () => {
               </li>
               <li>
                 <JetNavLink
-                  :href="route('dashboard')"
-                  :active="route().current('dashboard')"
+                  :href="route('public-timeline')"
+                  :active="route().current('public-timeline')"
                 >
-                  Dashboard
+                  Public
                 </JetNavLink>
               </li>
               <li>
                 <JetNavLink
-                  :href="route('users')"
-                  :active="route().current('users')"
+                  :href="route('community')"
+                  :active="route().current('community')"
                 >
                   Community
                 </JetNavLink>

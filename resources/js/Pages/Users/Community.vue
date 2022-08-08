@@ -16,7 +16,7 @@ watch(
   search,
   throttle(function (value) {
     Inertia.get(
-      "/users",
+      "/community",
       { search: value },
       {
         preserveState: true,

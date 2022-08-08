@@ -15,7 +15,7 @@ let props = defineProps({
         </template>
 
 
-        <section class="bg-gray-900 dark:bg-gray-900">
+        <section class="bg-gray-200 dark:bg-gray-900">
             <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
 
                 <div class="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
@@ -51,7 +51,7 @@ let props = defineProps({
         </section>
 
 
-        <section class="bg-gray-600 dark:bg-gray-600">
+        <section class="bg-gray-100 dark:bg-gray-600">
             <div class="py-2 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
 
                     <div
