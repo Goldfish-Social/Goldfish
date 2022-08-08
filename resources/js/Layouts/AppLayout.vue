@@ -78,6 +78,14 @@ const logout = () => {
                                         Register
                             </JetNavLink>
                         </li>
+                        <li>
+                          <JetNavLink
+                            :href="route('community')"
+                            :active="route().current('community')"
+                          >
+                            Community
+                          </JetNavLink>
+                        </li>
                     </ul>
             <ul
               v-else
@@ -130,7 +138,7 @@ const logout = () => {
         v-if="$page.props.auth.user === null"
         class="navbar-end"
         >
-                <Link :href="route('register')" class="btn">Register</Link>
+                <Link :href="route('register')" class="btn btn-outline btn-secondary">Register</Link>
           </div>
 
         <div 

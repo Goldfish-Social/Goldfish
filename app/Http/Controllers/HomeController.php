@@ -12,14 +12,18 @@ use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
-    public function landing(Post $post)
+    public function landing(Post $post, Request $request)
     {
         return Inertia::render('Welcome', [
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
-            'posts' => Post::query()       
-            ->latest()
-            ->paginate(50)
+            'posts' => Post::query()    
+            ->where('status', 'Public')
+            ->where('is_nsfw', null)
+            ->when($request->input('search'), function ($query, $search) {
+                $query->where('description', 'like', "%{$search}%");
+            })   
+            ->paginate(20)
             ->withQueryString()
             ->through(fn($post) => [
                 'id'        => $post->id,
@@ -32,8 +36,10 @@ class HomeController extends Controller
                 'userlink'  =>  '@' . $post->user->username,
                 'media'     =>  'storage/' . $post->files,
                 'video'     =>  Storage::disk('public')->url('uploads/' . $post->user->id . '/' . 'videos/' . $post->id . '.mp4'),
-                'delete'    =>  false
-            ])
+                'delete'    =>  false,
+                'status'        =>  $post->status
+            ]),
+            'filters' => $request->only(['search'])
         ]);
     }
 
