@@ -11,6 +11,7 @@ import Pagination from '../Shared/Pagination.vue';
 let props = defineProps({
   posts: Object,
   filters: Object,
+  postcount: String,
 });
 
 let search = ref(props.filters.search);
@@ -35,7 +36,7 @@ watch(
         <template #header>
             <div class="flex justify-between">
                 <div class="items-start pt-4">
-                    Public Posts
+                    {{ postcount }} Public Posts
                 </div>
                 <div class="items-end">
                     <div class="dropdown dropdown-left">

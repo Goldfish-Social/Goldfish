@@ -168,9 +168,14 @@ const logout = () => {
                 w-52
               "
             >
+            <li>
+                <JetNavLink :href="route('user-profile', { id: $page.props.user.username })">
+                  Profile
+                </JetNavLink>
+              </li>
               <li>
                 <JetNavLink :href="route('profile.show')">
-                  Profile
+                  Settings
                 </JetNavLink>
               </li>
               <li>

@@ -36,7 +36,8 @@ class TimelineController extends Controller
                 'delete'        =>  Auth::user()->id === $post->user_id,
                 'status'        =>  $post->status
             ]),
-            'filters' => $request->only(['search'])
+            'filters'           =>  $request->only(['search']),
+            'postcount'         =>  Post::latest()->count()
         ]);
     }
 }
