@@ -16,22 +16,20 @@ class UserController extends Controller
     {
         return Inertia::render('Users/Community', [
             'users' => User::query()
-
             ->when($request->input('search'), function ($query, $search) {
                 $query->where('username', 'like', "%{$search}%");
             })
-            
             ->paginate(10)
             ->withQueryString()
             ->through(fn($user) => [
-                'id'    =>  $user->id,
-                'name'  =>  $user->name,
-                'username'  =>  $user->username,
-                'avatar'    => $user->getProfilePhotoUrlAttribute(),
-                'about'     => $user->about
+                'id'            =>  $user->id,
+                'name'          =>  $user->name,
+                'username'      =>  $user->username,
+                'avatar'        =>  $user->getProfilePhotoUrlAttribute(),
+                'about'         =>  $user->about
             ]),
-
-            'filters' => $request->only(['search'])
+            'filters'           =>  $request->only(['search']),
+            'usercount'         =>  User::latest()->count()
         ]);
     }
 

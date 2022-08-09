@@ -8,6 +8,7 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 let props = defineProps({
   users: Object,
   filters: Object,
+  usercount:  String,
 });
 
 let search = ref(props.filters.search);
@@ -30,7 +31,7 @@ watch(
   <AppLayout title="Community">
 
     <template #header>
-        Community
+        Community ({{ usercount }} users)
       </template>
 
 
