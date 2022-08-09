@@ -15,27 +15,30 @@
                     </div> 
                         <div class="card-body">
 
-                            <h3 class="card-title">
-                                <InertiaLink :href="route('user-profile', { id: post.username })">
-                                <div class="avatar">
-                                    <div class="w-12 rounded-full">
-                                        <img :src="post.avatar" />
-                                    </div>
-                                </div>
-                                </InertiaLink>
-                                <div class="ml-3">
+                            <div class="flex justify-between">
+                                <h3 class="card-title">
                                     <InertiaLink :href="route('user-profile', { id: post.username })">
-                                        {{ post.username }}
-                                    </InertiaLink>
-                                    <div>
-                                        <InertiaLink :href="route('show-post', { id: post.id })">
-                                        <div class="badge badge-sm badge-outline">
-                                            {{ post.time }}
+                                    <div class="avatar">
+                                        <div class="w-14 rounded-full">
+                                            <img :src="post.avatar" />
                                         </div>
-                                        </InertiaLink>
                                     </div>
-                                </div>
-                            </h3>
+                                    </InertiaLink>
+                                    <div class="ml-3">
+                                        <InertiaLink :href="route('user-profile', { id: post.username })">
+                                            {{ post.username }}
+                                        </InertiaLink>
+                                        <div>
+                                            <InertiaLink :href="route('show-post', { id: post.id })">
+                                            <div class="badge badge-sm badge-outline">
+                                                {{ post.time }}
+                                            </div>
+                                            </InertiaLink>
+                                        </div>
+                                    </div>
+                                </h3>
+                                <div class="badge badge-primary badge-outline mt-5">{{ post.status }}</div>
+                            </div>
 
                             <p class="mt-3">
                                 <InertiaLink :href="route('show-post', { id: post.id })">
@@ -43,17 +46,21 @@
                                 </InertiaLink>
                                 </p>
                             <div class="divider"></div> 
-                            <div class="card-actions justify-start">
-                                <button class="btn btn-sm btn-outline btn-success">0 Likes</button>
-                                <button class="btn btn-sm btn-outline btn-primary">0 Replies</button> 
-                                <button class="btn btn-sm btn-outline btn-accent">0 Shares</button>
+                            <div class="card-actions flex justify-between">
+                                    <div> 
+                                        <button class="btn btn-sm btn-primary">0 Likes</button>
+                                        <button class="btn btn-sm btn-secondary ml-2">0 Replies</button> 
+                                    </div>
+                                    <div>
+                                        <button class="btn btn-sm btn-accent">0 Shares</button>
+                                    </div>
                             </div>
 
                             <div class="card-actions justify-end mt-2">
                                 <button 
                                 v-if="post.delete" 
                                 @click="destroy(post.id)"
-                                class="btn btn-ghost btn-sm"
+                                class="btn btn-error btn-sm"
                                 method="post" 
                                 type="submit"
                                 >

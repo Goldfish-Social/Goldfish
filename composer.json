@@ -1,8 +1,8 @@
 {
-    "name": "laravel/laravel",
+    "name": "goldfish/goldfish",
     "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "description": "Goldfish Social.",
+    "keywords": ["goldfish", "social"],
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
