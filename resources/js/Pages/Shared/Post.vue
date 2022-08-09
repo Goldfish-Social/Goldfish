@@ -29,7 +29,8 @@
                 ></div>
                 </div>
                 <div class="form-control py-2">
-                    <textarea v-model="form.description" id="description" name="description" class="textarea textarea-primary" placeholder="How meow are you?"></textarea>
+                    <textarea v-model="form.description" @keyup="charCount()" id="description" name="description" class="textarea textarea-primary" placeholder="Write a description (max 500 characters)"></textarea>
+                    <span>{{ totalcharacter }} / 500</span>
                 <div
                     v-if="form.errors.description"
                     v-text="form.errors.description"
@@ -75,12 +76,22 @@
 <script setup>
 import { useForm } from "@inertiajs/inertia-vue3";
 
+let props = defineProps({
+  chars: String,
+});
+
 let form = useForm({
   description: "",
   video: "",
   nsfw: "",
   status:   "",
 });
+
+let totalcharacter = "0";
+function charCount()
+{
+    this.totalcharacter = this.form.description.length+1;
+}
 
 let submit = () => {
   form.post("/home", {

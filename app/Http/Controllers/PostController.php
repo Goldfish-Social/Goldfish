@@ -56,7 +56,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $attributes = $request->validate([
-            'description'   =>  'required|min:1',
+            'description'   =>  'required|min:1|max:500',
             'status'        =>  'required',
             'nsfw'          =>  'nullable|boolean',
             'video'         =>  'required|file|mimetypes:video/x-ms-asf,video/x-flv,video/mp4,video/mpeg,application/x-mpegURL,video/MP2T,video/3gpp,video/quicktime,video/x-msvideo,video/x-ms-wmv,video/avi|max:10240',
