@@ -24,24 +24,30 @@ let props = defineProps({
                         <img :src="profile.pic" class="w-full" alt="" />
                         </figure>
                     <div class="card-body">
-                        <h2 class="card-title">
-                            <InertiaLink :href="route('user-profile', { id: profile.username })">
-                                <div class="avatar">
-                                    <div class="w-12 rounded-full">
-                                        <img :src="profile.pic" />
-                                    </div>
-                                </div>
-                            </InertiaLink>
-                            <div class="ml-3">
+                        <div class="flex justify-between">
+                            <h2 class="card-title">
                                 <InertiaLink :href="route('user-profile', { id: profile.username })">
-                                    {{ profile.username }}
+                                    <div class="avatar">
+                                        <div class="w-14 rounded-full">
+                                            <img :src="profile.pic" />
+                                        </div>
+                                    </div>
                                 </InertiaLink>
-                            </div>
-                        </h2>
-                        <p>{{ profile.about }}</p>
-                       <div class="card-actions justify-end">
+                                <div class="ml-3 mb-2">
+                                    <InertiaLink :href="route('user-profile', { id: profile.username })">
+                                        {{ profile.username }}
+                                    </InertiaLink>
+                                </div>
+                            </h2>
                             <button class="btn btn-primary">Follow</button>
                         </div>
+                        <p>{{ profile.about }}</p>
+                        <div class="divider"></div> 
+                            <div class="card-actions justify-between">
+                                <button class="btn btn-sm btn-outline btn-success">0 Posts</button>
+                                <button class="btn btn-sm btn-outline btn-primary">0 Follows</button> 
+                                <button class="btn btn-sm btn-outline btn-accent">0 Followers</button>
+                            </div>
                     </div>   
                 </div>
             </div>
@@ -59,7 +65,7 @@ let props = defineProps({
                         class="mx-auto max-w-screen-sm lg:mb-16 mb-8">
 
                         <div 
-                        class="card bg-base-100 shadow">
+                        class="card bg-base-100 shadow-xl">
                         <div v-if="post.video !== null">
                         <vue3-video-player :src="post.video"></vue3-video-player>
                         
