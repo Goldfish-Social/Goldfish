@@ -8,6 +8,9 @@ Meow there! Welcome to the Goldfish Social repo, this project is intended as a f
 - [Inertia.js](https://inertiajs.com/).
 
 
+If you want to test out this software for yourself, do checkout our little [documentation](/docs/install.md).
+
+
 ## Features
 
 As said the project is in very early stages and we will update the repo as soon as the code is availble and tested. For now we are building a full featured social platform and later add Federation through [ActivityPub](https://www.w3.org/TR/activitypub/). 
