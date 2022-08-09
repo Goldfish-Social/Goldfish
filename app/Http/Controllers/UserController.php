@@ -39,12 +39,14 @@ class UserController extends Controller
     {
         return Inertia::render('Users/Show', [
             'profile' => [
-                'id'        =>  $user->id,
-                'name'      =>  $user->name,
-                'about'     =>  $user->about,
-                'pic'       =>  $user->getProfilePhotoUrlAttribute(),
-                'time'      =>  $user->created_at->diffForHumans(),
-                'username'  =>  $user->username,
+                'id'            =>  $user->id,
+                'name'          =>  $user->name,
+                'about'         =>  $user->about,
+                'pic'           =>  $user->getProfilePhotoUrlAttribute(),
+                'time'          =>  $user->created_at->diffForHumans(),
+                'username'      =>  $user->username,
+                'website'       =>  $user->website,
+                'postamount'    =>  $user->posts->count(),
                 'posts' => Post::query()
                 ->where('user_id', $user->id)
                 ->latest()

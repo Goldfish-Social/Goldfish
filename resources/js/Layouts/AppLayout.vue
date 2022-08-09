@@ -40,8 +40,8 @@ const logout = () => {
 
     <JetBanner />
 
-    <div class="min-h-screen bg-white dark:bg-gray-700">
-      <nav class="navbar sticky top-0 z-50 bg-base-100 border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-900">
+    <div class="min-h-screen bg-gray-100 dark:bg-base-900">
+      <nav class="navbar sticky top-0 z-50 bg-gray-900 border-gray-200 px-4 lg:px-6 py-2.5">
         <div class="navbar-start">
           <div class="dropdown">
             <label tabindex="0" class="btn btn-ghost btn-circle">
@@ -50,7 +50,7 @@ const logout = () => {
                 class="h-5 w-5"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke="currentColor"
+                stroke="#FFFFFF"
               >
                 <path
                   stroke-linecap="round"
@@ -131,7 +131,7 @@ const logout = () => {
         </div>
 
         <div class="navbar-center">
-          <Link :href="route('landing')" class="btn btn-ghost text-gray-900 dark:text-white normal-case text-xl">{{$page.props.appName}}</Link>
+          <Link :href="route('landing')" class="btn btn-ghost text-white normal-case text-xl">{{$page.props.appName}}</Link>
         </div>
 
         <div 
@@ -203,7 +203,7 @@ const logout = () => {
           px-4
           lg:px-6
           py-2.5
-          bg-gray-100
+          bg-base-200
           dark:bg-gray-800
           shadow
         "
@@ -216,7 +216,7 @@ const logout = () => {
       </header>
 
       <!-- Page Content -->
-      <main class="dark:bg-gray-900 bg-white">
+      <main class="dark:bg-gray-900 bg-gray-300">
         <slot />
       </main>
     </div>

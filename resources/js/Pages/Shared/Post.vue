@@ -7,7 +7,7 @@
             <div class="py-4">
                 <div class="form-control py-2">
                     <label
-                    class="flex flex-col w-full h-32 border-4 border-blue-200 border-dashed hover:bg-gray-900 hover:border-gray-400">
+                    class="flex flex-col w-full h-32 border-4 border-blue-200 border-dashed dark:hover:bg-gray-800 hover:bg-gray-200 hover:border-gray-400 dark:hover:border-white">
                     <div class="flex flex-col items-center justify-center pt-7">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-gray-400 group-hover:text-gray-400"
                             fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -44,7 +44,7 @@ let props = defineProps({
                         <p>{{ profile.about }}</p>
                         <div class="divider"></div> 
                             <div class="card-actions justify-between">
-                                <button class="btn btn-sm btn-outline btn-success">0 Posts</button>
+                                <button class="btn btn-sm btn-outline btn-success">{{ profile.postamount }} Posts</button>
                                 <button class="btn btn-sm btn-outline btn-primary">0 Follows</button> 
                                 <button class="btn btn-sm btn-outline btn-accent">0 Followers</button>
                             </div>
