@@ -8,7 +8,7 @@
                     class="mx-auto max-w-screen-sm lg:mb-16 mb-8">
 
                     <div 
-                    class="card bg-base-100 shadow">
+                    class="card bg-base-100 dark:bg-gray-200 shadow-xl">
                     <div v-if="post.video !== null">
                     <vue3-video-player :src="post.video"></vue3-video-player>
                      
