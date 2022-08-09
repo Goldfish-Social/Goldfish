@@ -1,6 +1,7 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
 import Welcome from '@/Jetstream/Welcome.vue';
+import Pagination from '../Shared/Pagination.vue';
 
 let props = defineProps({
   profile: Object,
@@ -121,8 +122,9 @@ let props = defineProps({
                             </div>
                         </div>    
                     </div>
-
+        <Pagination :links="profile.posts.links" />
         </div>
+
 
         </section>
 
