@@ -2,6 +2,9 @@
 import AppLayout from '@/Layouts/AppLayout.vue';
 import Welcome from '@/Jetstream/Welcome.vue';
 import Pagination from '../Shared/Pagination.vue';
+import Followers from '../Shared/Followers.vue';
+import Follows from '../Shared/Follows.vue';
+import NavLink from '../../../../vendor/laravel/jetstream/stubs/inertia/resources/js/Components/NavLink.vue';
 
 let props = defineProps({
   profile: Object,
@@ -40,14 +43,34 @@ let props = defineProps({
                                     </InertiaLink>
                                 </div>
                             </h2>
-                            <button class="btn btn-primary">Follow</button>
+
+                        <InertiaLink
+                            v-if="profile.isFollowing === false && profile.followbutton === false"
+                            preserveScroll
+                            method="post" as="button" type="button"
+                            class="btn btn-primary" 
+                            :href="route('follow', { id: profile.username })"
+                        >
+                            Follow
+                        </InertiaLink>
+
+                        <InertiaLink
+                            v-if="profile.isFollowing === true && profile.followbutton === false"
+                            preserveScroll
+                            method="post" as="button" type="button"
+                            class="btn btn-secondary" 
+                            :href="route('follow', { id: profile.username })"
+                        >
+                            Unfollow
+                        </InertiaLink>
+
                         </div>
                         <p>{{ profile.about }}</p>
                         <div class="divider"></div> 
                             <div class="card-actions justify-between">
                                 <button class="btn btn-sm btn-outline btn-success">{{ profile.postamount }} Posts</button>
-                                <button class="btn btn-sm btn-outline btn-primary">0 Follows</button> 
-                                <button class="btn btn-sm btn-outline btn-accent">0 Followers</button>
+                                <Follows :profile="profile" />
+                                <Followers :profile="profile" />
                             </div>
                     </div>   
                 </div>

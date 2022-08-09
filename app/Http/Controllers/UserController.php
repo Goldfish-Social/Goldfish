@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\User;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -16,6 +17,7 @@ class UserController extends Controller
     {
         return Inertia::render('Users/Community', [
             'users' => User::query()
+            ->with('followings')
             ->when($request->input('search'), function ($query, $search) {
                 $query->where('username', 'like', "%{$search}%");
             })
@@ -38,14 +40,21 @@ class UserController extends Controller
     {
         return Inertia::render('Users/Show', [
             'profile' => [
-                'id'            =>  $user->id,
-                'name'          =>  $user->name,
-                'about'         =>  $user->about,
-                'pic'           =>  $user->getProfilePhotoUrlAttribute(),
-                'time'          =>  $user->created_at->diffForHumans(),
-                'username'      =>  $user->username,
-                'website'       =>  $user->website,
-                'postamount'    =>  $user->posts->count(),
+                'id'             =>  $user->id,
+                'name'           =>  $user->name,
+                'about'          =>  $user->about,
+                'pic'            =>  $user->getProfilePhotoUrlAttribute(),
+                'time'           =>  $user->created_at->diffForHumans(),
+                'username'       =>  $user->username,
+                'website'        =>  $user->website,
+                'postamount'     =>  $user->posts->count(),
+                'followerscount' =>  $user->followers()->count(),
+                'followcount'    =>  $user->followings()->count(),
+                'isFollowing'    =>  Auth::user()->isFollowing($user),
+                'isFollowedBy'   =>  Auth::user()->isFollowedBy($user),
+                'followbutton'   =>  Auth::user()->id === $user->id,
+                'followers'      =>  $user->followers,
+                'follows'        =>  $user->followings,
                 'posts' => Post::query()
                 ->where('user_id', $user->id)
                 ->latest()
@@ -63,5 +72,15 @@ class UserController extends Controller
         ]);
     }
 
+    public function follow(User $user) 
+    {
+        if(auth()->user()->isFollowing($user) ) {
+            auth()->user()->unfollow($user);
+        } else {
+        auth()->user()->toggleFollow($user);
+        }
+
+        return back();
+    }
 
 }

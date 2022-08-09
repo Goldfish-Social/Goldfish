@@ -8,11 +8,13 @@
         "php": "^8.0.2",
         "guzzlehttp/guzzle": "^7.2",
         "inertiajs/inertia-laravel": "^0.5.2",
+        "itsgoingd/clockwork": "^5.1",
         "laravel/framework": "^9.19",
         "laravel/horizon": "^5.9",
         "laravel/jetstream": "^2.10",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
+        "overtrue/laravel-follow": "^5.0",
         "pbmedia/laravel-ffmpeg": "^8.1",
         "predis/predis": "^2.0",
         "tightenco/ziggy": "^1.0"

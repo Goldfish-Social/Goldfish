@@ -15,10 +15,10 @@ Route::get('/community', [UserController::class, 'index'])->name('community');
 
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {
-    Route::get('/home', [PostController::class, 'index'])->name('home');
+    Route::get('/home', [TimelineController::class, 'home'])->name('home');
     Route::post('/home', [PostController::class, 'store']);
     Route::get('/dashboard', [PostController::class, 'index'])->name('dashboard');
     Route::get('/public', [TimelineController::class, 'public'])->name('public-timeline');
     Route::delete('/posts/{post}/delete', [PostController::class, 'destroy'])->name('posts.destroy');
-    
+    Route::post('/{user:username}/follow', [UserController::class, 'follow'])->name('follow');
 });
