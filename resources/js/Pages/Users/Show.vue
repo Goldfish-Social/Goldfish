@@ -3,7 +3,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 import Welcome from '@/Jetstream/Welcome.vue';
 
 let props = defineProps({
-  user: Object,
+  profile: Object,
 });
 
 </script>
@@ -11,7 +11,7 @@ let props = defineProps({
 <template>
     <AppLayout title="Home">
         <template #header>
-            {{ user.name }} Profile
+            {{ profile.name }} Profile
         </template>
 
 
@@ -19,27 +19,26 @@ let props = defineProps({
             <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
 
                 <div class="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
-         
                     <div class="card bg-base-100 shadow-xl">
                     <figure>
-                        <img :src="user.avatar" alt="" />
+                        <img :src="profile.pic" class="w-full" alt="" />
                         </figure>
                     <div class="card-body">
                         <h2 class="card-title">
-                            <InertiaLink :href="route('user-profile', { id: user.username })">
+                            <InertiaLink :href="route('user-profile', { id: profile.username })">
                                 <div class="avatar">
                                     <div class="w-12 rounded-full">
-                                        <img :src="user.pic" />
+                                        <img :src="profile.pic" />
                                     </div>
                                 </div>
                             </InertiaLink>
                             <div class="ml-3">
-                                <InertiaLink :href="route('user-profile', { id: user.username })">
-                                    {{ user.username }}
+                                <InertiaLink :href="route('user-profile', { id: profile.username })">
+                                    {{ profile.username }}
                                 </InertiaLink>
                             </div>
                         </h2>
-                        <p>{{ user.about }}</p>
+                        <p>{{ profile.about }}</p>
                        <div class="card-actions justify-end">
                             <button class="btn btn-primary">Follow</button>
                         </div>
@@ -51,11 +50,11 @@ let props = defineProps({
         </section>
 
 
-        <section class="bg-gray-100 dark:bg-gray-600">
+        <section class="bg-gray-100 dark:bg-gray-800">
             <div class="py-2 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
 
                     <div
-                        v-for="post in user.posts.data"
+                        v-for="post in profile.posts.data"
                         :key="post.id"
                         class="mx-auto max-w-screen-sm lg:mb-16 mb-8">
 
