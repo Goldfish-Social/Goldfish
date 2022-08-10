@@ -1,5 +1,5 @@
 <template>
-    <div> 
+    <div>
         <!-- The button to open modal -->
         <label for="FollowersModal" class="btn btn-sm btn-outline btn-primary">{{ profile.followerscount }} Followers</label>
 
@@ -13,26 +13,32 @@
             <div class="overflow-x-auto w-full mt-3">
                 <table class="table w-full">
                     <tbody>
-
                     <!-- row 1 -->
-                    <tr>
+                    <tr 
+                    v-for="follower in profile.followers"
+                    :key="follower.id"
+                    >
                         <td>
                         <div class="flex items-center space-x-3">
                             <div class="avatar">
                             <div class="mask mask-squircle w-12 h-12">
-                                <img :src="profile.pic" />
+                                <img :src="follower.avatar" />
                             </div>
                             </div>
                             <div>
-                            <div class="font-bold text-white dark:text-gray-900">@username</div>
+                            <div class="font-bold text-gray-900">{{ follower.username }}</div>
                             </div>
                         </div>
                         </td>
                         <th>
-                        <button class="btn btn-primary btn-md">Follow</button>
+                         <InertiaLink
+                            :href="route('user-profile', { id: follower.username })"
+                            class="btn btn-primary btn-md"
+                         >
+                         Profile
+                         </InertiaLink>
                         </th>
                     </tr>
-                    
                     </tbody>
                 </table>
                 </div>
@@ -44,6 +50,7 @@
 <script setup>
 let props = defineProps({
   profile: Object,
+  follower: Object,
 });
 
 </script>

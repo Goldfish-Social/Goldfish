@@ -8,7 +8,6 @@ let props = defineProps({
   post: Object,
 });
 
-
 </script>
 <template>
     <AppLayout title="Home">
