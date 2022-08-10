@@ -53,8 +53,18 @@ class UserController extends Controller
                 'isFollowing'    =>  Auth::user()->isFollowing($user),
                 'isFollowedBy'   =>  Auth::user()->isFollowedBy($user),
                 'followbutton'   =>  Auth::user()->id === $user->id,
-                'followers'      =>  $user->followers,
-                'follows'        =>  $user->followings,
+                'followers'      =>  $user->followers
+                ->map(fn($followers) => [
+                    'id'         => $followers->id,
+                    'name'       => $followers->name,
+                    'username'   => $followers->username
+                ]),
+                'follows'        =>  $user->followings
+                ->map(fn($follows) => [
+                    'id'         => $follows->id,
+                    'name'       => $follows->name,
+                    'username'   => $follows->username
+                ]),
                 'posts' => Post::query()
                 ->where('user_id', $user->id)
                 ->latest()
