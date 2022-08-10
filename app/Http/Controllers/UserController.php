@@ -74,6 +74,7 @@ class UserController extends Controller
 
             ],
         ]);
+
     }
 
     public function follow(User $user) 

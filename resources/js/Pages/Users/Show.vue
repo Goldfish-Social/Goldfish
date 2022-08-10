@@ -45,7 +45,7 @@ let props = defineProps({
                             </h2>
 
                         <InertiaLink
-                            v-if="profile.isFollowing === false && profile.followbutton === false"
+                            v-if="profile.isFollowing === false && profile.followbutton === false && $page.props.auth.user"
                             preserveScroll
                             method="post" as="button" type="button"
                             class="btn btn-primary" 
@@ -55,7 +55,7 @@ let props = defineProps({
                         </InertiaLink>
 
                         <InertiaLink
-                            v-if="profile.isFollowing === true && profile.followbutton === false"
+                            v-if="profile.isFollowing === true && profile.followbutton === false && $page.props.auth.user"
                             preserveScroll
                             method="post" as="button" type="button"
                             class="btn btn-secondary" 
