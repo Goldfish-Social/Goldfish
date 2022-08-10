@@ -46,7 +46,7 @@ class TimelineController extends Controller
 
     public function home(Post $post, Request $request, User $user)
     {
-        return Inertia::render('Timeline/Public', [
+        return Inertia::render('Timeline/Home', [
             'posts' => Post::where(function ($query)
             {
                 $query->where('user_id', auth()->id())
