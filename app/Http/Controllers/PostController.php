@@ -103,4 +103,15 @@ class PostController extends Controller
         $post->delete();
         return redirect('/home')->with('message', 'Post deleted successfully.');
     }
+
+    public function like(Post $post)
+    {
+        if(auth()->user()->hasLiked($post) ) {
+            auth()->user()->unlike($post);
+        } else {
+       auth()->user()->toggleLike($post);
+        }
+        return back();
+    }
+
 }

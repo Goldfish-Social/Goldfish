@@ -15,6 +15,7 @@
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "overtrue/laravel-follow": "^5.0",
+        "overtrue/laravel-like": "^5.0",
         "pbmedia/laravel-ffmpeg": "^8.1",
         "predis/predis": "^2.0",
         "tightenco/ziggy": "^1.0"

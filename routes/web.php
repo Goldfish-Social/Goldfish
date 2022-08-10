@@ -21,4 +21,5 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get('/public', [TimelineController::class, 'public'])->name('public-timeline');
     Route::delete('/posts/{post}/delete', [PostController::class, 'destroy'])->name('posts.destroy');
     Route::post('/{user:username}/follow', [UserController::class, 'follow'])->name('follow');
+    Route::post('/posts/{post}/like', [PostController::class, 'like'])->name('like');
 });

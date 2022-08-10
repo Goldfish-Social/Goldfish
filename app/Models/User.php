@@ -5,6 +5,7 @@ namespace App\Models;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Jetstream\HasProfilePhoto;
+use Overtrue\LaravelLike\Traits\Liker;
 use Illuminate\Notifications\Notifiable;
 use Overtrue\LaravelFollow\Traits\Follower;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -23,6 +24,8 @@ class User extends Authenticatable implements MustVerifyEmail
     use TwoFactorAuthenticatable;
     use Follower;
     use Followable;
+    use Liker;
+
 
 
     /**

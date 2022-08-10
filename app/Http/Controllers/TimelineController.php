@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Storage;
 
 class TimelineController extends Controller
 {
-    public function public(Post $post, Request $request)
+    public function public(Post $post, Request $request, User $user)
     {
         return Inertia::render('Timeline/Public', [
             'posts' => Post::query()
@@ -35,7 +35,9 @@ class TimelineController extends Controller
                 'media'         =>  'storage/' . $post->files,
                 'video'         =>  Storage::disk('public')->url('uploads/' . $post->user->id . '/' . 'videos/' . $post->id . '.mp4'),
                 'delete'        =>  Auth::user()->id === $post->user_id,
-                'status'        =>  $post->status
+                'status'        =>  $post->status,
+                'isliked'       =>  $post->isLikedBy(auth()->user()),
+                'likes'         =>  $post->likers()->count(),
             ]),
             'filters'           =>  $request->only(['search']),
             'postcount'         =>  Post::latest()->count()
@@ -66,7 +68,9 @@ class TimelineController extends Controller
                 'media'         =>  'storage/' . $post->files,
                 'video'         =>  Storage::disk('public')->url('uploads/' . $post->user->id . '/' . 'videos/' . $post->id . '.mp4'),
                 'delete'        =>  Auth::user()->id === $post->user_id,
-                'status'        =>  $post->status
+                'status'        =>  $post->status,
+                'isliked'       =>  $post->isLikedBy(auth()->user()),
+                'likes'         =>  $post->likers()->count(),
             ]),
             'filters'           =>  $request->only(['search']),
             'postcount'         =>  Post::latest()->count()

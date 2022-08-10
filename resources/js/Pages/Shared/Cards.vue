@@ -47,8 +47,31 @@
                                 </p>
                             <div class="divider"></div> 
                             <div class="card-actions flex justify-between">
-                                    <div> 
-                                        <button class="btn btn-sm btn-primary">0 Likes</button>
+                                    <div>
+                                        <InertiaLink
+                                        v-if="post.isliked === false"
+                                        preserveScroll
+                                        method="post"
+                                        as="button"
+                                        type="button"
+                                        class="btn btn-primary btn-sm"
+                                        :href="route('like', { id: post.id })"
+                                        >
+                                        Like ({{ post.likes }})
+                                        </InertiaLink>
+
+                                        <InertiaLink
+                                        v-if="post.isliked === true"
+                                        preserveScroll
+                                        method="post"
+                                        as="button"
+                                        type="button"
+                                        class="btn btn-secondary btn-sm"
+                                        :href="route('like', { id: post.id })"
+                                        >
+                                        Unlike ({{ post.likes }})
+                                        </InertiaLink>
+
                                         <button class="btn btn-sm btn-secondary ml-2">0 Replies</button> 
                                     </div>
                                     <div>
@@ -77,6 +100,7 @@
 </template>
 <script setup>
 import { useForm } from '@inertiajs/inertia-vue3'
+import Like from './Like.vue';
 
 const form = useForm();
 function destroy(id) {
