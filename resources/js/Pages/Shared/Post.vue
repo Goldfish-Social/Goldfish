@@ -30,6 +30,7 @@
                 </div>
                 <div class="form-control py-2">
                     <textarea v-model="form.description" id="description" name="description" class="textarea textarea-primary" placeholder="Write a description (max 500 characters)"></textarea>
+                <p class="mt-2 text-sm text-gray-900 dark:text-white">{{ characterCount }}/500</p>
                 <div
                     v-if="form.errors.description"
                     v-text="form.errors.description"
@@ -74,6 +75,11 @@
 </template>
 <script setup>
 import { useForm } from "@inertiajs/inertia-vue3";
+import { computed } from 'vue';
+
+const characterCount = computed(()=>{
+    return form.description.length
+})
 
 let form = useForm({
   description: "",
