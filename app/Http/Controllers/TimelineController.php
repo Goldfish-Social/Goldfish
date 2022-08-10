@@ -46,10 +46,12 @@ class TimelineController extends Controller
 
     public function home(Post $post, Request $request, User $user)
     {
-        $userIDs = $user->followings->pluck('user_id');
-
         return Inertia::render('Timeline/Public', [
-            'posts' => Post::query()
+            'posts' => Post::where(function ($query)
+            {
+                $query->where('user_id', auth()->id())
+                ->orWhereIn('user_id', auth()->user()->followings->pluck('followable_id'));
+            })
             ->latest()
             ->when($request->input('search'), function ($query, $search) {
                 $query->where('description', 'like', "%{$search}%");

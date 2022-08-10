@@ -34,7 +34,10 @@ class PostController extends Controller
                 'media'         =>  'storage/' . $post->files,
                 'video'         =>  Storage::disk('public')->url('uploads/' . $post->user->id . '/' . 'videos/' . $post->id . '.mp4'),
                 'delete'        =>  Auth::user()->id === $post->user_id,
-                'status'        =>  $post->status
+                'status'        =>  $post->status,
+                'isliked'       =>  $post->isLikedBy(auth()->user()),
+                'likes'         =>  $post->likers()->count(),
+                'delete'        =>  Auth::user()->id === $post->user_id || Auth::user()->id === 1,
             ])
         ]);
     }
@@ -49,6 +52,11 @@ class PostController extends Controller
                 'time'              =>  $post->created_at->diffForHumans(),
                 'username'          =>  $post->user->username,
                 'video'             =>  Storage::disk('public')->url('uploads/' . $post->user->id . '/' . 'videos/' . $post->id . '.mp4'),
+                'delete'            =>  Auth::user()->id === $post->user_id,
+                'status'            =>  $post->status,
+                'isliked'           =>  $post->isLikedBy(auth()->user()),
+                'likes'             =>  $post->likers()->count(),
+                'delete'            =>  Auth::user()->id === $post->user_id || Auth::user()->id === 1,
             ]
             ]);
     }
