@@ -19,11 +19,10 @@ let props = defineProps({
         </template>
 
 
-        <section class="bg-gray-200 dark:bg-gray-900">
+        <section class="bg-gray-900">
             <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-
-                <div class="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
-                    <div class="card bg-base-100 shadow-xl">
+                <div class="mx-auto max-w-screen-sm text-center mb-8">
+                    <div class="card bg-gray-800 shadow-xl">
                     <figure>
                         <img :src="profile.pic" class="w-full" alt="" />
                         </figure>
@@ -32,14 +31,17 @@ let props = defineProps({
                             <h2 class="card-title">
                                 <InertiaLink :href="route('user-profile', { id: profile.username })">
                                     <div class="avatar">
-                                        <div class="w-14 rounded-full">
+                                        <div class="w-16 rounded-full">
                                             <img :src="profile.pic" />
                                         </div>
                                     </div>
                                 </InertiaLink>
                                 <div class="ml-3 mb-2">
                                     <InertiaLink :href="route('user-profile', { id: profile.username })">
-                                        {{ profile.username }}
+                                        {{ profile.name }}
+                                <div class="text-sm">
+                                    @{{ profile.username }}
+                                </div>
                                     </InertiaLink>
                                 </div>
                             </h2>
@@ -68,7 +70,7 @@ let props = defineProps({
 
 
                         </div>
-                        <p>{{ profile.about }}</p>
+                        <p class="mt-2 mb-2">{{ profile.about }}</p>
                         <div class="divider"></div> 
                             <div class="card-actions justify-between">
                                 <button class="btn btn-sm btn-outline btn-success">{{ profile.postamount }} Posts</button>
@@ -83,7 +85,7 @@ let props = defineProps({
         </section>
 
 
-        <section class="bg-gray-100 dark:bg-gray-800">
+        <section class="bg-gray-800">
             <Cards v-bind:posts="profile.posts" />
             
         <Pagination :links="profile.posts.links" />

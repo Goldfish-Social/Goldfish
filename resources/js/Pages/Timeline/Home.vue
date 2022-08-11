@@ -40,7 +40,7 @@ watch(
                 <div class="items-end">
                     <div class="dropdown dropdown-left">
                     <label tabindex="0" class="btn btn-outline btn-primary">Search</label>
-                        <div tabindex="0" class="dropdown-content card card-compact w-64 p-2 shadow bg-base-100 dark:bg-gray-900 text-gray-900 dark:text-white">
+                        <div tabindex="0" class="dropdown-content card card-compact w-64 p-2 shadow bg-gray-900 text-white">
                             <div class="card-body">
                                 <h3 class="card-title">Search Posts</h3>
                                 <input
@@ -56,13 +56,13 @@ watch(
             </div>
         </template>
 
-        <section class="bg-gray-100 py-4 dark:bg-gray-900">
+        <section class="mt-4 mb-4">
             <div class="px-4 mx-auto max-w-screen-sm">
                 <Post />
             </div>
         </section>
 
-        <section class="bg-gray-100 dark:bg-gray-800 min-h-screen">
+        <section class="bg-gray-700">
             <Cards v-bind:posts="posts" />
 
             <Pagination :links="posts.links" />

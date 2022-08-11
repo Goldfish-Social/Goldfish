@@ -17,7 +17,7 @@ let props = defineProps({
             Home Feed
         </template>
 
-        <section class="bg-gray-100 py-4 dark:bg-gray-900">
+        <section>
             <div class="px-4 mx-auto max-w-screen-sm">
                 <Post />
             </div>

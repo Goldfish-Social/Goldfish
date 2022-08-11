@@ -57,13 +57,13 @@ watch(
             </div>
         </template>
 
-        <section class="bg-gray-100 py-4 dark:bg-gray-900">
+        <section class="mt-4 mb-4">
             <div class="px-4 mx-auto max-w-screen-sm">
                 <Post />
             </div>
         </section>
 
-        <section class="bg-gray-100 dark:bg-gray-800 min-h-screen">
+        <section class="bg-gray-700">
             <Cards v-bind:posts="posts" />
 
             <Pagination :links="posts.links" />

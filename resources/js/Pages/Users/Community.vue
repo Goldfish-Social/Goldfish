@@ -35,19 +35,19 @@ watch(
       </template>
 
 
-        <section class="bg-gray-100 py-4 dark:bg-gray-900 min-h-screen">
+        <section class="bg-gray-900 min-h-screen">
             <div class="px-4 mx-auto max-w-screen-sm">
 
               <input
                 v-model="search"
                 type="text"
-                class="input input-bordered input-info w-full"
+                class="input input-bordered input-info w-full mt-4"
                 placeholder="Search.."
               />
 
               <div
               v-for="user in users.data" :key="user.id"
-              class="card bg-base-100 mb-4 mt-5 shadow-xl">
+              class="card bg-gray-800 mb-4 mt-5 shadow-xl">
                 <div class="card-body">
                   <h2 class="card-title">
                     <div class="avatar">

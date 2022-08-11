@@ -14,7 +14,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::post('/home', [PostController::class, 'store']);
     Route::get('@{user:username}', [UserController::class, 'show'])->name('user-profile');
     Route::get('/posts/{post}', [PostController::class, 'show'])->name('show-post');
-    // Route::get('/dashboard', [PostController::class, 'index'])->name('dashboard');
     Route::get('/posts', [PostController::class, 'index']);
     Route::get('/community', [UserController::class, 'index'])->name('community');
     Route::get('/public', [TimelineController::class, 'public'])->name('public-timeline');

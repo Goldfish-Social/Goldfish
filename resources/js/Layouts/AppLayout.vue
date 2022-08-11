@@ -40,7 +40,7 @@ const logout = () => {
 
     <JetBanner />
 
-    <div class="min-h-screen bg-gray-100 dark:bg-base-900">
+    <div class="min-h-screen bg-gray-800">
       <nav class="navbar sticky top-0 z-50 bg-gray-900 border-gray-200 px-4 lg:px-6 py-2.5">
         <div class="navbar-start">
           <div class="dropdown">
@@ -62,7 +62,8 @@ const logout = () => {
             </label>
                 <ul 
                 v-if="$page.props.auth.user === null"
-                tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow  bg-gray-900
+                text-white rounded-box w-52">
                         <li>
                             <JetNavLink :href="route('landing')" :active="route().current('landing')">
                                         Home
@@ -96,8 +97,8 @@ const logout = () => {
                 mt-3
                 p-2
                 shadow
-                bg-base-100
-                dark:bg-white
+                bg-gray-900
+                text-white
                 rounded-box
                 w-52
               "
@@ -208,20 +209,19 @@ const logout = () => {
           px-4
           lg:px-6
           py-2.5
-          bg-base-200
-          dark:bg-gray-800
+          bg-gray-700
           shadow
         "
       >
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <h3 class="font-semibold text-xl dark:text-white text-base-900 leading-tight">
+          <h3 class="font-semibold text-xl text-white leading-tight">
             <slot name="header" />
           </h3>
         </div>
       </header>
 
       <!-- Page Content -->
-      <main class="dark:bg-gray-900 bg-gray-300">
+      <main class="bg-gray-800">
         <slot />
       </main>
     </div>
