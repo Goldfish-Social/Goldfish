@@ -13,7 +13,7 @@ let props = defineProps({
 </script>
 
 <template>
-    <AppLayout title="Home">
+    <AppLayout title="User Profile">
         <template #header>
             {{ profile.name }} Profile
         </template>

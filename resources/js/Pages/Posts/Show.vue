@@ -35,7 +35,7 @@ function destroy(id) {
 
 </script>
 <template>
-    <AppLayout title="Home">
+    <AppLayout title="Post">
         <template #header>
             Post by {{ post.username }}
         </template>

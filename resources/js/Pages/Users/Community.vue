@@ -29,7 +29,6 @@ watch(
 </script>
 <template>
   <AppLayout title="Community">
-
     <template #header>
         Community ({{ usercount }} users)
       </template>

@@ -147,8 +147,8 @@ const clearPhotoFileInput = () => {
                 <JetLabel for="about" value="About" />
                 <textarea
                 v-model="form.about"
-                class="textarea textarea-bordered w-full" 
-                
+                class="textarea textarea-primary w-full" 
+                rows="4"
                 >
                 </textarea>
                 

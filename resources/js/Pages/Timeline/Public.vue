@@ -32,7 +32,7 @@ watch(
 );
 </script>
 <template>
-    <AppLayout title="Home">
+    <AppLayout title="Public Timeline">
         <template #header>
             <div class="flex justify-between">
                 <div class="items-start pt-4">
