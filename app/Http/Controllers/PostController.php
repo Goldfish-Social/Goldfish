@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use App\Jobs\ConvertVideoForDownloading;
+use App\Models\Reply;
 
 class PostController extends Controller
 {
@@ -38,6 +39,7 @@ class PostController extends Controller
                 'isliked'       =>  $post->isLikedBy(auth()->user()),
                 'likes'         =>  $post->likers()->count(),
                 'delete'        =>  Auth::user()->id === $post->user_id || Auth::user()->id === 1,
+                'replycount'    =>  $post->replies->count()
             ])
         ]);
     }
@@ -54,10 +56,25 @@ class PostController extends Controller
                 'video'             =>  Storage::disk('public')->url('uploads/' . $post->user->id . '/' . 'videos/' . $post->id . '.mp4'),
                 'delete'            =>  Auth::user()->id === $post->user_id,
                 'status'            =>  $post->status,
-                'isliked'           =>  $post->isLikedBy(auth()->user()),
+                'isliked'           =>  $post->isLikedBy(Auth()->user()),
                 'likes'             =>  $post->likers()->count(),
                 'delete'            =>  Auth::user()->id === $post->user_id || Auth::user()->id === 1,
-            ]
+                'replies'           =>  Reply::query()
+                                        ->where('post_id', $post->id)
+                                        ->latest()
+                                        ->paginate(5)
+                                        ->map(fn($reply) => [
+                                            'id'        =>  $reply->id,
+                                            'reply'     =>  $reply->reply,
+                                            'time'      =>  $reply->created_at->diffForHumans(),
+                                            'username'  =>  $reply->user->username,
+                                            'avatar'    =>  $reply->user->getProfilePhotoUrlAttribute(),
+                                            'link'      =>  '@' . $reply->user->username,
+                                            'delete'    =>  Auth::user()->id === $reply->user_id || Auth::user()->id === 1,
+                                        ]),
+                'replycount'            => $post->replies->count()
+                                        
+                ]
             ]);
     }
 

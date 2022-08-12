@@ -94,6 +94,8 @@ class UserController extends Controller
                     'isliked'       =>  $post->isLikedBy(auth()->user()),
                     'likes'         =>  $post->likers()->count(),
                     'delete'        =>  Auth::user()->id === $post->user_id,
+                    'replycount'    => $post->replies->count(),
+                    
                 ]),
 
             ],

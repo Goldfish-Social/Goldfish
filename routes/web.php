@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\TimelineController;
 use App\Http\Controllers\UserController;
 
@@ -14,6 +15,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::post('/home', [PostController::class, 'store']);
     Route::get('@{user:username}', [UserController::class, 'show'])->name('user-profile');
     Route::get('/posts/{post}', [PostController::class, 'show'])->name('show-post');
+    Route::post('/posts/{post}/reply', [ReplyController::class, 'store'])->name('reply');
+    Route::delete('/replies/{reply}/delete', [ReplyController::class, 'destroy'])->name('reply.destroy');
     Route::get('/posts', [PostController::class, 'index']);
     Route::get('/community', [UserController::class, 'index'])->name('community');
     Route::get('/public', [TimelineController::class, 'public'])->name('public-timeline');

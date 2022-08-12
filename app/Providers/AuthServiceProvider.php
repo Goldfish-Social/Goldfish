@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Team;
 use App\Policies\PostPolicy;
+use App\Policies\ReplyPolicy;
 use App\Policies\TeamPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -29,5 +30,6 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('delete-post', [PostPolicy::class, 'destroy']);
+        Gate::define('delete-reply', [ReplyPolicy::class, 'destroy']);
     }
 }

@@ -38,9 +38,10 @@ class TimelineController extends Controller
                 'status'        =>  $post->status,
                 'isliked'       =>  $post->isLikedBy(auth()->user()),
                 'likes'         =>  $post->likers()->count(),
+                'replycount'    => $post->replies->count()
             ]),
             'filters'           =>  $request->only(['search']),
-            'postcount'         =>  Post::latest()->count()
+            'postcount'         =>  Post::latest()->count(),
         ]);
     }
 
@@ -73,9 +74,11 @@ class TimelineController extends Controller
                 'status'        =>  $post->status,
                 'isliked'       =>  $post->isLikedBy(auth()->user()),
                 'likes'         =>  $post->likers()->count(),
+                'replycount'    => $post->replies->count()
             ]),
             'filters'           =>  $request->only(['search']),
-            'postcount'         =>  Post::latest()->count()
+            'postcount'         =>  Post::latest()->count(),
+            
         ]);
     }
 }
