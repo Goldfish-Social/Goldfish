@@ -10,10 +10,11 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-
+use Overtrue\LaravelFollow\Followable;
 
 class UserController extends Controller
 {
+    // Community / user overview page
     public function index(Request $request)
     {
         return Inertia::render('Users/Community', [
@@ -39,7 +40,7 @@ class UserController extends Controller
             'usercount'         =>  User::latest()->count()
         ]);
     }
-
+    // Show user profile with posts
     public function show(User $user, Post $post)
     {
         return Inertia::render('Users/Show', [
@@ -57,28 +58,6 @@ class UserController extends Controller
                 'isFollowing'    =>  Auth::user()->isFollowing($user),
                 'isFollowedBy'   =>  Auth::user()->isFollowedBy($user),
                 'followbutton'   =>  Auth::user()->id === $user->id,
-                'followers'      =>  $user->followers
-                ->map(fn($followers) => [
-                    'id'         => $followers->id,
-                    'name'       => $followers->name,
-                    'username'   => $followers->username,
-                    'avatar'     => $followers->getProfilePhotoUrlAttribute(),
-                    'userlink'   =>  '@' . $followers->username,
-                    'isFollowing'    =>  Auth::user()->isFollowing($followers),
-                    'isFollowedBy'   =>  Auth::user()->isFollowedBy($followers),
-                    'followbutton'   =>  Auth::user()->id === $followers->id,
-                ]),
-                'follows'      =>  $user->followings
-                ->map(fn($followings) => [
-                    'id'         => $followings->id,
-                    'name'       => $followings->name,
-                    'username'   => $followings->username,
-                    // 'avatar'     => $followings->getProfilePhotoUrlAttribute(),
-                    'userlink'   =>  '@' . $followings->username,
-                    //'isFollowing'    =>  Auth::user()->isFollowing($followings),
-                    //'isFollowedBy'   =>  Auth::user()->isFollowedBy($followings),
-                    //'followbutton'   =>  Auth::user()->id === $followings->id,
-                ]),
                 'posts' => Post::query()
                 ->where('user_id', $user->id)
                 ->latest()
@@ -90,17 +69,82 @@ class UserController extends Controller
                     'time'              =>  $post->created_at->diffForHumans(),
                     'username'          =>  $post->user->username,
                     'video'             =>  Storage::disk('public')->url('uploads/' . $post->user->id . '/' . 'videos/' . $post->id . '.mp4'),
-                    'status'        =>  $post->status,
-                    'isliked'       =>  $post->isLikedBy(auth()->user()),
-                    'likes'         =>  $post->likers()->count(),
-                    'delete'        =>  Auth::user()->id === $post->user_id,
-                    'replycount'    => $post->replies->count(),
+                    'status'            =>  $post->status,
+                    'isliked'           =>  $post->isLikedBy(auth()->user()),
+                    'likes'             =>  $post->likers()->count(),
+                    'delete'            =>  Auth::user()->id === $post->user_id,
+                    'replycount'        =>  $post->replies->count(),
                     
                 ]),
 
             ],
         ]);
 
+    }
+    // Show user profile with followers
+    public function followers(User $user, Post $post)
+    {
+        return Inertia::render('Users/Followers', [
+            'profile' => [
+                'id'             =>  $user->id,
+                'name'           =>  $user->name,
+                'about'          =>  $user->about,
+                'pic'            =>  $user->getProfilePhotoUrlAttribute(),
+                'time'           =>  $user->created_at->diffForHumans(),
+                'username'       =>  $user->username,
+                'website'        =>  $user->website,
+                'postamount'     =>  $user->posts->count(),
+                'followerscount' =>  $user->followers()->count(),
+                'followcount'    =>  $user->followings()->count(),
+                'isFollowing'    =>  Auth::user()->isFollowing($user),
+                'isFollowedBy'   =>  Auth::user()->isFollowedBy($user),
+                'followbutton'   =>  Auth::user()->id === $user->id,
+                'followers'      =>  $user->followers
+                ->map(fn($followers) => [
+                    'id'             =>  $followers->id,
+                    'name'           =>  $followers->name,
+                    'username'       =>  $followers->username,
+                    'avatar'         =>  $followers->getProfilePhotoUrlAttribute(),
+                    'userlink'       =>  '/@' . $followers->username,
+                    'isFollowing'    =>  Auth::user()->isFollowing($followers),
+                    'isFollowedBy'   =>  Auth::user()->isFollowedBy($followers),
+                    'followbutton'   =>  Auth::user()->id === $followers->id,
+                ]),
+            ],
+        ]);
+    }
+    // Show user profile with followers
+    public function follows(User $user, Post $post)
+    {
+        return Inertia::render('Users/Followers', [
+            'profile' => [
+                'id'             =>  $user->id,
+                'name'           =>  $user->name,
+                'about'          =>  $user->about,
+                'pic'            =>  $user->getProfilePhotoUrlAttribute(),
+                'time'           =>  $user->created_at->diffForHumans(),
+                'username'       =>  $user->username,
+                'website'        =>  $user->website,
+                'postamount'     =>  $user->posts->count(),
+                'followerscount' =>  $user->followers()->count(),
+                'followcount'    =>  $user->followings()->count(),
+                'isFollowing'    =>  Auth::user()->isFollowing($user),
+                'isFollowedBy'   =>  Auth::user()->isFollowedBy($user),
+                'followbutton'   =>  Auth::user()->id === $user->id,
+                'followers'      =>  User::where('id', $user->followables->pluck('user_id'))->latest()
+                ->paginate()
+                ->map(fn($follows) => [
+                    'id'        =>  $follows->id,
+                    'name'      =>  $follows->name,
+                    'username'  =>  $follows->username,
+                    'userlink'  =>  '/@' . $follows->username,
+                    'avatar'    =>  $follows->getProfilePhotoUrlAttribute(),
+                    'isFollowing'    =>  Auth::user()->isFollowing($follows),
+                    'isFollowedBy'   =>  Auth::user()->isFollowedBy($follows),
+                    'followbutton'   =>  Auth::user()->id === $follows->id,
+                ])
+            ],
+        ]);
     }
 
     public function follow(User $user) 

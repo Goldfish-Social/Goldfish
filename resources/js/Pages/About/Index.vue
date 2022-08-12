@@ -10,7 +10,7 @@ import { Head } from '@inertiajs/inertia-vue3';
         <div class="hero min-h-screen bg-gray-800">
             <div class="hero-content text-center">
                 <div class="max-w-md">
-                    <h1 class="text-5xl font-bold">Golfish!</h1>
+                    <h1 class="text-5xl font-bold">Goldfish!</h1>
                     <p class="py-6">Hello and welcome on the brand new Goldfish Social project.</p>
                 </div>
             </div>
