@@ -44,9 +44,20 @@ Database migrations must be run:
 `php artisan migrate --force`
 
 
+Install and publish Horizon:
+
+`php artisan horizon:install`
+`php artisan horizon`
+
+
 Compile the app with Node:
 
 `npm run build`
+
+
+Start Horizon (service files later. Fow now use 'tmux' or something):
+
+`php artisan horizon`
 
 
 
