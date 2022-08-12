@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ExploreController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
@@ -9,6 +11,9 @@ use App\Http\Controllers\UserController;
 
 
 Route::get('/', [HomeController::class, 'landing'])->name('landing')->middleware('guest');
+Route::get('/about', [AboutController::class, 'index'])->name('about');
+Route::get('/terms', [AboutController::class, 'terms'])->name('terms');
+Route::get('/privacy', [AboutController::class, 'privacy'])->name('privacy');
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {
     Route::get('/home', [TimelineController::class, 'home'])->name('home');
@@ -23,4 +28,5 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::delete('/posts/{post}/delete', [PostController::class, 'destroy'])->name('posts.destroy');
     Route::post('/{user:username}/follow', [UserController::class, 'follow'])->name('follow');
     Route::post('/posts/{post}/like', [PostController::class, 'like'])->name('like');
+    Route::get('/explore', [ExploreController::class, 'index'])->name('explore');
 });

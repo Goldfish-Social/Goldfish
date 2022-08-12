@@ -110,7 +110,7 @@ class PostController extends Controller
 
         $this->dispatch(new ConvertVideoForDownloading($attributes));
         
-        return redirect(('/home'));
+        return back();
     }
 
     // Delete item

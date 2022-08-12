@@ -5,7 +5,7 @@
                 <div
                     v-for="post in posts.data"
                     :key="post.id"
-                    class="mx-auto max-w-screen-sm lg:mb-16 mb-8">
+                    class="mx-auto max-w-screen-sm max-h-fit lg:mb-16 mb-8">
 
                     <div 
                     class="card bg-gray-900 shadow-xl">

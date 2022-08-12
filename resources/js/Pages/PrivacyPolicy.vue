@@ -1,4 +1,5 @@
 <script setup>
+import AppLayout from '@/Layouts/AppLayout.vue';
 import { Head } from '@inertiajs/inertia-vue3';
 import JetAuthenticationCardLogo from '@/Jetstream/AuthenticationCardLogo.vue';
 
@@ -8,7 +9,7 @@ defineProps({
 </script>
 
 <template>
-    <Head title="Privacy Policy" />
+    <AppLayout title="Privacy Policy">
 
     <div class="font-sans text-gray-900 antialiased">
         <div class="pt-4 bg-gray-100">
@@ -21,4 +22,5 @@ defineProps({
             </div>
         </div>
     </div>
+    </AppLayout>
 </template>

@@ -36,6 +36,7 @@ const logout = () => {
 
 <template>
   <div>
+
     <Head :title="title" />
 
     <JetBanner />
@@ -45,53 +46,36 @@ const logout = () => {
         <div class="navbar-start">
           <div class="dropdown">
             <label tabindex="0" class="btn btn-ghost btn-circle">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="#FFFFFF"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 6h16M4 12h16M4 18h7"
-                />
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="#FFFFFF">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
               </svg>
             </label>
-                <ul 
-                v-if="$page.props.auth.user === null"
-                tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow  bg-gray-900
+            <ul v-if="$page.props.auth.user === null" tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow  bg-gray-900
                 text-white rounded-box w-52">
-                        <li>
-                            <JetNavLink :href="route('landing')" :active="route().current('landing')">
-                                        Home
-                            </JetNavLink>
-                        </li>
-                        <li>
-                            <JetNavLink :href="route('login')" :active="route().current('login')">
-                                        Login
-                            </JetNavLink>
-                        </li>
-                        <li>
-                            <JetNavLink :href="route('register')" :active="route().current('register')">
-                                        Register
-                            </JetNavLink>
-                        </li>
-                        <li>
-                          <JetNavLink
-                            :href="route('community')"
-                            :active="route().current('community')"
-                          >
-                            Community
-                          </JetNavLink>
-                        </li>
-                    </ul>
-            <ul
-              v-else
-              tabindex="0"
-              class="
+
+              <li>
+                <JetNavLink :href="route('login')" :active="route().current('login')">
+                  Login
+                </JetNavLink>
+              </li>
+
+              <li>
+                <JetNavLink :href="route('about')" :active="route().current('about')">
+                  About
+                </JetNavLink>
+              </li>
+              <li>
+                <JetNavLink :href="route('privacy')" :active="route().current('privacy')">
+                  Privacy Policy
+                </JetNavLink>
+              </li>
+              <li>
+                <JetNavLink :href="route('terms')" :active="route().current('terms')">
+                  Terms of Use
+                </JetNavLink>
+              </li>
+            </ul>
+            <ul v-else tabindex="0" class="
                 menu menu-compact
                 dropdown-content
                 mt-3
@@ -101,30 +85,35 @@ const logout = () => {
                 text-white
                 rounded-box
                 w-52
-              "
-            >
+              ">
               <li>
-                <JetNavLink
-                  :href="route('home')"
-                  :active="route().current('home')"
-                >
+                <JetNavLink :href="route('home')" :active="route().current('home')">
                   Home
                 </JetNavLink>
               </li>
               <li>
-                <JetNavLink
-                  :href="route('public-timeline')"
-                  :active="route().current('public-timeline')"
-                >
+                <JetNavLink :href="route('public-timeline')" :active="route().current('public-timeline')">
                   Public
                 </JetNavLink>
               </li>
               <li>
-                <JetNavLink
-                  :href="route('community')"
-                  :active="route().current('community')"
-                >
+                <JetNavLink :href="route('community')" :active="route().current('community')">
                   Community
+                </JetNavLink>
+              </li>
+              <li>
+                <JetNavLink :href="route('about')" :active="route().current('about')">
+                  About
+                </JetNavLink>
+              </li>
+              <li>
+                <JetNavLink :href="route('privacy')" :active="route().current('privacy')">
+                  Privacy Policy
+                </JetNavLink>
+              </li>
+              <li>
+                <JetNavLink :href="route('terms')" :active="route().current('terms')">
+                  Terms of Use
                 </JetNavLink>
               </li>
             </ul>
@@ -132,33 +121,23 @@ const logout = () => {
         </div>
 
         <div class="navbar-center">
-          <Link :href="route('landing')" class="btn btn-ghost text-white normal-case text-xl">{{$page.props.appName}}</Link>
+          <Link :href="route('landing')" class="btn btn-ghost text-white normal-case text-xl">{{ $page.props.appName }}
+          </Link>
         </div>
 
-        <div 
-        v-if="$page.props.auth.user === null"
-        class="navbar-end"
-        >
-                <Link :href="route('register')" class="btn btn-outline btn-secondary">Register</Link>
-          </div>
+        <div v-if="$page.props.auth.user === null" class="navbar-end">
+          <Link :href="route('register')" class="btn btn-outline btn-secondary">Register</Link>
+        </div>
 
-        <div 
-        v-else
-        class="navbar-end"
-        >
+        <div v-else class="navbar-end">
 
           <div class="dropdown dropdown-end">
             <label tabindex="0" class="btn btn-ghost btn-circle avatar">
               <div class="w-10 rounded-full">
-                <img
-                  :src="$page.props.user.profile_photo_url"
-                  :alt="$page.props.user.name"
-                />
+                <img :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name" />
               </div>
             </label>
-            <ul
-              tabindex="0"
-              class="
+            <ul tabindex="0" class="
                 menu menu-compact
                 dropdown-content
                 mt-3
@@ -167,9 +146,8 @@ const logout = () => {
                 bg-base-100
                 rounded-box
                 w-52
-              "
-            >
-            <li>
+              ">
+              <li>
                 <JetNavLink :href="route('user-profile', { id: $page.props.user.username })">
                   Profile
                 </JetNavLink>
@@ -180,10 +158,7 @@ const logout = () => {
                 </JetNavLink>
               </li>
               <li>
-                <JetNavLink
-                  v-if="$page.props.jetstream.hasApiFeatures"
-                  :href="route('api-tokens.index')"
-                >
+                <JetNavLink v-if="$page.props.jetstream.hasApiFeatures" :href="route('api-tokens.index')">
                   API Tokens
                 </JetNavLink>
               </li>
@@ -202,17 +177,14 @@ const logout = () => {
       </nav>
 
       <!-- Page Heading -->
-      <header
-        v-if="$slots.header"
-        class="
+      <header v-if="$slots.header" class="
           border-gray-200
           px-4
           lg:px-6
           py-2.5
           bg-gray-700
           shadow
-        "
-      >
+        ">
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
           <h3 class="font-semibold text-xl text-white leading-tight">
             <slot name="header" />
