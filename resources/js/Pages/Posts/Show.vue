@@ -28,7 +28,7 @@ let submit = () => {
 };
 
 function destroy(id) {
-    if (confirm("Are you sure you want to Delete")) {
+    if (confirm("Are you sure you want to delete?")) {
         form.delete(route('reply.destroy', id));
     }
 }
