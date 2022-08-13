@@ -1,34 +1,34 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
-import Welcome from '@/Jetstream/Welcome.vue';
 import Post from '../Shared/Post.vue';
 import Cards from '../Shared/Cards.vue';
 import throttle from "lodash/throttle";
 import { ref, watch } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 import Pagination from '../Shared/Pagination.vue';
+import Empty from '../Shared/Empty.vue';
 
 let props = defineProps({
-  posts: Object,
-  filters: Object,
-  postcount: String,
+    posts: Object,
+    filters: Object,
+    postcount: String,
 });
 
 let search = ref(props.filters.search);
 
 watch(
-  search,
-  throttle(function (value) {
-    Inertia.get(
-      "/public",
-      { search: value },
-      {
-        preserveState: true,
-        replace: true,
-        preserveScroll: true
-      }
-    );
-  }, 500)
+    search,
+    throttle(function (value) {
+        Inertia.get(
+            "/public",
+            { search: value },
+            {
+                preserveState: true,
+                replace: true,
+                preserveScroll: true
+            }
+        );
+    }, 500)
 );
 </script>
 <template>
@@ -40,16 +40,13 @@ watch(
                 </div>
                 <div class="items-end">
                     <div class="dropdown dropdown-left">
-                    <label tabindex="0" class="btn btn-outline btn-primary">Search</label>
-                        <div tabindex="0" class="dropdown-content card card-compact w-64 p-2 shadow bg-base-100 dark:bg-gray-900 text-gray-900 dark:text-white">
+                        <label tabindex="0" class="btn btn-outline btn-primary">Search</label>
+                        <div tabindex="0"
+                            class="dropdown-content card card-compact w-64 p-2 shadow bg-base-100 dark:bg-gray-900 text-gray-900 dark:text-white">
                             <div class="card-body">
                                 <h3 class="card-title">Search Posts</h3>
-                                <input
-                                    v-model="search"
-                                    type="text"
-                                    class="input input-bordered input-info w-full"
-                                    placeholder="Search.."
-                                />
+                                <input v-model="search" type="text" class="input input-bordered input-info w-full"
+                                    placeholder="Search.." />
                             </div>
                         </div>
                     </div>
@@ -64,6 +61,9 @@ watch(
         </section>
 
         <section class="bg-gray-700">
+            <div v-if="posts.total === 0">
+                <Empty />
+            </div>
             <Cards v-bind:posts="posts" />
 
             <Pagination :links="posts.links" />

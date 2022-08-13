@@ -2,9 +2,10 @@
 import AppLayout from '@/Layouts/AppLayout.vue';
 import Pagination from '../Shared/Pagination.vue';
 import ProfileCard from '../Shared/ProfileCard.vue';
+import Empty from '../Shared/Empty.vue';
 
 let props = defineProps({
-  profile: Object,
+    profile: Object,
 });
 
 </script>
@@ -24,6 +25,9 @@ let props = defineProps({
         </section>
 
         <section class="bg-gray-800">
+            <div v-if="profile.posts.total === 0">
+                <Empty />
+            </div>
             <Cards v-bind:posts="profile.posts" />
             <Pagination :links="profile.posts.links" />
         </section>

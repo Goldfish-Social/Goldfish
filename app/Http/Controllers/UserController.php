@@ -23,18 +23,20 @@ class UserController extends Controller
             ->when($request->input('search'), function ($query, $search) {
                 $query->where('username', 'like', "%{$search}%");
             })
-            
             ->paginate(10)
             ->withQueryString()
             ->through(fn($user) => [
                 'id'            =>  $user->id,
                 'name'          =>  $user->name,
                 'username'      =>  $user->username,
-                'avatar'        =>  $user->getProfilePhotoUrlAttribute(),
+                'pic'        =>  $user->getProfilePhotoUrlAttribute(),
                 'about'         =>  Str::limit($user->about, 200),
-                'isFollowing'    => Auth::user()->isFollowing($user),
-                'isFollowedBy'   => Auth::user()->isFollowedBy($user),
-                'followbutton'   => Auth::user()->id === $user->id,
+                'postamount'     =>  $user->posts->count(),
+                'followerscount' =>  $user->followers()->count(),
+                'followcount'    =>  $user->followings()->count(),
+                'isFollowing'    =>  Auth::user()->isFollowing($user),
+                'isFollowedBy'   =>  Auth::user()->isFollowedBy($user),
+                'followbutton'   =>  Auth::user()->id === $user->id,
             ]),
             'filters'           =>  $request->only(['search']),
             'usercount'         =>  User::latest()->count()
@@ -100,7 +102,7 @@ class UserController extends Controller
                 'isFollowedBy'   =>  Auth::user()->isFollowedBy($user),
                 'followbutton'   =>  Auth::user()->id === $user->id,
                 'followers'      =>  $user->followers
-                
+                // NEED: pagination
                 ->map(fn($followers) => [
                     'id'             =>  $followers->id,
                     'name'           =>  $followers->name,
@@ -133,6 +135,7 @@ class UserController extends Controller
                 'isFollowedBy'   =>  Auth::user()->isFollowedBy($user),
                 'followbutton'   =>  Auth::user()->id === $user->id,
                 'followers'      =>  $user->followings
+                // NEED: pagination
                 ->map(fn($follows) => [
                     'name'          =>  $follows->followable->name,
                     'id'            =>  $follows->followable->user_id,
@@ -146,7 +149,7 @@ class UserController extends Controller
             ],
         ]);
     }
-
+    // Simnple fun stuff! Follow / unfollow.
     public function follow(User $user) 
     {
         if(auth()->user()->isFollowing($user) ) {
@@ -157,5 +160,4 @@ class UserController extends Controller
 
         return back();
     }
-
 }

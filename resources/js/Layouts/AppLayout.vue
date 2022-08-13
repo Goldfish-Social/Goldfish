@@ -10,6 +10,7 @@ import JetNavLink from "@/Jetstream/NavLink.vue";
 import JetResponsiveNavLink from "@/Jetstream/ResponsiveNavLink.vue";
 import Mobile from '../Pages/Shared/Mobile.vue';
 import MobileNav from "../Pages/Shared/MobileNav.vue";
+import FlashMessage from "../Pages/Shared/FlashMessage.vue";
 
 defineProps({
   title: String,
@@ -176,6 +177,8 @@ const logout = () => {
 
       </nav>
 
+      <FlashMessage />
+
       <!-- Page Heading -->
       <header v-if="$slots.header" class="
           border-gray-200
@@ -194,10 +197,6 @@ const logout = () => {
 
       <!-- Page Content -->
       <main class="bg-gray-800">
-
-      <div v-if="$page.props.flash.message" class="alert">
-        {{ $page.props.flash.message }}
-      </div>
         <slot />
       </main>
     </div>

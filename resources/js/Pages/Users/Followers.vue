@@ -24,6 +24,9 @@ let props = defineProps({
         </section>
 
         <section class="bg-gray-900">
+            <div v-if="profile.followers === null">
+                <Empty />
+            </div>
             <div class="mx-auto max-w-screen-sm text-center px-4 pb-12 pt-2">
                 <div class="overflow-x-auto w-full">
                     <table class="table w-full">
@@ -41,7 +44,9 @@ let props = defineProps({
                                         <div class="mp-2">
                                             <InertiaLink :href="follower.userlink">
                                                 <div class="font-bold hover:text-gray-300">{{ follower.name }}</div>
-                                                <div class="text-sm opacity-50 hover:text-gray-300">@{{ follower.username }}</div>
+                                                <div class="text-sm opacity-50 hover:text-gray-300">@{{
+                                                        follower.username
+                                                }}</div>
                                             </InertiaLink>
                                         </div>
                                     </div>
@@ -50,7 +55,8 @@ let props = defineProps({
                                     <InertiaLink
                                         v-if="$page.props.auth.user !== null && follower.isFollowing === false && follower.followbutton === false"
                                         preserveScroll method="post" as="button" type="button"
-                                        class="btn btn-primary gap-2" :href="route('follow', { id: follower.username })">
+                                        class="btn btn-primary gap-2"
+                                        :href="route('follow', { id: follower.username })">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
                                             stroke-linecap="round" stroke-linejoin="round">
@@ -75,10 +81,8 @@ let props = defineProps({
                                         </svg>
                                         Unfollow
                                     </InertiaLink>
-                                    <InertiaLink
-                                        v-if="$page.props.auth.user !== null && follower.followbutton === true"
-                                        preserveScroll
-                                        class="btn btn-secondary gap-2"
+                                    <InertiaLink v-if="$page.props.auth.user !== null && follower.followbutton === true"
+                                        preserveScroll class="btn btn-secondary gap-2"
                                         :href="route('user-profile', { id: follower.username })">
                                         That's you
                                     </InertiaLink>
