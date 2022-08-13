@@ -9,7 +9,6 @@ let props = defineProps({
 });
 
 </script>
-
 <template>
     <AppLayout title="User Profile">
         <template #header>

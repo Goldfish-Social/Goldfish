@@ -12,13 +12,8 @@
         <meta property="og:type" content="article">
         <meta property="og:url" content="{{request()->url()}}">
 
-        <!-- Favicon -->
         <link rel="icon" sizes="16x16" href="{{ asset('assets/images/icon.png') }}">
-
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
-
-        <!-- Scripts -->
+        
         @routes
         @vite('resources/js/app.js')
         @inertiaHead

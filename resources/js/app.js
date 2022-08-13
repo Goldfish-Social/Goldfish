@@ -9,7 +9,8 @@ import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 import Vue3VideoPlayer from '@cloudgeek/vue3-video-player'
 import '@cloudgeek/vue3-video-player/dist/vue3-video-player.css'
 import Cards from './Pages/Shared/Cards.vue';
-
+import VuePlyr from 'vue-plyr';
+import 'vue-plyr/dist/vue-plyr.css';
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Goldfish';
 
@@ -20,6 +21,9 @@ createInertiaApp({
         return createApp({ render: () => h(app, props) })
             .use(plugin)
             .use(ZiggyVue, Ziggy)
+            .use(VuePlyr, {
+                plyr: {}
+              })
             .use(Vue3VideoPlayer, {
                 lang: 'en'
               })

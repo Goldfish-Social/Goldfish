@@ -2,7 +2,7 @@
     <div>
         <div class="card bg-gray-800 shadow-xl">
             <figure>
-                <img :src="profile.pic" class="w-full" alt="" />
+                <img :src="profile.pic" class="w-full max-h-fit" alt="" />
             </figure>
             <div class="card-body">
                 <div class="flex justify-between">
@@ -23,7 +23,6 @@
                             </InertiaLink>
                         </div>
                     </h2>
-
                     <InertiaLink
                         v-if="$page.props.auth.user !== null && profile.isFollowing === false && profile.followbutton === false"
                         preserveScroll method="post" as="button" type="button" class="btn btn-primary gap-2"
@@ -37,7 +36,6 @@
                         </svg>
                         Follow
                     </InertiaLink>
-
                     <InertiaLink
                         v-if="$page.props.auth.user !== null && profile.isFollowing === true && profile.followbutton === false"
                         preserveScroll method="post" as="button" type="button" class="btn btn-secondary gap-2"
@@ -50,8 +48,6 @@
                         </svg>
                         Unfollow
                     </InertiaLink>
-
-
                 </div>
                 <p class="mt-2 mb-2">{{ profile.about }}</p>
                 <div class="divider"></div>
