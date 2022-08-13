@@ -31,7 +31,7 @@ let props = defineProps({
                 <div class="overflow-x-auto w-full">
                     <table class="table w-full">
                         <tbody>
-                            <tr v-for="follower in profile.followers" :key="follower.id"></tr>
+                            <tr v-for="follower in profile.followers" :key="follower.id">
                                 <td>
                                     <div class="flex items-center space-x-3">
                                         <div class="avatar">
