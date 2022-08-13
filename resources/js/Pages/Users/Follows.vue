@@ -23,12 +23,15 @@ let props = defineProps({
             </div>
         </section>
 
-        <section class="bg-gray-900">
+        <section 
+        v-if="profile.followers !== null"
+        
+        class="bg-gray-900">
             <div class="mx-auto max-w-screen-sm text-center px-4 pb-12 pt-2">
                 <div class="overflow-x-auto w-full">
                     <table class="table w-full">
                         <tbody>
-                            <tr v-for="follower in profile.followers" :key="follower.id">
+                            <tr v-for="follower in profile.followers" :key="follower.id"></tr>
                                 <td>
                                     <div class="flex items-center space-x-3">
                                         <div class="avatar">

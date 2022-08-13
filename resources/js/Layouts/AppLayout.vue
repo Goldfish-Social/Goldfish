@@ -194,6 +194,10 @@ const logout = () => {
 
       <!-- Page Content -->
       <main class="bg-gray-800">
+
+      <div v-if="$page.props.flash.message" class="alert">
+        {{ $page.props.flash.message }}
+      </div>
         <slot />
       </main>
     </div>
