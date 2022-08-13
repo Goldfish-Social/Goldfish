@@ -45,7 +45,7 @@ watch(
         </div>
 
       </div>
-      <Pagination :links="users.links" />
+      <Pagination class="mt-8" :links="users.links" />
     </section>
 
   </AppLayout>
