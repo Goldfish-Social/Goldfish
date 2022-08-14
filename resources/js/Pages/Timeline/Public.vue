@@ -40,7 +40,7 @@ watch(
                 </div>
                 <div class="items-end">
                     <div class="dropdown dropdown-left">
-                        <label tabindex="0" class="btn btn-outline btn-primary">Search</label>
+                        <label tabindex="0" class="btn btn-primary">Search</label>
                         <div tabindex="0"
                             class="dropdown-content card card-compact w-64 p-2 shadow bg-base-100 dark:bg-gray-900 text-gray-900 dark:text-white">
                             <div class="card-body">
