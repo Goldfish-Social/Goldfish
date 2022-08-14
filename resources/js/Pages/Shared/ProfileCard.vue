@@ -50,6 +50,28 @@
                     </InertiaLink>
                 </div>
                 <p class="mt-2 mb-2">{{ profile.about }}</p>
+                <div class="flex mt-3">
+                    <div class="flex justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="mt-1 mr-1" width="18" height="18"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        {{ profile.time }} · <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                            viewBox="0 0 24 24" class="ml-2 mr-1 mt-1" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                        </svg>
+                        <p v-if="profile.website === null">
+                            No website</p>
+                        <a v-else location="profile.website" target="_blank">{{
+                                profile.website
+                        }}</a>
+
+                    </div>
+                </div>
                 <div class="divider"></div>
                 <div class="card-actions justify-between">
                     <InertiaLink preserve-scroll class="btn btn-sm btn-outline btn-success"

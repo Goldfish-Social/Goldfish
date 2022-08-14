@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Post;
 use FFMpeg\Format\Video\X264;
 use Illuminate\Bus\Queueable;
+use FFMpeg\Coordinate\TimeCode;
 use FFMpeg\Coordinate\Dimension;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -34,10 +35,14 @@ class ConvertVideoForDownloading implements ShouldQueue
             ->open($this->post->path)
 
         // add the 'resize' filter...
-           // ->addFilter(function ($filters) {
-            //    $filters->resize(new Dimension(960, 540));
-            //})
+            ->addFilter(function ($filters) {
+                $filters->resize(new Dimension(960, 540));
+            })
 
+            ->addFilter(function ($filters) {
+                $filters->clip(TimeCode::fromSeconds(1), TimeCode::fromSeconds(30));
+            })
+            
         // call the 'export' method...
             ->export()
 

@@ -18,6 +18,7 @@ const form = useForm({
     _method: 'PUT',
     name: props.user.name,
     about: props.user.about,
+    website: props.user.website,
     email: props.user.email,
     photo: null,
 });
@@ -153,6 +154,19 @@ const clearPhotoFileInput = () => {
                 </textarea>
                 
                 <JetInputError :message="form.errors.name" class="mt-2" />
+            </div>
+
+            <!-- Website -->
+            <div class="col-span-6 sm:col-span-4">
+                <JetLabel for="website" value="Website" />
+                <JetInput
+                    id="website"
+                    v-model="form.website"
+                    type="text"
+                    class="mt-1 block w-full"
+                    autocomplete="website"
+                />
+                <JetInputError :message="form.errors.website" class="mt-2" />
             </div>
 
             <!-- Email -->
