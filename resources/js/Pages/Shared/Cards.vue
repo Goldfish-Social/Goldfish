@@ -47,7 +47,7 @@
                             <div class="divider"></div>
                             <div class="card-actions flex justify-between">
                                 <div class="flex justify-start">
-                                    <InertiaLink v-if="$page.props.auth.user !== null && post.isliked === false" preserveScroll method="post" as="button"
+                                    <InertiaLink v-if="post.isliked === false" preserveScroll method="post" as="button"
                                         type="button" class="btn btn-success btn-sm gap-2"
                                         :href="route('like', { id: post.id })">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -59,7 +59,7 @@
                                         </svg>
                                         Like ({{ post.likes }})
                                     </InertiaLink>
-                                    <InertiaLink v-if="$page.props.auth.user !== null && post.isliked === true" preserveScroll method="post" as="button"
+                                    <InertiaLink v-if="post.isliked === true" preserveScroll method="post" as="button"
                                         type="button" class="btn btn-outline btn-success btn-sm gap-2"
                                         :href="route('like', { id: post.id })">
                                         Undo
@@ -72,7 +72,7 @@
                                         </svg>
                                         ({{ post.likes }})
                                     </InertiaLink>
-                                    <button v-else
+                                    <button v-if="$page.props.auth.user === null"
                                         class="btn btn-outline btn-success btn-sm gap-2"
                                         >
                                         
