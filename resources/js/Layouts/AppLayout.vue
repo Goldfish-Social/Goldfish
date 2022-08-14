@@ -2,12 +2,9 @@
 import { ref } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 import { Head, Link } from "@inertiajs/inertia-vue3";
-import JetApplicationMark from "@/Jetstream/ApplicationMark.vue";
 import JetBanner from "@/Jetstream/Banner.vue";
-import JetDropdown from "@/Jetstream/Dropdown.vue";
 import JetDropdownLink from "@/Jetstream/DropdownLink.vue";
 import JetNavLink from "@/Jetstream/NavLink.vue";
-import JetResponsiveNavLink from "@/Jetstream/ResponsiveNavLink.vue";
 import Mobile from '../Pages/Shared/Mobile.vue';
 import MobileNav from "../Pages/Shared/MobileNav.vue";
 import FlashMessage from "../Pages/Shared/FlashMessage.vue";
@@ -37,12 +34,11 @@ const logout = () => {
 
 <template>
   <div>
-
     <Head :title="title" />
 
     <JetBanner />
 
-    <div class="min-h-screen bg-gray-800">
+    <div class="min-h-screen bg-gray-900">
       <nav class="navbar sticky top-0 z-50 bg-gray-900 border-gray-200 px-4 lg:px-6 py-2.5">
         <div class="navbar-start">
           <div class="dropdown">
@@ -174,7 +170,6 @@ const logout = () => {
           </div>
         </div>
 
-
       </nav>
 
       <FlashMessage />
@@ -196,11 +191,14 @@ const logout = () => {
       </header>
 
       <!-- Page Content -->
-      <main class="bg-gray-800">
+      <main class="bg-gray-900">
         <slot />
       </main>
+
     </div>
 
+    <!--<MobileNav class="pt-10" v-if="$page.props.auth.user !== null" />-->
+    
   </div>
-  <!-- <MobileNav /> -->
+
 </template>

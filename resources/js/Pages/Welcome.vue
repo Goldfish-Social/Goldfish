@@ -16,23 +16,24 @@ let props = defineProps({
 let search = ref(props.filters.search);
 
 watch(
-  search,
-  throttle(function (value) {
-    Inertia.get(
-      "/",
-      { search: value },
-      {
-        preserveState: true,
-        replace: true,
-        preserveScroll: true
-      }
-    );
-  }, 1000)
+    search,
+    throttle(function (value) {
+        Inertia.get(
+            "/",
+            { search: value },
+            {
+                preserveState: true,
+                replace: true,
+                preserveScroll: true
+            }
+        );
+    }, 1000)
 );
 </script>
 
 <template>
-<AppLayout title="Home">
+    <AppLayout title="Explore &amp; Discover">
+
         <template #header>
             <div class="flex justify-between">
                 <div class="items-start pt-4">
@@ -40,16 +41,14 @@ watch(
                 </div>
                 <div class="items-end">
                     <div class="dropdown dropdown-left">
-                    <label tabindex="0" class="btn btn-outline btn-primary">Search</label>
-                        <div tabindex="0" class="dropdown-content card card-compact w-64 p-2 shadow bg-base-100 dark:bg-gray-900 text-gray-900 dark:text-white">
+                        <label tabindex="0" class="btn btn-outline btn-primary">Search</label>
+                        <div tabindex="0"
+                            class="dropdown-content card card-compact w-64 p-2 shadow bg-base-100 dark:bg-gray-900 text-gray-900 dark:text-white">
                             <div class="card-body">
                                 <h4 class="card-title">Search Posts</h4>
-                                <input
-                                    v-model="search"
-                                    type="text"
+                                <input v-model="search" type="text"
                                     class="input input-bordered input-info w-full text-gray-900"
-                                    placeholder="Search.."
-                                />
+                                    placeholder="Search.." />
                             </div>
                         </div>
                     </div>
@@ -57,13 +56,10 @@ watch(
             </div>
         </template>
 
-    <Head title="Explore & Discover" />
-
-    <section>
-        <Cards v-bind:posts="posts" />
-
-        <Pagination :links="posts.links" />
-    </section>
+        <section>
+            <Cards v-bind:posts="posts" />
+            <Pagination :links="posts.links" />
+        </section>
 
     </AppLayout>
 </template>

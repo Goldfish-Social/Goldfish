@@ -10,9 +10,9 @@ let props = defineProps({
 
 </script>
 <template>
-    <AppLayout title="Home">
+    <AppLayout title="Explore">
         <template #header>
-            Home Feed
+            Explore
         </template>
 
         <section>
