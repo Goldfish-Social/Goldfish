@@ -13,8 +13,18 @@ use Illuminate\Support\Facades\Storage;
 class UserController extends Controller
 {
     // Community / user overview page
-    public function index(Request $request)
+    public function index(Request $request, User $user)
     {
+        if (Auth::user()) {
+            $isFollowing = Auth::user()->isFollowing($user);
+            $followedBy = Auth::user()->isFollowedBy($user);
+            $followButton = Auth::user()->id === $user->id;
+        } else {
+            $isFollowing = null;
+            $followedBy = null;
+            $followButton = null;
+        }
+
         return Inertia::render('Users/Community', [
             'users' => User::query()
                 ->with('followings')
@@ -43,6 +53,18 @@ class UserController extends Controller
     // Show user profile with posts
     public function show(User $user, Post $post)
     {
+        if (Auth::user()) {
+            $isFollowing = Auth::user()->isFollowing($user);
+            $followedBy = Auth::user()->isFollowedBy($user);
+            $followButton = Auth::user()->id === $user->id;
+            $liked = $post->isLikedBy(auth()->user());
+        } else {
+            $isFollowing = null;
+            $followedBy = null;
+            $followButton = null;
+            $liked = null;
+        }
+
         return Inertia::render('Users/Show', [
             'profile' => [
                 'id'             =>  $user->id,
@@ -55,9 +77,9 @@ class UserController extends Controller
                 'postamount'     =>  $user->posts->count(),
                 'followerscount' =>  $user->followers()->count(),
                 'followcount'    =>  $user->followings()->count(),
-                'isFollowing'    =>  Auth::user()->isFollowing($user),
-                'isFollowedBy'   =>  Auth::user()->isFollowedBy($user),
-                'followbutton'   =>  Auth::user()->id === $user->id,
+                'isFollowing'    =>  $isFollowing,
+                'isFollowedBy'   =>  $followedBy,
+                'followbutton'   =>  $followButton,
                 'posts' => Post::query()
                     ->where('user_id', $user->id)
                     ->latest()
@@ -70,13 +92,10 @@ class UserController extends Controller
                         'username'          =>  $post->user->username,
                         'video'             =>  Storage::disk('public')->url('uploads/' . $post->user->id . '/' . 'videos/' . $post->id . '.mp4'),
                         'status'            =>  $post->status,
-                        'isliked'           =>  $post->isLikedBy(auth()->user()),
+                        'isliked'           =>  $liked,
                         'likes'             =>  $post->likers()->count(),
-                        'delete'            =>  Auth::user()->id === $post->user_id,
-                        'replycount'        =>  $post->replies->count(),
-
-                    ]),
-
+                        'replycount'        =>  $post->replies->count()
+                    ])
             ],
         ]);
     }

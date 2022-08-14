@@ -23,7 +23,7 @@ let props = defineProps({
             </div>
         </section>
 
-        <section class="bg-gray-800">
+        <section class="bg-gray-900">
             <div v-if="profile.posts.total === 0">
                 <Empty />
             </div>

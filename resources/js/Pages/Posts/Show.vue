@@ -140,7 +140,7 @@ function destroy(id) {
             </div>
         </section>
 
-        <section>
+        <section v-if="$page.props.auth.user !== null">
             <div class="mx-auto max-w-screen-sm px-4">
                 <form @submit.prevent="submit">
 

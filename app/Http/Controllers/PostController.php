@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use App\Models\User;
+use App\Models\Reply;
 use Inertia\Inertia;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use App\Jobs\ConvertVideoForDownloading;
-use App\Models\Reply;
 
 class PostController extends Controller
 {
@@ -44,8 +43,18 @@ class PostController extends Controller
         ]);
     }
 
-    public function show(Post $post)
+    public function show(Post $post, Reply $reply)
     {
+        if (Auth::user()) {
+            $liked = $post->isLikedBy(Auth()->user());
+            $delete = Auth::user()->id === $post->user_id || Auth::user()->id === 1;
+            $deleteReply = Auth::user()->id === $reply->user_id || Auth::user()->id === 1;
+        } else {
+            $liked = null;
+            $delete = false;
+            $deleteReply = false;
+        }
+
         return Inertia::render('Posts/Show', [
             'post' => [
                 'id'                =>  $post->id,
@@ -54,11 +63,10 @@ class PostController extends Controller
                 'time'              =>  $post->created_at->diffForHumans(),
                 'username'          =>  $post->user->username,
                 'video'             =>  Storage::disk('public')->url('uploads/' . $post->user->id . '/' . 'videos/' . $post->id . '.mp4'),
-                'delete'            =>  Auth::user()->id === $post->user_id,
                 'status'            =>  $post->status,
-                'isliked'           =>  $post->isLikedBy(Auth()->user()),
+                'isliked'           =>  $liked,
                 'likes'             =>  $post->likers()->count(),
-                'delete'            =>  Auth::user()->id === $post->user_id || Auth::user()->id === 1,
+                'delete'            =>  $delete,
                 'replies'           =>  Reply::query()
                                         ->where('post_id', $post->id)
                                         ->latest()
@@ -70,10 +78,9 @@ class PostController extends Controller
                                             'username'  =>  $reply->user->username,
                                             'avatar'    =>  $reply->user->getProfilePhotoUrlAttribute(),
                                             'link'      =>  '@' . $reply->user->username,
-                                            'delete'    =>  Auth::user()->id === $reply->user_id || Auth::user()->id === 1,
+                                            'delete'    =>  $deleteReply,
                                         ]),
-                'replycount'            => $post->replies->count()
-                                        
+                'replycount'            => $post->replies->count()    
                 ]
             ]);
     }
