@@ -47,7 +47,7 @@
                             <div class="divider"></div>
                             <div class="card-actions flex justify-between">
                                 <div class="flex justify-start">
-                                    <InertiaLink v-if="post.isliked === false" preserveScroll method="post" as="button"
+                                    <InertiaLink v-if="$page.props.auth.user !== null && post.isliked === false" preserveScroll method="post" as="button"
                                         type="button" class="btn btn-success btn-sm gap-2"
                                         :href="route('like', { id: post.id })">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -59,8 +59,7 @@
                                         </svg>
                                         Like ({{ post.likes }})
                                     </InertiaLink>
-
-                                    <InertiaLink v-if="post.isliked === true" preserveScroll method="post" as="button"
+                                    <InertiaLink v-if="$page.props.auth.user !== null && post.isliked === true" preserveScroll method="post" as="button"
                                         type="button" class="btn btn-outline btn-success btn-sm gap-2"
                                         :href="route('like', { id: post.id })">
                                         Undo
@@ -71,9 +70,21 @@
                                                 d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3">
                                             </path>
                                         </svg>
-
                                         ({{ post.likes }})
                                     </InertiaLink>
+                                    <button v-else
+                                        class="btn btn-outline btn-success btn-sm gap-2"
+                                        >
+                                        
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path
+                                                d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3">
+                                            </path>
+                                        </svg>
+                                        {{ post.likes }} Likes
+                                    </button>
                                 </div>
                                 <div class="flex justify-end">
                                     <InertiaLink class="btn btn-sm btn-secondary gap-2 mr-2"

@@ -35,9 +35,9 @@ class ConvertVideoForDownloading implements ShouldQueue
             ->open($this->post->path)
 
         // add the 'resize' filter...
-            ->addFilter(function ($filters) {
-                $filters->resize(new Dimension(960, 540));
-            })
+        //    ->addFilter(function ($filters) {
+        //        $filters->resize(new Dimension(960, 540));
+        //    })
 
             ->addFilter(function ($filters) {
                 $filters->clip(TimeCode::fromSeconds(1), TimeCode::fromSeconds(30));

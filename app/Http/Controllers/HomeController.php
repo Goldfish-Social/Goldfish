@@ -38,7 +38,9 @@ class HomeController extends Controller
                 'media'         =>  'storage/' . $post->files,
                 'video'         =>  Storage::disk('public')->url('uploads/' . $post->user->id . '/' . 'videos/' . $post->id . '.mp4'),
                 'delete'        =>  false,
-                'status'        =>  $post->status
+                'status'        =>  $post->status,
+                'likes'         =>  $post->likers()->count(),
+                'replycount'    =>  $post->replies->count()
             ]),
             'filters' => $request->only(['search'])
         ]);
