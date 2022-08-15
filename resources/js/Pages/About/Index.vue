@@ -7,7 +7,7 @@ import { Head } from '@inertiajs/inertia-vue3';
 <template>
     <AppLayout title="About Goldfish">
 
-        <div class="hero min-h-screen bg-gray-800">
+        <div class="hero min-h-screen dark:bg-gray-800 bg-gray-100 text-gray-900 dark:text-white">
             <div class="hero-content text-center">
                 <div class="max-w-md">
                     <h1 class="text-5xl font-bold">Goldfish!</h1>
@@ -17,10 +17,10 @@ import { Head } from '@inertiajs/inertia-vue3';
         </div>
 
         <div class="text-gray-100">
-            <div class="pt-4 pb-6  bg-gray-700">
+            <div class="pt-4 pb-6  dark:bg-gray-900 bg-gray-100 text-gray-900 dark:text-white">
                 <div class="flex flex-col items-center pt-6 sm:pt-0">
 
-                    <div class="w-full sm:max-w-2xl mt-6 p-6 bg-gray-900 shadow-md overflow-hidden sm:rounded-lg prose">
+                    <div class="w-full sm:max-w-2xl mt-6 p-6 dark:bg-gray-800 bg-gray-200 text-gray-900 dark:text-white shadow-md overflow-hidden sm:rounded-lg prose">
                     <h1>Goldfish Social</h1>
                         <p>
                             Meow there! Welcome to the Goldfish Social repo, this project is intended

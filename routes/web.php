@@ -14,7 +14,6 @@ Route::get('/', [HomeController::class, 'landing'])->name('landing')->middleware
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/terms', [AboutController::class, 'terms'])->name('terms');
 Route::get('/privacy', [AboutController::class, 'privacy'])->name('privacy');
-
 Route::get('@{user:username}', [UserController::class, 'show'])->name('user-profile');
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('show-post');
 

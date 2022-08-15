@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use App\Jobs\ConvertVideoForDownloading;
+use App\Jobs\ConvertVideoForStreaming;
 
 class PostController extends Controller
 {
@@ -115,6 +116,7 @@ class PostController extends Controller
             'description'   =>  $request->description
         ]);
 
+        // $this->dispatch(new ConvertVideoForStreaming($attributes));
         $this->dispatch(new ConvertVideoForDownloading($attributes));
         
         return back();

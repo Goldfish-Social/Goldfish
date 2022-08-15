@@ -4,7 +4,7 @@
             <div v-if="posts !== null">
                 <div v-for="post in posts.data" :key="post.id" class="mx-auto max-w-screen-sm max-h-fit lg:mb-16 mb-8">
 
-                    <div class="card bg-gray-800 shadow-xl">
+                    <div class="card dark:bg-gray-800 bg-white dark:text-white text-gray-900 shadow-xl">
                         <div v-if="post.video !== null">
                             <vue-plyr :options="options">
                                 <video controls crossorigin playsinline loop data-poster="poster.jpg">

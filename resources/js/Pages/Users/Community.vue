@@ -34,13 +34,13 @@ watch(
       Community ({{ usercount }} users)
     </template>
 
-    <section class="bg-gray-900 min-h-screen pb-4">
+    <section class="dark:bg-gray-900 bg-gray-100 text-gray-900 dark:text-white min-h-screen pb-4">
       <div class="px-4 mx-auto max-w-screen-sm">
 
         <input v-model="search" type="text" class="input input-bordered input-info w-full mt-4"
           placeholder="Search.." />
 
-        <div v-for="user in users.data" :key="user.id" class="card bg-gray-800 mt-5 shadow-xl">
+        <div v-for="user in users.data" :key="user.id" class="card dark:bg-gray-800 dark:text-white bg-gray-100 text-gray-900 mt-5 shadow-xl">
           <UserCard :profile="user" />
         </div>
 

@@ -38,17 +38,17 @@ const logout = () => {
 
     <JetBanner />
 
-    <div class="min-h-screen bg-gray-900">
-      <nav class="navbar sticky top-0 z-50 bg-gray-900 border-gray-200 px-4 lg:px-6 py-2.5">
+    <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+      <nav class="navbar sticky top-0 z-50 bg-white dark:bg-gray-900 border-gray-200 px-4 lg:px-6 py-2.5">
         <div class="navbar-start">
           <div class="dropdown">
             <label tabindex="0" class="btn btn-ghost btn-circle">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="#FFFFFF">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="#dc2626">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
               </svg>
             </label>
-            <ul v-if="$page.props.auth.user === null" tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow  bg-gray-900
-                text-white rounded-box w-52">
+            <ul v-if="$page.props.auth.user === null" tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow text-gray-900 bg-white dark:bg-gray-900
+                dark:text-white rounded-box w-52">
 
               <li>
                 <JetNavLink :href="route('login')" :active="route().current('login')">
@@ -78,8 +78,10 @@ const logout = () => {
                 mt-3
                 p-2
                 shadow
-                bg-gray-900
-                text-white
+                bg-gray-100
+                text-gray-900
+                dark:bg-gray-900
+                dark:text-white
                 rounded-box
                 w-52
               ">
@@ -118,12 +120,12 @@ const logout = () => {
         </div>
 
         <div class="navbar-center">
-          <Link :href="route('landing')" class="btn btn-ghost text-white normal-case text-xl">{{ $page.props.appName }}
+          <Link :href="route('landing')" class="btn btn-ghost text-primary dark:text-white normal-case text-xl">{{ $page.props.appName }}
           </Link>
         </div>
 
         <div v-if="$page.props.auth.user === null" class="navbar-end">
-          <Link :href="route('register')" class="btn btn-outline btn-secondary">Register</Link>
+          <Link :href="route('register')" class="btn btn-primary">Register</Link>
         </div>
 
         <div v-else class="navbar-end">
@@ -180,18 +182,19 @@ const logout = () => {
           px-4
           lg:px-6
           py-2.5
-          bg-gray-700
+          dark:bg-gray-700
+          bg-gray-200
           shadow
         ">
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <h3 class="font-semibold text-xl text-white leading-tight">
+          <h3 class="font-semibold text-xl text-gray-900 dark:text-white leading-tight">
             <slot name="header" />
           </h3>
         </div>
       </header>
 
       <!-- Page Content -->
-      <main class="bg-gray-900">
+      <main class="dark:bg-gray-900 bg-gray-100">
         <slot />
       </main>
 

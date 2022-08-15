@@ -5,8 +5,7 @@ import { Head } from "@inertiajs/inertia-vue3";
 
 <template>
   <AppLayout title="Terms of Use">
-    <div class="font-sans text-gray-100 antialiased">
-      <div class="pt-4 bg-gray-700">
+      <div class="pt-4 dark:bg-gray-800 bg-gray-100 text-gray-900 dark:text-white">
         <div class="min-h-screen flex flex-col items-center pt-6 pb-6">
           <div
             class="
@@ -14,7 +13,7 @@ import { Head } from "@inertiajs/inertia-vue3";
               sm:max-w-2xl
               mt-6
               p-6
-              bg-gray-900
+              dark:bg-gray-900 bg-gray-200 text-gray-900 dark:text-white
               shadow-md
               overflow-hidden
               sm:rounded-lg
@@ -132,6 +131,5 @@ import { Head } from "@inertiajs/inertia-vue3";
           </div>
         </div>
       </div>
-    </div>
   </AppLayout>
 </template>

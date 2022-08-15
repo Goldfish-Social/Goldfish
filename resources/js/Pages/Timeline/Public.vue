@@ -60,7 +60,7 @@ watch(
             </div>
         </section>
 
-        <section class="bg-gray-900">
+        <section class="dark:bg-gray-900 dark:text-white bg-gray-100 text-gray-900">
             <div v-if="posts.total === 0">
                 <Empty />
             </div>

@@ -15,7 +15,7 @@ let props = defineProps({
             {{ profile.name }} Profile
         </template>
 
-        <section class="bg-gray-900">
+        <section class="dark:bg-gray-900 bg-gray-100 text-gray-900 dark:text-white">
             <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
                 <div class="mx-auto max-w-screen-sm text-center mb-8">
                     <ProfileCard :profile="profile" />
@@ -26,7 +26,7 @@ let props = defineProps({
         <section 
         v-if="profile.followers !== null"
         
-        class="bg-gray-900">
+        class="dark:bg-gray-900 bg-gray-100 text-gray-900 dark:text-white">
             <div class="mx-auto max-w-screen-sm text-center px-4 pb-12 pt-2">
                 <div class="overflow-x-auto w-full">
                     <table class="table w-full">

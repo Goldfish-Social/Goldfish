@@ -76,12 +76,12 @@ const submit = () => {
             <div class="block mt-4">
                 <label class="flex items-center">
                     <JetCheckbox v-model:checked="form.remember" name="remember" />
-                    <span class="ml-2 text-sm text-gray-100">Remember me</span>
+                    <span class="ml-2 text-sm dark:text-gray-100 text-gray-900">Remember me</span>
                 </label>
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <Link v-if="canResetPassword" :href="route('password.request')" class="underline text-sm text-gray-100 hover:text-gray-400">
+                <Link v-if="canResetPassword" :href="route('password.request')" class="underline text-sm text-gray-900 dark:text-gray-100 hover:text-gray-400">
                     Forgot your password?
                 </Link>
 
@@ -92,7 +92,7 @@ const submit = () => {
         </form>
 
         <div class="flex items-center justify-center mt-12">
-            <Link :href="route('register')" class="underline text-gray-100 hover:text-gray-400">
+            <Link :href="route('register')" class="underline dark:text-gray-100 text-gray-900 hover:text-gray-400">
                     No account yet?
                 </Link>
         </div>

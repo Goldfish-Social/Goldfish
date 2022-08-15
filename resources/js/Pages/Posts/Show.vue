@@ -41,9 +41,9 @@ function destroy(id) {
         </template>
 
         <section>
-            <div class="py-2 px-4 mx-auto max-w-screen-xl">
+            <div class="py-4 px-4 mx-auto max-w-screen-xl">
                 <div class="mx-auto max-w-screen-sm lg:mb-16 mb-8">
-                    <div class="card bg-gray-800 shadow">
+                    <div class="card bg-white dark:bg-gray-800 shadow dark:text-white text-gray-900">
                         <div v-if="post.video !== null">
                             <vue-plyr :options="options">
                                 <video controls crossorigin playsinline loop data-poster="poster.jpg">
