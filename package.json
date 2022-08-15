@@ -22,6 +22,7 @@
     },
     "dependencies": {
         "@cloudgeek/vue3-video-player": "^0.3.10",
+        "@headlessui/vue": "^1.6.7",
         "daisyui": "^2.22.0",
         "flowbite": "^1.5.1",
         "vue-plyr": "^7.0.0"

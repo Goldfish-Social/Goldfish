@@ -34,6 +34,7 @@ const logout = () => {
 
 <template>
   <div>
+
     <Head :title="title" />
 
     <JetBanner />
@@ -47,8 +48,8 @@ const logout = () => {
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
               </svg>
             </label>
-            <ul v-if="$page.props.auth.user === null" tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow text-gray-900 bg-white dark:bg-gray-900
-                dark:text-white rounded-box w-52">
+            <ul v-if="$page.props.auth.user === null" tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow text-gray-800 bg-white dark:bg-gray-900
+                dark:text-white rounded-box w-40">
 
               <li>
                 <JetNavLink :href="route('login')" :active="route().current('login')">
@@ -80,10 +81,10 @@ const logout = () => {
                 shadow
                 bg-gray-100
                 text-gray-900
-                dark:bg-gray-900
+                dark:bg-gray-800
                 dark:text-white
                 rounded-box
-                w-52
+                w-40
               ">
               <li>
                 <JetNavLink :href="route('home')" :active="route().current('home')">
@@ -120,7 +121,9 @@ const logout = () => {
         </div>
 
         <div class="navbar-center">
-          <Link :href="route('landing')" class="btn btn-ghost text-primary dark:text-white normal-case text-xl">{{ $page.props.appName }}
+          <Link :href="route('landing')" class="btn btn-ghost text-primary dark:text-white normal-case text-xl">{{
+              $page.props.appName
+          }}
           </Link>
         </div>
 
@@ -142,9 +145,12 @@ const logout = () => {
                 mt-3
                 p-2
                 shadow
-                bg-base-100
+                bg-gray-100
+                text-gray-900
+                dark:bg-gray-800
+                dark:text-white
                 rounded-box
-                w-52
+                w-36
               ">
               <li>
                 <JetNavLink :href="route('user-profile', { id: $page.props.user.username })">
@@ -165,7 +171,9 @@ const logout = () => {
               <li>
                 <!-- Authentication -->
                 <form @submit.prevent="logout">
-                  <JetDropdownLink as="button"> Log Out </JetDropdownLink>
+                  <JetDropdownLink as="button">
+                    Log Out
+                  </JetDropdownLink>
                 </form>
               </li>
             </ul>
@@ -201,7 +209,7 @@ const logout = () => {
     </div>
 
     <!--<MobileNav class="pt-10" v-if="$page.props.auth.user !== null" />-->
-    
+
   </div>
 
 </template>
