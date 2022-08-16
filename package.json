@@ -21,6 +21,7 @@
         "vue": "^3.2.31"
     },
     "dependencies": {
+        "@cloudgeek/playcore-hls": "^0.1.7",
         "@cloudgeek/vue3-video-player": "^0.3.10",
         "@headlessui/vue": "^1.6.7",
         "daisyui": "^2.22.0",

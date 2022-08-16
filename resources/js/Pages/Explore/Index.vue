@@ -3,6 +3,8 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 import Post from '../Shared/Post.vue';
 import Cards from '../Shared/Cards.vue';
 import Pagination from '../Shared/Pagination.vue';
+import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue';
+import HLSCore from '@cloudgeek/playcore-hls';
 
 let props = defineProps({
     posts: Object,
@@ -21,20 +23,51 @@ let props = defineProps({
             </div>
         </section>
 
+
+        <section class="py-4 mb-4">
+            <div class="px-4 mx-auto max-w-screen-sm">
+                <TabGroup>
+                    <TabList class="flex space-x-1 rounded-xl bg-gray-100 p-3">
+                        <Tab v-slot="{ selected }" as="template">
+                            <button :class="[selected ? 'btn btn-primary' : 'btn btn-primary btn-active']">
+                                Posts
+                            </button>
+                        </Tab>
+                        <Tab v-slot="{ selected }" as="template">
+                            <button :class="[selected ? 'btn btn-primary' : 'btn btn-primary btn-active']">
+                                Users
+                            </button>
+                        </Tab>
+                        <Tab v-slot="{ selected }" as="template">
+                            <button :class="[selected ? 'btn btn-primary' : 'btn btn-primary btn-active']">
+                                More
+                            </button>
+                        </Tab>
+                    </TabList>
+                    <TabPanels>
+                        <TabPanel>
+
+                        </TabPanel>
+                        <TabPanel>Content 2</TabPanel>
+                        <TabPanel>Content 3</TabPanel>
+                    </TabPanels>
+                </TabGroup>
+            </div>
+        </section>
+
         <section class="bg-gray-900 min-h-screen">
             <div class="mx-auto my-8 px-4">
                 <div className="masonry sm:masonry-sm md:masonry-md">
-                    <div v-for="post in posts.data" :key="post.id"
-                    className="rounded-lg m-4 break-inside">
-                        <div 
-                            class="mx-auto max-w-screen-sm max-h-fit lg:mb-16">
+                    <div v-for="post in posts.data" :key="post.id" className="rounded-lg m-4 break-inside">
+                        <div class="mx-auto max-w-screen-sm max-h-fit lg:mb-16">
                             <div class="card bg-gray-800 shadow-xl">
-                                <div v-if="post.video !== null">
-                                    <vue-plyr :options="options">
-                                        <video controls crossorigin playsinline loop data-poster="poster.jpg">
-                                            <source size="720" :src="post.video" type="video/mp4" />
-                                        </video>
-                                    </vue-plyr>
+                                <div v-if="post.hlsready === null">
+                                    <vue3-video-player :src="post.video">
+                                    </vue3-video-player>
+                                </div>
+                                <div v-else>
+                                    <vue3-video-player :core="HLSCore" :src="post.hls">
+                                    </vue3-video-player>
                                 </div>
                                 <div class="card-body">
                                     <div class="flex justify-between">

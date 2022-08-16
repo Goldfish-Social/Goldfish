@@ -29,12 +29,15 @@ class ExploreController extends Controller
                     'avatar'        =>  $post->user->getProfilePhotoUrlAttribute(),
                     'userlink'      =>  '@' . $post->user->username,
                     'media'         =>  'storage/' . $post->files,
-                    'video'         =>  Storage::disk('public')->url('uploads/' . $post->user->id . '/' . 'videos/' . $post->id . '.mp4'),
                     'delete'        =>  Auth::user()->id === $post->user_id,
                     'status'        =>  $post->status,
                     'isliked'       =>  $post->isLikedBy(auth()->user()),
                     'likes'         =>  $post->likers()->count(),
-                    'replycount'    => $post->replies->count()
+                    'replycount'    =>  $post->replies->count(),
+                    'downloadready' =>  $post->converted_for_downloading_at,
+                    'hlsready'      =>  $post->converted_for_streaming_at,
+                    'video'         =>  Storage::disk('public')->url('uploads/' . $post->user->id . '/' . 'videos/' . $post->id . '.mp4'),
+                    'hls'           =>  Storage::disk('public')->url('uploads/' . $post->user->id . '/' . 'videos/' . $post->id . '.m3u8'),
                 ]),
             'postcount'         =>  Post::latest()->count(),
         ]);

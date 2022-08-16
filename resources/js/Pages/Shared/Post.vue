@@ -7,14 +7,14 @@
             <div class="py-4">
                 <div class="form-control py-2">
                     <label
-                    class="flex flex-col w-full h-32 border-4 border-blue-200 border-dashed hover:bg-gray-800 hover:border-gray-400">
+                    class="flex flex-col w-full h-32 border-4 border-primary border-dashed dark:hover:bg-gray-800 hover:bg-gray-300 hover:border-secondary">
                     <div class="flex flex-col items-center justify-center pt-7">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-gray-400 group-hover:text-gray-400"
                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                         </svg>
-                        <p class="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-900">
+                        <p class="pt-1 text-sm tracking-wider text-gray-400 dark:group-hover:text-gray-900 group-hover:text-gray-300">
                             Upload a video(max 10MB)</p>
                             <progress v-if="form.progress" class="progress progress-success w-56 m-1" :value="form.progress.percentage" max="100">
                             {{ form.progress.percentage }}%

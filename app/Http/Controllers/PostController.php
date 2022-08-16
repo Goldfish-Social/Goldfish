@@ -33,13 +33,16 @@ class PostController extends Controller
                 'avatar'        =>  $post->user->getProfilePhotoUrlAttribute(),
                 'userlink'      =>  '@' . $post->user->username,
                 'media'         =>  'storage/' . $post->files,
-                'video'         =>  Storage::disk('public')->url('uploads/' . $post->user->id . '/' . 'videos/' . $post->id . '.mp4'),
                 'delete'        =>  Auth::user()->id === $post->user_id,
                 'status'        =>  $post->status,
                 'isliked'       =>  $post->isLikedBy(auth()->user()),
                 'likes'         =>  $post->likers()->count(),
                 'delete'        =>  Auth::user()->id === $post->user_id || Auth::user()->id === 1,
-                'replycount'    =>  $post->replies->count()
+                'replycount'    =>  $post->replies->count(),
+                'downloadready' =>  $post->converted_for_downloading_at,
+                'hlsready'      =>  $post->converted_for_streaming_at,
+                'video'         =>  Storage::disk('public')->url('uploads/' . $post->user->id . '/' . 'videos/' . $post->id . '.mp4'),
+                'hls'           =>  Storage::disk('public')->url('uploads/' . $post->user->id . '/' . 'videos/' . $post->id . '.m3u8')
             ])
         ]);
     }
@@ -63,7 +66,10 @@ class PostController extends Controller
                 'avatar'            =>  $post->user->getProfilePhotoUrlAttribute(),
                 'time'              =>  $post->created_at->diffForHumans(),
                 'username'          =>  $post->user->username,
-                'video'             =>  Storage::disk('public')->url('uploads/' . $post->user->id . '/' . 'videos/' . $post->id . '.mp4'),
+                'downloadready' =>  $post->converted_for_downloading_at,
+                'hlsready'      =>  $post->converted_for_streaming_at,
+                'video'         =>  Storage::disk('public')->url('uploads/' . $post->user->id . '/' . 'videos/' . $post->id . '.mp4'),
+                'hls'           =>  Storage::disk('public')->url('uploads/' . $post->user->id . '/' . 'videos/' . $post->id . '.m3u8'),
                 'status'            =>  $post->status,
                 'isliked'           =>  $liked,
                 'likes'             =>  $post->likers()->count(),
@@ -116,8 +122,8 @@ class PostController extends Controller
             'description'   =>  $request->description
         ]);
 
-        // $this->dispatch(new ConvertVideoForStreaming($attributes));
-        $this->dispatch(new ConvertVideoForDownloading($attributes));
+        $this->dispatch(new ConvertVideoForStreaming($attributes));
+        // $this->dispatch(new ConvertVideoForDownloading($attributes));
         
         return back();
     }

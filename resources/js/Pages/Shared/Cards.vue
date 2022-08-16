@@ -5,13 +5,16 @@
                 <div v-for="post in posts.data" :key="post.id" class="mx-auto max-w-screen-sm max-h-fit lg:mb-16 mb-8">
 
                     <div class="card dark:bg-gray-800 bg-white dark:text-white text-gray-900 shadow-xl">
-                        <div v-if="post.video !== null">
-                            <vue-plyr :options="options">
-                                <video controls crossorigin playsinline loop data-poster="poster.jpg">
-                                    <source size="720" :src="post.video" type="video/mp4" />
-                                </video>
-                            </vue-plyr>
+
+                        <div v-if="post.hlsready === null">
+                            <vue3-video-player :src="post.video">
+                            </vue3-video-player>
                         </div>
+                        <div v-else>
+                            <vue3-video-player :core="HLSCore" :src="post.hls">
+                            </vue3-video-player>
+                        </div>
+
                         <div class="card-body">
 
                             <div class="flex justify-between">
@@ -73,9 +76,8 @@
                                         ({{ post.likes }})
                                     </InertiaLink>
                                     <button v-if="$page.props.auth.user === null"
-                                        class="btn btn-outline btn-success btn-sm gap-2"
-                                        >
-                                        
+                                        class="btn btn-outline btn-success btn-sm gap-2">
+
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
                                             stroke-linecap="round" stroke-linejoin="round">
@@ -131,6 +133,7 @@
 <script setup>
 import { useForm } from '@inertiajs/inertia-vue3'
 import Like from './Like.vue';
+import HLSCore from '@cloudgeek/playcore-hls';
 
 const form = useForm();
 function destroy(id) {

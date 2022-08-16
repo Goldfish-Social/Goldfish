@@ -6,6 +6,7 @@ import Cards from '../Shared/Cards.vue';
 import Reply from '../Shared/Reply.vue';
 import { useForm } from "@inertiajs/inertia-vue3";
 import { computed } from 'vue';
+import HLSCore from '@cloudgeek/playcore-hls';
 
 let props = defineProps({
     post: Object,
@@ -44,12 +45,13 @@ function destroy(id) {
             <div class="py-4 px-4 mx-auto max-w-screen-xl">
                 <div class="mx-auto max-w-screen-sm lg:mb-16 mb-8">
                     <div class="card bg-white dark:bg-gray-800 shadow dark:text-white text-gray-900">
-                        <div v-if="post.video !== null">
-                            <vue-plyr :options="options">
-                                <video controls crossorigin playsinline loop data-poster="poster.jpg">
-                                    <source size="720" :src="post.video" type="video/mp4" />
-                                </video>
-                            </vue-plyr>
+                        <div v-if="post.hlsready === null">
+                            <vue3-video-player :src="post.video">
+                            </vue3-video-player>
+                        </div>
+                        <div v-else>
+                            <vue3-video-player :core="HLSCore" :src="post.hls">
+                            </vue3-video-player>
                         </div>
                         <div class="card-body">
 
