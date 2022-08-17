@@ -85,7 +85,7 @@ let form = useForm({
   description: "",
   video: "",
   nsfw: "",
-  status:   "",
+  status:   "public",
 });
 
 let submit = () => {

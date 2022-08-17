@@ -7,8 +7,11 @@
                     <div class="card dark:bg-gray-800 bg-white dark:text-white text-gray-900 shadow-xl">
 
                         <div v-if="post.hlsready === null">
-                            <vue3-video-player :src="post.video">
-                            </vue3-video-player>
+                            <vue-plyr :options="options">
+                                <video controls crossorigin playsinline>
+                                    <source size="720" :src="post.video" type="video/mp4" />
+                                </video>
+                            </vue-plyr>
                         </div>
                         <div v-else>
                             <vue3-video-player :core="HLSCore" :src="post.hls">
