@@ -1,9 +1,9 @@
 <template>
     <div>
-        <div class="card dark:bg-gray-800 dark:text-white bg-white text-gray-900 shadow-xl">
-            <figure>
+        <div class="card dark:bg-gray-800 dark:text-white bg-white text-gray-900">
+            <!-- <figure>
                 <img :src="profile.pic" class="w-full max-h-fit" alt="" />
-            </figure>
+            </figure> -->
             <div class="card-body">
                 <div class="flex justify-between text-left">
                     <h2 class="card-title">
@@ -49,8 +49,11 @@
                         Unfollow
                     </InertiaLink>
                 </div>
-                <p class="mt-2 mb-2">{{ profile.about }}</p>
-                <div class="flex mt-3">
+                <p class="my-5 text-left" v-if="profile.about === null">
+                    No bio.
+                </p>
+                <p class="my-5 text-left">{{ profile.about }}</p>
+                <div class="flex my-4">
                     <div class="flex justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="mt-1 mr-1" width="18" height="18"
                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
@@ -72,7 +75,7 @@
 
                     </div>
                 </div>
-                <div class="divider"></div>
+                
                 <div class="card-actions justify-between">
                     <InertiaLink preserve-scroll class="btn btn-xs btn-outline btn-success"
                         :href="route('user-profile', { id: profile.username })">

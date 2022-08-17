@@ -81,48 +81,46 @@ function destroy(id) {
                             <p class="mt-3">{{ post.description }}</p>
                             <div class="divider"></div>
                             <div class="card-actions flex justify-between">
-                                <div class="flex justify-start">
+                                <div class="flex">
                                     <InertiaLink v-if="post.isliked === false" preserveScroll method="post" as="button"
-                                        type="button" class="btn btn-success btn-sm gap-2"
+                                        type="button" class="btn btn-ghost btn-sm gap-2"
                                         :href="route('like', { id: post.id })">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
                                             stroke-linecap="round" stroke-linejoin="round">
-                                            <path
-                                                d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3">
-                                            </path>
+                                            <polygon
+                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                            </polygon>
                                         </svg>
-                                        Like ({{ post.likes }})
+                                        {{ post.likes }}
                                     </InertiaLink>
                                     <InertiaLink v-if="post.isliked === true" preserveScroll method="post" as="button"
-                                        type="button" class="btn btn-outline btn-success btn-sm gap-2"
+                                        type="button" class="btn btn-ghost btn-sm btn-block gap-2"
                                         :href="route('like', { id: post.id })">
-                                        Undo
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                            viewBox="0 0 24 24" fill="#f8e71c" stroke="#f8e71c" stroke-width="1.5"
                                             stroke-linecap="round" stroke-linejoin="round">
-                                            <path
-                                                d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3">
-                                            </path>
+                                            <polygon
+                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                            </polygon>
                                         </svg>
-
-                                        ({{ post.likes }})
+                                        {{ post.likes }}
                                     </InertiaLink>
-                                    <button v-if="$page.props.auth.user === null"
-                                        class="btn btn-outline btn-success btn-sm gap-2">
-
+                                    <InertiaLink v-if="$page.props.auth.user === null"
+                                        :href="route('login')" 
+                                        class="btn btn-ghost btn-sm btn-block gap-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
                                             stroke-linecap="round" stroke-linejoin="round">
-                                            <path
-                                                d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3">
-                                            </path>
+                                            <polygon
+                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                            </polygon>
                                         </svg>
-                                        {{ post.likes }} Likes
-                                    </button>
+                                        {{ post.likes }}
+                                    </InertiaLink>
                                 </div>
-                                <div class="flex justify-end">
-                                    <InertiaLink class="btn btn-sm btn-secondary gap-2 mr-2"
+                                <div class="flex">
+                                    <InertiaLink class="btn btn-sm btn-ghost btn-block gap-2 mr-2"
                                         :href="route('show-post', { id: post.id })">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
@@ -133,8 +131,9 @@ function destroy(id) {
                                         </svg>
                                         {{ post.replycount }}
                                     </InertiaLink>
-
-                                    <button class="btn btn-sm btn-accent gap-2">
+                                </div>
+                                <div class="flex">
+                                    <button class="btn btn-sm btn-ghost btn-block gap-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
                                             stroke-linecap="round" stroke-linejoin="round">
