@@ -41,7 +41,11 @@
                                         </div>
                                     </div>
                                 </h3>
-                                <div class="badge badge-primary badge-outline mt-5">{{ post.status }}</div>
+                                <div class="badge badge-primary badge-outline mt-5">
+                                    <InertiaLink :href="route('show-post', { id: post.id })">
+                                        {{ post.status }}
+                                    </InertiaLink>
+                                </div>
                             </div>
                             <p class="mt-3">
                                 <InertiaLink :href="route('show-post', { id: post.id })">
@@ -76,7 +80,7 @@
                                         {{ post.likes }}
                                     </InertiaLink>
                                     <InertiaLink v-if="$page.props.auth.user === null"
-                                        :href="route('show-post', { id: post.id })" 
+                                        :href="route('show-post', { id: post.id })"
                                         class="btn btn-ghost btn-sm btn-block gap-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
