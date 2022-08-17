@@ -9,8 +9,8 @@ const props = defineProps({
 
 const classes = computed(() => {
     return props.active
-        ? 'text-success active'
-        : 'text-success';
+        ? 'text-error active dark:bg-gray-800'
+        : 'text-error';
 });
 </script>
 

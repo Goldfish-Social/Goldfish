@@ -217,7 +217,7 @@ const logout = () => {
 
     </div>
 
-    <!--<MobileNav class="pt-10" v-if="$page.props.auth.user !== null" />-->
+    <MobileNav class="pt-10 z-10" v-if="$page.props.auth.user !== null" />
 
   </div>
 
