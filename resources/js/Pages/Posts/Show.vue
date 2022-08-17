@@ -185,7 +185,6 @@ function destroy(id) {
 
         <section>
             <div v-if="post.replies !== null" class="px-4 mx-auto max-w-screen-xl py-16 lg:px-6">
-
                 <div v-for="reply in post.replies" :key="reply.id" class="mx-auto max-w-screen-sm lg:mb-16 mb-8">
                     <div class="card bg-white text-gray-900 dark:bg-gray-800 dark:text-white shadow">
                         <div class="card-body">
@@ -221,8 +220,6 @@ function destroy(id) {
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </section>
 

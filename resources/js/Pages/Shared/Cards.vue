@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="py-2 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+        <div class="px-4 mx-auto max-w-screen-xl py-10 lg:px-6">
             <div v-if="posts !== null">
                 <div v-for="post in posts.data" :key="post.id" class="mx-auto max-w-screen-sm max-h-fit lg:mb-16 mb-8">
 

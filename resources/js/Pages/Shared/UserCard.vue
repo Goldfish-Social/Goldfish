@@ -22,7 +22,7 @@
                     </h2>
                     <InertiaLink
                         v-if="$page.props.auth.user !== null && profile.isFollowing === false && profile.followbutton === false"
-                        preserveScroll method="post" as="button" type="button" class="btn btn-primary gap-2"
+                        preserveScroll method="post" as="button" type="button" class="btn btn-primary btn-sm gap-2 mt-2"
                         :href="route('follow', { id: profile.username })">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -35,7 +35,7 @@
                     </InertiaLink>
                     <InertiaLink
                         v-if="$page.props.auth.user !== null && profile.isFollowing === true && profile.followbutton === false"
-                        preserveScroll method="post" as="button" type="button" class="btn btn-secondary gap-2"
+                        preserveScroll method="post" as="button" type="button" class="btn btn-secondary btn-sm gap-2 mt-2"
                         :href="route('follow', { id: profile.username })">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -49,15 +49,15 @@
                 <p class="mt-2 mb-2">{{ profile.about }}</p>
                 <div class="divider"></div>
                 <div class="card-actions justify-between">
-                    <InertiaLink preserve-scroll class="btn btn-sm btn-outline btn-primary"
+                    <InertiaLink preserve-scroll class="btn btn-xs btn-outline btn-primary"
                         :href="route('user-profile', { id: profile.username })">
                         {{ profile.postamount }} Posts
                     </InertiaLink>
-                    <InertiaLink preserve-scroll class="btn btn-sm btn-outline btn-accent"
+                    <InertiaLink preserve-scroll class="btn btn-xs btn-outline btn-accent"
                         :href="route('user-profile-follows', { id: profile.username })">
                         {{ profile.followcount }} Follows
                     </InertiaLink>
-                    <InertiaLink preserve-scroll class="btn btn-sm btn-outline btn-primary"
+                    <InertiaLink preserve-scroll class="btn btn-xs btn-outline btn-primary"
                         :href="route('user-profile-followers', { id: profile.username })">
                         {{ profile.followerscount }} Followers
                     </InertiaLink>

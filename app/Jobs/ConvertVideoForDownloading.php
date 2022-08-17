@@ -28,7 +28,9 @@ class ConvertVideoForDownloading implements ShouldQueue
     public function handle()
     {
         // create a video format...
-        $lowBitrateFormat = (new X264)->setKiloBitrate(500);
+        // $lowBitrateFormat = (new X264)->setKiloBitrate(500);
+        $midBitrateFormat  = (new X264)->setKiloBitrate(1500);
+        // $highBitrateFormat = (new X264)->setKiloBitrate(3000);
 
         // open the uploaded video from the right disk...
         FFMpeg::fromDisk($this->post->disk)
@@ -48,7 +50,7 @@ class ConvertVideoForDownloading implements ShouldQueue
 
         // tell the MediaExporter to which disk and in which format we want to export...
             ->toDisk('public')
-            ->inFormat($lowBitrateFormat)
+            ->inFormat($midBitrateFormat)
 
         // call the 'save' method with a filename...
             ->save('uploads/' . $this->post->user->id . '/' . 'videos/' . $this->post->id . '.mp4');

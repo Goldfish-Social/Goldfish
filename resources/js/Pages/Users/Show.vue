@@ -24,8 +24,8 @@ let props = defineProps({
             </div>
         </section>
 
-        <section class="dark:bg-gray-900 dark:text-white bg-gray-100 text-gray-900">
-             <TabGroup>
+        <section class="dark:bg-gray-900 dark:text-white bg-gray-100 text-gray-900 mx-auto max-w-screen-sm">
+            <TabGroup>
                 <TabList class="mx-auto text-center flex space-x-1 bg-gray-200 dark:bg-gray-800 p-2">
                     <Tab v-slot="{ selected }" as="template">
                         <button :class="[selected ? 'btn btn-primary' : 'btn btn-primary btn-active']">
@@ -50,7 +50,6 @@ let props = defineProps({
                         </div>
                         <Cards v-bind:posts="profile.posts" />
                         <Pagination :links="profile.posts.links" />
-
                     </TabPanel>
                     <TabPanel>
                         <div class="px-4 mx-auto max-w-screen-xl">

@@ -15,7 +15,7 @@ let props = defineProps({
             {{ profile.name }} Profile
         </template>
 
-        <section class="dark:bg-gray-900 bg-gray-100 text-gray-900 dark:text-white">
+        <section class="dark:bg-gray-900 bg-gray-100 text-gray-900 dark:text-gray-900">
             <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
                 <div class="mx-auto max-w-screen-sm text-center mb-8">
                     <ProfileCard :profile="profile" />
@@ -41,12 +41,14 @@ let props = defineProps({
                                                 </InertiaLink>
                                             </div>
                                         </div>
-                                        <div class="mp-2">
+                                        <div class="mp-2 dark:text-gray-900">
                                             <InertiaLink :href="follower.userlink">
-                                                <div class="font-bold hover:text-gray-300">{{ follower.name }}</div>
-                                                <div class="text-sm opacity-50 hover:text-gray-300">@{{
-                                                        follower.username
-                                                }}</div>
+                                                <div class="font-bold dark:text-gray-900 hover:text-gray-300">
+                                                    {{ follower.name }}
+                                                </div>
+                                                <div class="text-sm hover:text-gray-300 dark:text-gray-900">
+                                                    @{{ follower.username }}
+                                                </div>
                                             </InertiaLink>
                                         </div>
                                     </div>

@@ -5,7 +5,7 @@
                 <img :src="profile.pic" class="w-full max-h-fit" alt="" />
             </figure>
             <div class="card-body">
-                <div class="flex justify-between">
+                <div class="flex justify-between text-left">
                     <h2 class="card-title">
                         <InertiaLink :href="route('user-profile', { id: profile.username })">
                             <div class="avatar">
@@ -74,15 +74,15 @@
                 </div>
                 <div class="divider"></div>
                 <div class="card-actions justify-between">
-                    <InertiaLink preserve-scroll class="btn btn-sm btn-outline btn-success"
+                    <InertiaLink preserve-scroll class="btn btn-xs btn-outline btn-success"
                         :href="route('user-profile', { id: profile.username })">
                         {{ profile.postamount }} Posts
                     </InertiaLink>
-                    <InertiaLink preserve-scroll class="btn btn-sm btn-outline btn-success"
+                    <InertiaLink preserve-scroll class="btn btn-xs btn-outline btn-success"
                         :href="route('user-profile-follows', { id: profile.username })">
                         {{ profile.followcount }} Follows
                     </InertiaLink>
-                    <InertiaLink preserve-scroll class="btn btn-sm btn-outline btn-success"
+                    <InertiaLink preserve-scroll class="btn btn-xs btn-outline btn-success"
                         :href="route('user-profile-followers', { id: profile.username })">
                         {{ profile.followerscount }} Followers
                     </InertiaLink>

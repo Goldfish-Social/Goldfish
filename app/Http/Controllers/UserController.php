@@ -36,7 +36,7 @@ class UserController extends Controller
                 ->withQueryString()
                 ->through(fn ($user) => [
                     'id'             =>  $user->id,
-                    'name'           =>  $user->name,
+                    'name'           =>  Str::limit($user->name, 8),
                     'username'       =>  $user->username,
                     'pic'            =>  $user->getProfilePhotoUrlAttribute(),
                     'about'          =>  Str::limit($user->about, 200),
@@ -69,12 +69,13 @@ class UserController extends Controller
         return Inertia::render('Users/Show', [
             'profile' => [
                 'id'             =>  $user->id,
-                'name'           =>  $user->name,
+                'name'           =>  Str::limit($user->name, 16),
                 'about'          =>  $user->about,
                 'pic'            =>  $user->getProfilePhotoUrlAttribute(),
                 'time'           =>  $user->created_at->diffForHumans(),
                 'username'       =>  $user->username,
-                'website'        =>  $user->website,
+                'website'        =>  Str::limit($user->website, 10),
+                'link'           =>  $user->website,
                 'postamount'     =>  $user->posts->count(),
                 'followerscount' =>  $user->followers()->count(),
                 'followcount'    =>  $user->followings()->count(),
@@ -114,7 +115,8 @@ class UserController extends Controller
                 'pic'            =>  $user->getProfilePhotoUrlAttribute(),
                 'time'           =>  $user->created_at->diffForHumans(),
                 'username'       =>  $user->username,
-                'website'        =>  $user->website,
+                'website'        =>  Str::limit($user->website, 10),
+                'link'           =>  $user->website,
                 'postamount'     =>  $user->posts->count(),
                 'followerscount' =>  $user->followers()->count(),
                 'followcount'    =>  $user->followings()->count(),
@@ -125,7 +127,7 @@ class UserController extends Controller
                     // NEED: pagination
                     ->map(fn ($followers) => [
                         'id'             =>  $followers->id,
-                        'name'           =>  $followers->name,
+                        'name'           =>  Str::limit($followers->name, 8),
                         'username'       =>  $followers->username,
                         'avatar'         =>  $followers->getProfilePhotoUrlAttribute(),
                         'userlink'       =>  '/@' . $followers->username,
@@ -147,7 +149,8 @@ class UserController extends Controller
                 'pic'            =>  $user->getProfilePhotoUrlAttribute(),
                 'time'           =>  $user->created_at->diffForHumans(),
                 'username'       =>  $user->username,
-                'website'        =>  $user->website,
+                'website'        =>  Str::limit($user->website, 10),
+                'link'           =>  $user->website,
                 'postamount'     =>  $user->posts->count(),
                 'followerscount' =>  $user->followers()->count(),
                 'followcount'    =>  $user->followings()->count(),
@@ -157,7 +160,7 @@ class UserController extends Controller
                 'followers'      =>  $user->followings
                     // NEED: pagination
                     ->map(fn ($follows) => [
-                        'name'          =>  $follows->followable->name,
+                        'name'          =>  Str::limit($follows->followable->name, 8),
                         'id'            =>  $follows->followable->user_id,
                         'username'      =>  $follows->followable->username,
                         'avatar'        =>  $follows->followable->getProfilePhotoUrlAttribute(),
