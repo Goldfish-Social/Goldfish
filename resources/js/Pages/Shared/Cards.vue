@@ -4,7 +4,7 @@
             <div v-if="posts !== null">
                 <div v-for="post in posts.data" :key="post.id" class="mx-auto max-w-screen-sm max-h-fit lg:mb-16 mb-8">
 
-                    <div class="card dark:bg-gray-800 bg-white dark:text-white text-gray-900">
+                    <div class="card card-compact dark:bg-gray-800 bg-white dark:text-white text-gray-900">
 
                         <div v-if="post.hlsready === null">
                             <vue-plyr :options="options">
@@ -23,18 +23,18 @@
                                 <h3 class="card-title">
                                     <InertiaLink :href="route('user-profile', { id: post.username })">
                                         <div class="avatar">
-                                            <div class="w-14 rounded-full">
+                                            <div class="w-14 mask mask-hexagon">
                                                 <img :src="post.avatar" />
                                             </div>
                                         </div>
                                     </InertiaLink>
-                                    <div class="ml-3">
+                                    <div class="ml-2 text-sm">
                                         <InertiaLink :href="route('user-profile', { id: post.username })">
                                             {{ post.username }}
                                         </InertiaLink>
                                         <div>
                                             <InertiaLink :href="route('show-post', { id: post.id })">
-                                                <div class="badge badge-sm badge-outline p-2">
+                                                <div class="badge badge-sm badge-outline p-1">
                                                     {{ post.time }}
                                                 </div>
                                             </InertiaLink>

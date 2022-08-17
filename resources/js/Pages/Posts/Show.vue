@@ -44,7 +44,7 @@ function destroy(id) {
         <section>
             <div class="py-4 px-4 mx-auto max-w-screen-xl">
                 <div class="mx-auto max-w-screen-sm lg:mb-16 mb-8">
-                    <div class="card bg-white dark:bg-gray-800 shadow dark:text-white text-gray-900">
+                    <div class="card card-compact bg-white dark:bg-gray-800 shadow dark:text-white text-gray-900">
                         <div v-if="post.hlsready === null">
                             <vue-plyr :options="options">
                                 <video controls crossorigin playsinline>
@@ -57,16 +57,15 @@ function destroy(id) {
                             </vue3-video-player>
                         </div>
                         <div class="card-body">
-
                             <h3 class="card-title">
                                 <InertiaLink :href="route('user-profile', { id: post.username })">
                                     <div class="avatar">
-                                        <div class="w-12 rounded-full">
+                                        <div class="w-14 mask mask-hexagon">
                                             <img :src="post.avatar" />
                                         </div>
                                     </div>
                                 </InertiaLink>
-                                <div class="ml-3">
+                                <div class="ml-2">
                                     <InertiaLink :href="route('user-profile', { id: post.username })">
                                         {{ post.username }}
                                     </InertiaLink>
@@ -77,7 +76,6 @@ function destroy(id) {
                                     </div>
                                 </div>
                             </h3>
-
                             <p class="mt-3">{{ post.description }}</p>
                             <div class="divider"></div>
                             <div class="card-actions flex justify-between">
@@ -148,7 +146,6 @@ function destroy(id) {
                                 </div>
 
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -158,7 +155,6 @@ function destroy(id) {
         <section v-if="$page.props.auth.user !== null">
             <div class="mx-auto max-w-screen-sm px-4">
                 <form @submit.prevent="submit">
-
                     <h3 class="font-bold text-lg dark:text-white">Write a reply {{ $page.props.user.name }}</h3>
                     <div class="py-4">
                         <div class="form-control py-2">
@@ -185,17 +181,17 @@ function destroy(id) {
         <section>
             <div v-if="post.replies !== null" class="px-4 mx-auto max-w-screen-xl py-16 lg:px-6">
                 <div v-for="reply in post.replies" :key="reply.id" class="mx-auto max-w-screen-sm lg:mb-16 mb-8">
-                    <div class="card bg-white text-gray-900 dark:bg-gray-800 dark:text-white shadow">
+                    <div class="card card-compact bg-white text-gray-900 dark:bg-gray-800 dark:text-white shadow">
                         <div class="card-body">
                             <h3 class="card-title">
                                 <div class="avatar">
-                                    <div class="w-12 rounded-full">
+                                    <div class="w-14 mask mask-hexagon">
                                         <InertiaLink :href="route('user-profile', { id: reply.username })">
                                             <img :src="reply.avatar" />
                                         </InertiaLink>
                                     </div>
                                 </div>
-                                <div class="ml-3">
+                                <div class="ml-2 text-sm">
                                     <InertiaLink :href="route('user-profile', { id: reply.username })">
                                         {{ reply.username }}
                                     </InertiaLink>
@@ -206,7 +202,7 @@ function destroy(id) {
                                     </div>
                                 </div>
                             </h3>
-                            <p class="mt-3">{{ reply.reply }}</p>
+                            <p class="p-5">{{ reply.reply }}</p>
                             <div  v-if="reply.delete">
                                 <div class="divider"></div>
                                 <div class="card-actions justify-end mt-2">

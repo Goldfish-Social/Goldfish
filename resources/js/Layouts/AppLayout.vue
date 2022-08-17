@@ -144,7 +144,7 @@ const logout = () => {
           </button>
           <div class="dropdown dropdown-end">
             <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-              <div class="w-10 rounded-full">
+              <div class="w-10 mask mask-hexagon">
                 <img :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name" />
               </div>
             </label>
