@@ -11,8 +11,8 @@
         <meta property="og:title" content="{{ config('app.name', 'Goldfish') }}">
         <meta property="og:type" content="article">
         <meta property="og:url" content="{{request()->url()}}">
-
-        <link rel="icon" sizes="16x16" href="{{ asset('assets/images/icon.png') }}">
+        
+        @laravelPWA
         
         @routes
         @vite('resources/js/app.js')

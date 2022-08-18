@@ -18,6 +18,7 @@
         "overtrue/laravel-like": "^5.0",
         "pbmedia/laravel-ffmpeg": "^8.1",
         "predis/predis": "^2.0",
+        "silviolleite/laravelpwa": "^2.0",
         "spatie/image-optimizer": "^1.6",
         "tightenco/ziggy": "^1.0"
     },
