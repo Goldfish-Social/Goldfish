@@ -36,7 +36,7 @@ class UserController extends Controller
                 ->withQueryString()
                 ->through(fn ($user) => [
                     'id'             =>  $user->id,
-                    'name'           =>  Str::limit($user->name, 8),
+                    'name'           =>  Str::limit($user->name, 20),
                     'username'       =>  $user->username,
                     'pic'            =>  $user->getProfilePhotoUrlAttribute(),
                     'about'          =>  Str::limit($user->about, 200),
