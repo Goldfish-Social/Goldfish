@@ -1,6 +1,6 @@
 ## Goldfish Social
 
-Meow there! Welcome to the Goldfish Social repo, this project is intended as a free open source alternative to (former) Vine and (currently) TikTok. The project has just started and is in very early stages. We started out with something different but after some great advice restarted the project in SPA form(Single Page Application). We are using the following stacks:
+Meow there! Welcome to the Goldfish Social repo, this project is intended as a free open source alternative to (former) Vine and (currently) TikTok. The project has just started and is in very early stages. We started out with something different, but after some great advice restarted the project in SPA form(Single Page Application). We are using the following stacks:
 
 - [Laravel 9.x](https://laravel.com/).
 - [Vue JS 3.x](https://vuejs.org/).
@@ -13,7 +13,7 @@ If you want to test out this software for yourself, do checkout our little [docu
 
 ## Features
 
-As said the project is in very early stages and we will update the repo as soon as the code is availble and tested. For now we are building a full featured social platform and later add Federation through [ActivityPub](https://www.w3.org/TR/activitypub/). 
+As said, the project is in very early stages, and we will update the repo as soon as the code is available and tested. For now, we are building a full-featured social platform and later add Federation through [ActivityPub](https://www.w3.org/TR/activitypub/). 
 
 ## Sponsors
 
