@@ -74,7 +74,7 @@ class UserController extends Controller
                 'pic'            =>  $user->getProfilePhotoUrlAttribute(),
                 'time'           =>  $user->created_at->diffForHumans(),
                 'username'       =>  $user->username,
-                'website'        =>  Str::limit($user->website, 16),
+                'website'        =>  Str::limit($user->website, 32),
                 'link'           =>  $user->website,
                 'postamount'     =>  $user->posts->count(),
                 'followerscount' =>  $user->followers()->count(),
