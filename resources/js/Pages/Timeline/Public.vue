@@ -54,11 +54,11 @@ watch(
             </div>
         </template>
 
-        <section class="mt-4 mb-4">
+        <!-- <section class="mt-4 mb-4">
             <div class="px-4 mx-auto max-w-screen-sm">
                 <Post />
             </div>
-        </section>
+        </section> -->
 
         <section class="dark:bg-gray-900 dark:text-white bg-gray-100 text-gray-900">
             <div v-if="posts.total === 0">

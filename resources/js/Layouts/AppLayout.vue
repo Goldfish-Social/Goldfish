@@ -8,6 +8,7 @@ import JetNavLink from "@/Jetstream/NavLink.vue";
 import Mobile from '../Pages/Shared/Mobile.vue';
 import MobileNav from "../Pages/Shared/MobileNav.vue";
 import FlashMessage from "../Pages/Shared/FlashMessage.vue";
+import Compose from "../Pages/Shared/Compose.vue";
 
 defineProps({
   title: String,
@@ -132,7 +133,8 @@ const logout = () => {
         </div>
 
         <div v-else class="navbar-end">
-          <button class="btn btn-ghost btn-circle">
+
+          <!-- <button class="btn btn-ghost btn-circle">
             <div class="indicator">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                 stroke="#b91c1c">
@@ -141,7 +143,10 @@ const logout = () => {
               </svg>
               <span class="badge badge-xs badge-primary indicator-item"></span>
             </div>
-          </button>
+          </button> -->
+
+          <Compose />
+
           <div class="dropdown dropdown-end">
             <label tabindex="0" class="btn btn-ghost btn-circle avatar">
               <div class="w-10 mask mask-hexagon">
