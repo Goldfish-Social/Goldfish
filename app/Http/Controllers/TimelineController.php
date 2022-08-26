@@ -60,7 +60,7 @@ class TimelineController extends Controller
             ->when($request->input('search'), function ($query, $search) {
                 $query->where('description', 'like', "%{$search}%");
             })
-            ->paginate(20)
+            ->paginate(2)
             ->withQueryString()
             ->through(fn($post) => [
                 'id'            =>  $post->id,

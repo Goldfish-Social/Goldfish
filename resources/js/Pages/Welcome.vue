@@ -1,19 +1,17 @@
 <script setup>
-import { Head, Link } from '@inertiajs/inertia-vue3';
 import AppLayout from '../Layouts/AppLayout.vue';
 import throttle from "lodash/throttle";
 import { ref, watch } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 import Pagination from './Shared/Pagination.vue';
+import SimplePagination from './Shared/SimplePagination.vue';
 
 let props = defineProps({
-    canLogin: Boolean,
-    canRegister: Boolean,
     posts: Object,
     filters: Object,
-});
+})
 
-let search = ref(props.filters.search);
+let search = ref(props.filters.search)
 
 watch(
     search,
@@ -28,7 +26,7 @@ watch(
             }
         );
     }, 1000)
-);
+)
 </script>
 
 <template>
@@ -58,8 +56,9 @@ watch(
 
         <section>
             <Cards v-bind:posts="posts" />
-            <Pagination :links="posts.links" />
+            <!-- <Pagination :links="posts.links" /> -->
         </section>
+        <SimplePagination v-if="posts.total >= 21" :data="posts" />
 
     </AppLayout>
 </template>

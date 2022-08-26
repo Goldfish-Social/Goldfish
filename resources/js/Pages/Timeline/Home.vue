@@ -10,6 +10,8 @@ import Pagination from '../Shared/Pagination.vue';
 import PostModal from '../Shared/PostModal.vue';
 import Empty from '../Shared/Empty.vue';
 import Compose from '../Shared/Compose.vue';
+import SimplePagination from '../Shared/SimplePagination.vue';
+
 
 let props = defineProps({
     posts: Object,
@@ -44,7 +46,7 @@ watch(
                     <div class="dropdown dropdown-left">
                         <label tabindex="0" class="btn btn-primary">Search</label>
                         <div tabindex="0"
-                            class="dropdown-content card card-compact w-64 p-2 shadow bg-gray-900 text-white">
+                            class="dropdown-content card card-compact w-64 p-2 shadow dark:bg-gray-900 dark:text-white bg-gray-100 text-gray-900">
                             <div class="card-body">
                                 <h3 class="card-title">Search Posts</h3>
                                 <input v-model="search" type="text" class="input input-bordered input-info w-full"
@@ -70,8 +72,9 @@ watch(
 
             <Cards v-bind:posts="posts" />
 
-            <Pagination :links="posts.links" />
+            <!-- <Pagination :links="posts.links" /> -->
         </section>
+        <SimplePagination v-if="posts.total >= 21" :data="posts" />
 
     </AppLayout>
 </template>

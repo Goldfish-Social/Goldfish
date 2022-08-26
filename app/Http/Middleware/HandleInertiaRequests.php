@@ -49,6 +49,8 @@ class HandleInertiaRequests extends Middleware
                 'message' => fn () => $request->session()->get('message')
             ],
 
+            'filters' => fn () => $request->only(['search']),
+
         ]);
     }
 }

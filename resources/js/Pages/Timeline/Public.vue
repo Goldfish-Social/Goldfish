@@ -1,12 +1,12 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
-import Post from '../Shared/Post.vue';
 import Cards from '../Shared/Cards.vue';
 import throttle from "lodash/throttle";
 import { ref, watch } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 import Pagination from '../Shared/Pagination.vue';
 import Empty from '../Shared/Empty.vue';
+import SimplePagination from '../Shared/SimplePagination.vue';
 
 let props = defineProps({
     posts: Object,
@@ -65,9 +65,9 @@ watch(
                 <Empty />
             </div>
             <Cards v-bind:posts="posts" />
-
-            <Pagination :links="posts.links" />
+            <!-- <Pagination :links="posts.links" /> -->
         </section>
+        <SimplePagination v-if="posts.total >= 21" :data="posts" />
 
     </AppLayout>
 </template>

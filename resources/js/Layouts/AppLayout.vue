@@ -5,10 +5,10 @@ import { Head, Link } from "@inertiajs/inertia-vue3";
 import JetBanner from "@/Jetstream/Banner.vue";
 import JetDropdownLink from "@/Jetstream/DropdownLink.vue";
 import JetNavLink from "@/Jetstream/NavLink.vue";
-import Mobile from '../Pages/Shared/Mobile.vue';
 import MobileNav from "../Pages/Shared/MobileNav.vue";
 import FlashMessage from "../Pages/Shared/FlashMessage.vue";
 import Compose from "../Pages/Shared/Compose.vue";
+import Search from "../Pages/Shared/Search.vue";
 
 defineProps({
   title: String,
@@ -119,6 +119,9 @@ const logout = () => {
               </li>
             </ul>
           </div>
+
+          <!-- <Search :filters="$page.props.filters" /> -->
+
         </div>
 
         <div class="navbar-center">
