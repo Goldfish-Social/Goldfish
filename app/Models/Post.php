@@ -11,7 +11,6 @@ class Post extends Model
     use HasFactory;
     use Likeable;
 
-
     // Also load default related tabled
     protected $with = ['user'];
 

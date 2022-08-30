@@ -12,6 +12,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Validation\Rules\Dimensions;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 
 class ConvertVideoForDownloading implements ShouldQueue
@@ -36,23 +37,32 @@ class ConvertVideoForDownloading implements ShouldQueue
         FFMpeg::fromDisk($this->post->disk)
             ->open($this->post->path)
 
-        // add the 'resize' filter...
-        //    ->addFilter(function ($filters) {
-        //        $filters->resize(new Dimension(960, 540));
-        //    })
+            // add the 'resize' filter...
+            ->addFilter(function ($filters) {
+                $filters->resize(new Dimension(960, 540));
+            })
 
             ->addFilter(function ($filters) {
                 $filters->clip(TimeCode::fromSeconds(1), TimeCode::fromSeconds(30));
             })
-            
-        // call the 'export' method...
+
+            /* ->addFilter(function ($filters) {
+                $filters->resize(new Dimension(1080, 1920));
+            }) */
+
+            /* ->addFilters(function ($post) {
+                $post->addFilter('scale=1080:1920');
+            }) */
+
+
+            // call the 'export' method...
             ->export()
 
-        // tell the MediaExporter to which disk and in which format we want to export...
+            // tell the MediaExporter to which disk and in which format we want to export...
             ->toDisk('public')
             ->inFormat($midBitrateFormat)
 
-        // call the 'save' method with a filename...
+            // call the 'save' method with a filename...
             ->save('uploads/' . $this->post->user->id . '/' . 'videos/' . $this->post->id . '.mp4');
 
         // update the database so we know the convertion is done!

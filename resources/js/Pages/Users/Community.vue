@@ -4,7 +4,8 @@ import { ref, watch } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 import throttle from "lodash/throttle";
 import AppLayout from "@/Layouts/AppLayout.vue";
-import UserCard from "../Shared/UserCard.vue";;
+import UserCard from "../Shared/UserCard.vue";
+import SimplePagination from "../Shared/SimplePagination.vue";
 
 let props = defineProps({
   users: Object,
@@ -37,7 +38,7 @@ watch(
     <section class="dark:bg-gray-900 bg-gray-100 text-gray-900 dark:text-white min-h-screen pb-4">
       <div class="px-4 mx-auto max-w-screen-sm">
 
-        <input v-model="search" type="text" class="input input-bordered input-info w-full mt-4"
+        <input v-model="search" type="text" class="input input-bordered input-info w-full mt-4 bg-white text-gray-900 dark:bg-gray-800 dark:text-white"
           placeholder="Search.." />
 
         <div v-for="user in users.data" :key="user.id" class="card dark:bg-gray-800 dark:text-white bg-gray-100 text-gray-900 mt-5 shadow-xl">
@@ -45,8 +46,9 @@ watch(
         </div>
 
       </div>
-      <Pagination class="mt-8" :links="users.links" />
+      <!-- <Pagination class="mt-8" :links="users.links" /> -->
     </section>
+    <SimplePagination v-if="usercount >= 11" :data="users.links" />
 
   </AppLayout>
 </template>

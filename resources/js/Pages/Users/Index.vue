@@ -4,6 +4,7 @@ import { ref, watch } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 import throttle from "lodash/throttle";
 import AppLayout from "@/Layouts/AppLayout.vue";
+import SimplePagination from "../Shared/SimplePagination.vue";
 
 let props = defineProps({
   users: Object,
@@ -32,7 +33,6 @@ watch(
     <template #header>
         Community
       </template>
-
 
         <section class="bg-gray-100 py-4 dark:bg-gray-900 min-h-screen">
             <div class="px-4 mx-auto max-w-screen-sm">
@@ -67,8 +67,9 @@ watch(
                 </div>
               </div>
             </div>
-            <Pagination :links="users.links" />
+            <!-- <Pagination :links="users.links" /> -->
         </section>
+        <SimplePagination v-if="users.meta.total >= 21" :data="users.links" />
 
   </AppLayout>
 </template>

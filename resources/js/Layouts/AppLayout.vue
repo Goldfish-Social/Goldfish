@@ -9,6 +9,7 @@ import MobileNav from "../Pages/Shared/MobileNav.vue";
 import FlashMessage from "../Pages/Shared/FlashMessage.vue";
 import Compose from "../Pages/Shared/Compose.vue";
 import Search from "../Pages/Shared/Search.vue";
+import PublicSearch from "../Pages/Shared/PublicSearch.vue";
 
 defineProps({
   title: String,
@@ -132,6 +133,7 @@ const logout = () => {
         </div>
 
         <div v-if="$page.props.auth.user === null" class="navbar-end">
+          <PublicSearch :filters="$page.props.filters" />
           <Link :href="route('register')" class="btn btn-primary">Register</Link>
         </div>
 
@@ -147,6 +149,8 @@ const logout = () => {
               <span class="badge badge-xs badge-primary indicator-item"></span>
             </div>
           </button> -->
+
+          <Search :filters="$page.props.filters" />
 
           <Compose />
 
@@ -186,12 +190,9 @@ const logout = () => {
               </li>
               <div class="border-t border-gray-700" />
               <li>
-                <!-- Authentication -->
-                <form @submit.prevent="logout">
-                  <JetDropdownLink as="button">
-                    Log Out
-                  </JetDropdownLink>
-                </form>
+                <InertiaLink href="/logout" method="post" type="button" as="button">
+                  Log Out
+                </InertiaLink>
               </li>
             </ul>
           </div>
@@ -207,13 +208,15 @@ const logout = () => {
           px-4
           lg:px-6
           py-2.5
-          dark:bg-gray-700
+          dark:bg-gray-800
           bg-gray-200
           shadow
         ">
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <h3 class="font-semibold text-xl text-gray-900 dark:text-white leading-tight">
-            <slot name="header" />
+          <h3 class="text-2xl font-extrabold"><span
+              class="text-transparent bg-clip-text bg-gradient-to-r to-red-500 from-red-800">
+              <slot name="header" />
+            </span>
           </h3>
         </div>
       </header>

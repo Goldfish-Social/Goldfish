@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PostResource;
 use App\Models\Post;
 use Inertia\Inertia;
 use App\Models\Category;
@@ -17,7 +18,8 @@ class HomeController extends Controller
         return Inertia::render('Welcome', [
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
-            'posts' => Post::query()
+            'posts' => PostResource::collection(Post::query()
+            ->with('replies')
             ->latest()
             ->where('status', 'Public')
             ->where('is_nsfw', null)
@@ -25,26 +27,7 @@ class HomeController extends Controller
                 $query->where('description', 'like', "%{$search}%");
             })   
             ->paginate(20)
-            ->withQueryString()
-            ->through(fn($post) => [
-                'id'            =>  $post->id,
-                'name'          =>  $post->user->name,
-                'username'      =>  $post->user->username,
-                'title'         =>  $post->title,
-                'description'   =>  $post->description,
-                'time'          =>  $post->created_at->diffForHumans(),
-                'avatar'        =>  $post->user->getProfilePhotoUrlAttribute(),
-                'userlink'      =>  '@' . $post->user->username,
-                'media'         =>  'storage/' . $post->files,
-                'delete'        =>  false,
-                'status'        =>  $post->status,
-                'likes'         =>  $post->likers()->count(),
-                'replycount'    =>  $post->replies->count(),
-                'downloadready' =>  $post->converted_for_downloading_at,
-                'hlsready'      =>  $post->converted_for_streaming_at,
-                'video'         =>  Storage::disk('public')->url('uploads/' . $post->user->id . '/' . 'videos/' . $post->id . '.mp4'),
-                'hls'           =>  Storage::disk('public')->url('uploads/' . $post->user->id . '/' . 'videos/' . $post->id . '.m3u8')
-            ]),
+            ->withQueryString()),
             'filters' => $request->only(['search'])
         ]);
     }

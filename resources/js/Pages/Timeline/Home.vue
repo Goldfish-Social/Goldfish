@@ -38,43 +38,16 @@ watch(
 <template>
     <AppLayout title="Home">
         <template #header>
-            <div class="flex justify-between">
-                <div class="items-start pt-4">
-                    Home
-                </div>
-                <div class="items-end">
-                    <div class="dropdown dropdown-left">
-                        <label tabindex="0" class="btn btn-primary">Search</label>
-                        <div tabindex="0"
-                            class="dropdown-content card card-compact w-64 p-2 shadow dark:bg-gray-900 dark:text-white bg-gray-100 text-gray-900">
-                            <div class="card-body">
-                                <h3 class="card-title">Search Posts</h3>
-                                <input v-model="search" type="text" class="input input-bordered input-info w-full"
-                                    placeholder="Search.." />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            Home
         </template>
 
-        <!-- <section class="mt-4 mb-4">
-            <div class="px-4 mx-auto max-w-screen-sm">
-                <Post />
-            </div>
-        </section> -->
-
         <section class="dark:bg-gray-900 dark:text-white bg-gray-100 text-gray-900">
-
             <div v-if="posts.total === 0">
                 <Empty />
             </div>
-
             <Cards v-bind:posts="posts" />
-
-            <!-- <Pagination :links="posts.links" /> -->
         </section>
-        <SimplePagination v-if="posts.total >= 21" :data="posts" />
+        <SimplePagination v-if="posts.meta.total >= 21" :data="posts.links" />
 
     </AppLayout>
 </template>
