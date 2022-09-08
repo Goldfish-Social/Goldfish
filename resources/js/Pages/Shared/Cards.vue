@@ -53,7 +53,7 @@
                                 </InertiaLink>
                             </p>
                             <div class="divider"></div>
-                            <div class="card-actions flex justify-between">
+                            <div class="card-actions flex">
                                 <div class="flex">
                                     <InertiaLink v-if="post.isliked === false" preserveScroll method="post" as="button"
                                         type="button" class="btn btn-ghost btn-sm gap-2"

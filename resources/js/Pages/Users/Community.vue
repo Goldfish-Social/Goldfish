@@ -32,7 +32,7 @@ watch(
 <template>
   <AppLayout title="Community">
     <template #header>
-      Community ({{ usercount }} users)
+      Community ({{ users.meta.total }} users)
     </template>
 
     <section class="dark:bg-gray-900 bg-gray-100 text-gray-900 dark:text-white min-h-screen pb-4">

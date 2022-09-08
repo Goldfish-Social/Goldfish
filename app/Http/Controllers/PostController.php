@@ -21,7 +21,9 @@ class PostController extends Controller
     public function show(Post $post, Request $request)
     {
         return Inertia::render('Posts/Show', [
-            'post'  =>  PostResource::make($post),
+            'post'  =>  PostResource::make(
+                $post
+            ),
             'filters' => $request->only(['search'])
         ]);
     }

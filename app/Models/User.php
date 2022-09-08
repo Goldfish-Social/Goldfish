@@ -26,8 +26,6 @@ class User extends Authenticatable implements MustVerifyEmail
     use Followable;
     use Liker;
 
-
-
     /**
      * The attributes that are mass assignable.
      *

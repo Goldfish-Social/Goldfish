@@ -16,17 +16,18 @@ class UserController extends Controller
     {
         return Inertia::render('Users/Community', [
             'users' => UserResource::collection(
-                User::with('followings', 'posts', 'followables')
+                User::query()
+                    ->select('id', 'name', 'username', 'about', 'created_at')
                     ->when($request->input('search'), function ($query, $search) {
                         $query->where('username', 'like', "%{$search}%");
                     })
                     ->withCount(['followings', 'followables', 'posts'])
-                    ->with('followings', 'followables')
+                    ->with('followings', 'followables', 'posts')
+                    ->orderBy('created_at', 'DESC')
                     ->paginate(10)
                     ->withQueryString()
             ),
-            'filters'                =>  $request->only(['search']),
-            'usercount'              =>  User::latest()->count()
+            'filters'                =>  $request->only(['search'])
         ]);
     }
 
