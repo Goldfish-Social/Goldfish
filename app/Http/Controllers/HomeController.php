@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
-    public function test(Request $request)
+    public function welcome(Request $request)
     {
         $posts = PostResource::collection(
             Post::query()
@@ -29,8 +29,9 @@ class HomeController extends Controller
             return $posts;
         }
 
-        return Inertia::render('Test', [
-            'posts' => $posts
+        return Inertia::render('Timeline/Public', [
+            'posts' => $posts,
+            'filters' => $request->only(['search'])
         ]);
     }
 

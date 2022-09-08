@@ -1,48 +1,59 @@
-<script setup>
-import AppLayout from '@/Layouts/AppLayout.vue';
-import Cards from '../Shared/Cards.vue';
-import throttle from "lodash/throttle";
-import { ref, watch } from "vue";
-import { Inertia } from "@inertiajs/inertia";
-import Empty from '../Shared/Empty.vue';
-import SimplePagination from '../Shared/SimplePagination.vue';
-
-let props = defineProps({
-    posts: Object,
-    filters: Object,
-    postcount: String,
-});
-
-let search = ref(props.filters.search);
-
-watch(
-    search,
-    throttle(function (value) {
-        Inertia.get(
-            "/public",
-            { search: value },
-            {
-                preserveState: true,
-                replace: true,
-                preserveScroll: true
+<script>
+    import AppLayout from '@/Layouts/AppLayout.vue';
+    import axios from 'axios';
+    import { debounce } from "lodash/function";
+    import Cards from '../Shared/Cards.vue';
+    import Empty from '../Shared/Empty.vue';
+    
+    export default {
+        props: {
+            posts: Object,
+        },
+        data() {
+            return {
+                userPosts: this.posts
             }
-        );
-    }, 500)
-);
-</script>
+        },
+        components: {
+            AppLayout,
+            Cards,
+            Empty
+        },
+        mounted() {
+            window.addEventListener('scroll', debounce((e) => {
+                let pixelsFromBottom = document.documentElement.offsetHeight - document.documentElement.scrollTop - window.innerHeight;
+    
+                if (pixelsFromBottom < 200) {
+    
+                    axios.get(this.userPosts.links.next).then(response => {
+                        this.userPosts = {
+                            ...response.data,
+                            data: [...this.userPosts.data, ...response.data.data]
+                        }
+                    });
+                }
+            }, 100));
+        },
+        watch: {
+            posts(newPosts) {
+                this.userPosts = newPosts;
+            }
+        }
+    }
+    </script>
 <template>
     <AppLayout title="Public Timeline">
         <template #header>
-            {{ postcount }} Public Posts
+            The feed
         </template>
 
         <section class="dark:bg-gray-900 dark:text-white bg-gray-100 text-gray-900">
             <div v-if="posts.total === 0">
                 <Empty />
             </div>
-            <Cards v-bind:posts="posts" />
+            <Cards :posts="userPosts" />
         </section>
-        <SimplePagination v-if="posts.meta.total >= 21" :data="posts.links" />
+        <!-- <SimplePagination v-if="posts.meta.total >= 21" :data="posts.links" /> -->
 
     </AppLayout>
 </template>

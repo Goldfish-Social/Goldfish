@@ -12,7 +12,7 @@ use App\Http\Controllers\TimelineController;
 use App\Http\Controllers\NotificationsController;
 
 
-Route::get('/', [HomeController::class, 'landing'])->name('landing')->middleware('guest');
+Route::get('/', [HomeController::class, 'welcome'])->name('landing')->middleware('guest');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('@{user:username}', [UserController::class, 'show'])->name('user-profile');
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('show-post');
