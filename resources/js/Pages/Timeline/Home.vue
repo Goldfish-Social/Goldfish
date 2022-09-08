@@ -1,39 +1,45 @@
-<script setup>
+<script>
 import AppLayout from '@/Layouts/AppLayout.vue';
-import Welcome from '@/Jetstream/Welcome.vue';
-import Post from '../Shared/Post.vue';
+import axios from 'axios';
+import { debounce } from "lodash/function";
 import Cards from '../Shared/Cards.vue';
-import throttle from "lodash/throttle";
-import { ref, watch } from "vue";
-import { Inertia } from "@inertiajs/inertia";
-import Pagination from '../Shared/Pagination.vue';
-import PostModal from '../Shared/PostModal.vue';
 import Empty from '../Shared/Empty.vue';
-import Compose from '../Shared/Compose.vue';
-import SimplePagination from '../Shared/SimplePagination.vue';
 
+export default {
+    props: {
+        posts: Object,
+    },
+    data() {
+        return {
+            userPosts: this.posts
+        }
+    },
+    components: {
+        AppLayout,
+        Cards,
+        Empty
+    },
+    mounted() {
+        window.addEventListener('scroll', debounce((e) => {
+            let pixelsFromBottom = document.documentElement.offsetHeight - document.documentElement.scrollTop - window.innerHeight;
 
-let props = defineProps({
-    posts: Object,
-    filters: Object,
-});
+            if (pixelsFromBottom < 200) {
 
-let search = ref(props.filters.search);
-
-watch(
-    search,
-    throttle(function (value) {
-        Inertia.get(
-            "/home",
-            { search: value },
-            {
-                preserveState: true,
-                replace: true,
-                preserveScroll: true
+                axios.get(this.userPosts.links.next).then(response => {
+                    this.userPosts = {
+                        ...response.data,
+                        data: [...this.userPosts.data, ...response.data.data]
+                    }
+                });
             }
-        );
-    }, 500)
-);
+        }, 100));
+    },
+    watch: {
+        posts(newPosts) {
+            this.userPosts = newPosts;
+        }
+    }
+}
 </script>
 <template>
     <AppLayout title="Home">
@@ -42,12 +48,12 @@ watch(
         </template>
 
         <section class="dark:bg-gray-900 dark:text-white bg-gray-100 text-gray-900">
-            <div v-if="posts.total === 0">
+            <div v-if="posts.meta.total === 0">
                 <Empty />
             </div>
-            <Cards v-bind:posts="posts" />
+            <Cards :posts="userPosts" />
         </section>
-        <SimplePagination v-if="posts.meta.total >= 21" :data="posts.links" />
+        <!-- <SimplePagination v-if="posts.meta.total >= 21" :data="posts.links" /> -->
 
     </AppLayout>
 </template>

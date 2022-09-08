@@ -1,48 +1,22 @@
 <script setup>
-import AppLayout from '@/Layouts/AppLayout.vue';
-import Welcome from '@/Jetstream/Welcome.vue';
-import Post from '../Shared/Post.vue';
-import Cards from '../Shared/Cards.vue';
-import Reply from '../Shared/Reply.vue';
-import { useForm } from "@inertiajs/inertia-vue3";
-import { computed } from 'vue';
+import AppLayout from "@/Layouts/AppLayout.vue";
 import HLSCore from '@cloudgeek/playcore-hls';
+import ReplyForm from '../Shared/ReplyForm.vue';
+import ReplyCard from '../Shared/ReplyCard.vue';
 
 let props = defineProps({
     post: Object,
 });
 
-const characterCount = computed(() => {
-    return form.reply.length
-})
-
-let form = useForm({
-    reply: "",
-});
-
-let submit = () => {
-    form.post(route('reply', { id: props.post.data.id }), {
-        forceFormData: true,
-        preserveScroll: true,
-        onSuccess: () => form.reset("reply"),
-    });
-};
-
-function destroy(id) {
-    if (confirm("Are you sure you want to delete?")) {
-        form.delete(route('reply.destroy', id));
-    }
-}
-
 </script>
 <template>
     <AppLayout title="Post">
-        <template #header>
+        <!-- <template #header>
             Post by {{ post.data.username }}
-        </template>
+        </template> -->
 
         <section>
-            <div class="py-4 px-4 mx-auto max-w-screen-xl">
+            <div class="py-4 pt-10 px-4 mx-auto max-w-screen-xl">
                 <div class="mx-auto max-w-screen-sm lg:mb-16 mb-8">
                     <div class="card card-compact bg-white dark:bg-gray-800 shadow dark:text-white text-gray-900">
                         <div v-if="post.data.hlsready === null">
@@ -78,7 +52,7 @@ function destroy(id) {
                             </h3>
                             <p class="mt-3">{{ post.data.description }}</p>
                             <div class="divider"></div>
-                            <div class="card-actions flex justify-between">
+                            <div class="card-actions flex">
                                 <div class="flex">
                                     <InertiaLink v-if="post.data.isliked === false" preserveScroll method="post" as="button"
                                         type="button" class="btn btn-ghost btn-sm gap-2"
@@ -153,34 +127,12 @@ function destroy(id) {
         </section>
 
         <section v-if="$page.props.auth.user !== null">
-            <div class="mx-auto max-w-screen-sm px-4">
-                <form @submit.prevent="submit">
-                    <h3 class="font-bold text-lg dark:text-white">Write a reply {{ $page.props.user.name }}</h3>
-                    <div class="py-4">
-                        <div class="form-control py-2">
-                            <textarea v-model="form.reply" id="reply" name="reply" class="textarea textarea-primary bg-white text-gray-900 dark:bg-gray-800 dark:text-white"
-                                placeholder="Write a reply (max 500 characters)"></textarea>
-                            <p class="mt-2 text-sm text-gray-100">{{ characterCount }}/500</p>
-                            <div v-if="form.errors.reply" v-text="form.errors.reply" class="text-red-500 mt-1"></div>
-                        </div>
-                    </div>
-                    <div class="modal-action mt-2">
-                        <button type="submit" :disabled="form.processing" class="btn btn-success gap-2">
-                            Reply
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                            </svg>
-                        </button>
-                    </div>
-                </form>
-            </div>
+            <ReplyForm :post="post" />
         </section>
 
         <section>
             <div v-if="post.data.replies !== null" class="px-4 mx-auto max-w-screen-xl py-16 lg:px-6">
-                <div v-for="reply in post.data.replies" :key="reply.id" class="mx-auto max-w-screen-sm lg:mb-16 mb-8">
+                <!-- <div v-for="reply in post.data.replies" :key="reply.id" class="mx-auto max-w-screen-sm lg:mb-16 mb-8">
                     <div class="card card-compact bg-white text-gray-900 dark:bg-gray-800 dark:text-white shadow">
                         <div class="card-body">
                             <h3 class="card-title">
@@ -214,7 +166,8 @@ function destroy(id) {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
+                <ReplyCard :post="post" />
             </div>
         </section>
 

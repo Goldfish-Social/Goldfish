@@ -1,23 +1,21 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
-import Pagination from '../Shared/Pagination.vue';
 import ProfileCard from '../Shared/ProfileCard.vue';
 import Empty from '../Shared/Empty.vue';
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue';
+import SimplePagination from '../Shared/SimplePagination.vue';
 
 let props = defineProps({
     profile: Object,
+    posts: Object,
 });
 
 </script>
 <template>
     <AppLayout title="User Profile">
-        <template #header>
-            {{ profile.data.name }} Profile
-        </template>
 
         <section class="dark:bg-gray-900 dark:text-white bg-gray-100 text-gray-900">
-            <div class="py-10 px-4 mx-auto max-w-screen-xl lg:py-10 lg:px-6">
+            <div class="py-10 pt-16 px-4 mx-auto max-w-screen-xl lg:px-6">
                 <div class="mx-auto max-w-screen-sm text-center">
                     <ProfileCard :profile="profile.data" />
                 </div>
@@ -28,17 +26,17 @@ let props = defineProps({
             <TabGroup>
                 <TabList class="text-center flex space-x-1 bg-gray-200 dark:bg-gray-800 p-2 mx-4 rounded-lg">
                     <Tab v-slot="{ selected }" as="template">
-                        <button :class="[selected ? 'btn btn-primary' : 'btn btn-primary btn-active']">
+                        <button :class="[selected ? 'btn btn-primary btn-sm' : 'btn btn-primary btn-sm btn-active']">
                             Posts
                         </button>
                     </Tab>
                     <Tab v-slot="{ selected }" as="template">
-                        <button :class="[selected ? 'btn btn-primary' : 'btn btn-primary btn-active']">
+                        <button :class="[selected ? 'btn btn-primary btn-sm' : 'btn btn-primary btn-sm btn-active']">
                             Liked
                         </button>
                     </Tab>
                     <Tab v-slot="{ selected }" as="template">
-                        <button :class="[selected ? 'btn btn-primary' : 'btn btn-primary btn-active']">
+                        <button :class="[selected ? 'btn btn-primary btn-sm' : 'btn btn-primary btn-sm btn-active']">
                             Shared
                         </button>
                     </Tab>
@@ -50,8 +48,8 @@ let props = defineProps({
                         </div>
 
                         <div class="px-4 mx-auto max-w-screen-xl py-10 lg:px-6">
-                            <div v-if="profile.data.posts !== null">
-                                <div v-for="post in profile.data.posts" :key="post.id"
+                            <div v-if="posts.data.posts !== null">
+                                <div v-for="post in posts.data" :key="post.id"
                                     class="mx-auto max-w-screen-sm max-h-fit lg:mb-16 mb-8">
 
                                     <div
@@ -105,7 +103,7 @@ let props = defineProps({
                                                 </InertiaLink>
                                             </p>
                                             <div class="divider"></div>
-                                            <div class="card-actions flex justify-between">
+                                            <div class="card-actions flex">
                                                 <div class="flex">
                                                     <InertiaLink v-if="post.isliked === false" preserveScroll
                                                         method="post" as="button" type="button"
@@ -193,6 +191,8 @@ let props = defineProps({
                                 </div>
                             </div>
                         </div>
+
+                        <SimplePagination class="mb-6" v-if="posts.meta.total >= 21" :data="posts.links" />
 
 
                     </TabPanel>

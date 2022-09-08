@@ -11,7 +11,9 @@ class NotificationsController extends Controller
     {
         auth()->user()->unreadNotifications->markAsRead();
 
-        $notifications = auth()->user()->notifications()->latest()->paginate();
+        $notifications = auth()->user()->notifications()
+        ->latest()
+        ->paginate();
 
         if ($request->wantsJson()) {
             return $notifications;

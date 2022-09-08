@@ -46,9 +46,8 @@ watch(
         </div>
 
       </div>
-      <!-- <Pagination class="mt-8" :links="users.links" /> -->
     </section>
-    <SimplePagination v-if="usercount >= 11" :data="users.links" />
+    <SimplePagination class="my-6" v-if="users.meta.total >= 11" :data="users.links" />
 
   </AppLayout>
 </template>

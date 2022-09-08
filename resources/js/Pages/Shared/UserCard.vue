@@ -48,7 +48,7 @@
                 </div>
                 <p class="my-4">{{ profile.about }}</p>
                 
-                <div class="card-actions justify-between">
+                <div class="card-actions flex">
                     <InertiaLink preserve-scroll class="btn btn-xs btn-outline btn-primary"
                         :href="route('user-profile', { id: profile.username })">
                         {{ profile.postamount }} Posts

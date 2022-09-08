@@ -42,7 +42,7 @@ const logout = () => {
     <JetBanner />
 
     <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-      <nav class="navbar sticky top-0 z-50 bg-white dark:bg-gray-900 border-gray-200 px-4 lg:px-6 py-2.5">
+      <nav class="navbar sticky top-0 z-50 bg-white dark:bg-gray-900 border-gray-200 px-4 lg:px-6 py-2.5 dark:border-b-[1px] dark:border-gray-800">
         <div class="navbar-start">
           <div class="dropdown">
             <label tabindex="0" class="btn btn-ghost btn-circle">
@@ -121,7 +121,7 @@ const logout = () => {
             </ul>
           </div>
 
-          <Search :filters="$page.props.filters" />
+          <Search v-if="$page.props.auth.user !== null" :filters="$page.props.filters" />
 
         </div>
 
@@ -161,7 +161,6 @@ const logout = () => {
         </div>
 
         <div v-else class="navbar-end">
-
           <InertiaLink :href="route('notifications')" class="btn btn-ghost btn-circle">
             <div class="indicator">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"

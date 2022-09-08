@@ -25,7 +25,7 @@ class UserResource extends JsonResource
             'isFollowing'    =>  Auth::user() ? Auth::user()->isFollowing($this->resource) : null,
             'isFollowedBy'   =>  Auth::user() ? Auth::user()->isFollowedBy($this->resource) : null,
             'followbutton'   =>  Auth::user() ? Auth::user()->is($this->resource) : null,
-            'posts'          =>  PostResource::collection($this->whenLoaded('posts')),
+            //'posts'          =>  PostResource::collection($this->whenLoaded('posts')),
         ];
     }
 }

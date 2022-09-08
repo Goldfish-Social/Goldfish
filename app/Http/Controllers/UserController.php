@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PostResource;
 use App\Http\Resources\UserResource;
 use App\Models\Post;
 use App\Models\User;
@@ -35,6 +36,12 @@ class UserController extends Controller
     {
         return Inertia::render('Users/Show', [
             'profile'       =>  UserResource::make($user),
+            'posts'         => PostResource::collection(
+                $user->posts()
+                ->withCount('replies')
+                ->latest()
+                ->paginate()
+            ),
             'filters'       =>  $request->only(['search']),
         ]);
     }
