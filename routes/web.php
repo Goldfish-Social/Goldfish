@@ -1,20 +1,21 @@
 <?php
 
-use App\Http\Controllers\AboutController;
-use App\Http\Controllers\ExploreController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\ReplyController;
-use App\Http\Controllers\TimelineController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ReplyController;
+use App\Http\Controllers\ExploreController;
+use App\Http\Controllers\TimelineController;
+use App\Http\Controllers\NotificationsController;
 
 
 Route::get('/', [HomeController::class, 'landing'])->name('landing')->middleware('guest');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
-Route::get('/terms', [AboutController::class, 'terms'])->name('terms');
-Route::get('/privacy', [AboutController::class, 'privacy'])->name('privacy');
+/* Route::get('/terms', [AboutController::class, 'terms'])->name('terms');
+Route::get('/privacy', [AboutController::class, 'privacy'])->name('privacy'); */
 Route::get('@{user:username}', [UserController::class, 'show'])->name('user-profile');
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('show-post');
 
@@ -32,4 +33,10 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::post('/{user:username}/follow', [UserController::class, 'follow'])->name('follow');
     Route::post('/posts/{post}/like', [PostController::class, 'toggleLike'])->name('like');
     Route::get('/notifications', [NotificationsController::class, 'index'])->name('notifications');
+    Route::group(['middleware' => 'admin'], function () {
+        Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
+        Route::get('/admin/posts', [AdminController::class, 'posts'])->name('admin.posts');
+        Route::delete('/posts/{post}/delete', [AdminController::class, 'deletePost'])->name('admin.post.destroy');
+        Route::delete('/@{user:id}/delete', [AdminController::class, 'deleteUser'])->name('admin.user.destroy');
+    });
 });

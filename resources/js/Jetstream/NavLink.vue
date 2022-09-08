@@ -9,7 +9,7 @@ const props = defineProps({
 
 const classes = computed(() => {
     return props.active
-        ? ''
+        ? 'bg-gray-200 dark:bg-gray-800'
         : '';
 });
 </script>

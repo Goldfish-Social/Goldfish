@@ -16,7 +16,7 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->username !== 'stux')
+        if (auth()->user()->id !== 1)
         {
             abort(403); 
         }

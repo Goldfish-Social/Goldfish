@@ -11,6 +11,7 @@ import VuePlyr from "vue-plyr";
 import "vue-plyr/dist/vue-plyr.css";
 import Vue3VideoPlayer from "@cloudgeek/vue3-video-player";
 import "@cloudgeek/vue3-video-player/dist/vue3-video-player.css";
+import AppLayout from "@/Layouts/AppLayout.vue";
 
 const appName =
     window.document.getElementsByTagName("title")[0]?.innerText || "Goldfish";
@@ -33,6 +34,7 @@ createInertiaApp({
             .component("InertiaHead", Head)
             .component("InertiaLink", Link)
             .component("Cards", Cards)
+            .component("AppLayout", AppLayout)
             .mount(el);
     },
 });

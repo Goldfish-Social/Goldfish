@@ -53,6 +53,10 @@ class HandleInertiaRequests extends Middleware
 
             'unreadNotificationsCount' => $request->user() ? $request->user()->unreadNotifications()->count() : null,
 
+            'can'   =>  [
+                'admin' => $request->user() ? $request->user()->id === 1 : null
+            ],
+
         ]);
     }
 }
