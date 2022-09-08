@@ -3,7 +3,6 @@ import AppLayout from '../Layouts/AppLayout.vue';
 import throttle from "lodash/throttle";
 import { ref, watch } from "vue";
 import { Inertia } from "@inertiajs/inertia";
-import Pagination from './Shared/Pagination.vue';
 import SimplePagination from './Shared/SimplePagination.vue';
 
 let props = defineProps({
@@ -28,7 +27,6 @@ watch(
     }, 1000)
 )
 </script>
-
 <template>
     <AppLayout title="Explore &amp; Discover">
 
@@ -38,7 +36,6 @@ watch(
 
         <section>
             <Cards v-bind:posts="posts" />
-            <!-- <Pagination :links="posts.links" /> -->
         </section>
         <SimplePagination v-if="posts.meta.total >= 21" :data="posts" />
 

@@ -37,23 +37,17 @@ class ConvertVideoForDownloading implements ShouldQueue
         FFMpeg::fromDisk($this->post->disk)
             ->open($this->post->path)
 
-            // add the 'resize' filter...
-            /* ->addFilter(function ($filters) {
-                $filters->resize(new Dimension(960, 540));
+            /* ->addFilters(function ($filters) {
+                $filters->addFilter('scale=1080:1920');
             }) */
 
             ->addFilter(function ($filters) {
                 $filters->clip(TimeCode::fromSeconds(1), TimeCode::fromSeconds(30));
             })
 
-            /* ->addFilter(function ($filters) {
+            ->addFilter(function ($filters) {
                 $filters->resize(new Dimension(1080, 1920));
-            }) */
-
-            /* ->addFilters(function ($post) {
-                $post->addFilter('scale=1080:1920');
-            }) */
-
+            })
 
             // call the 'export' method...
             ->export()

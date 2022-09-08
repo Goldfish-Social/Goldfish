@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="btm-nav visible md:invisible bg-gray-100 text-gray-900 dark:bg-slate-900 dark:text-white">
+        <div class="btm-nav visible md:invisible bg-gray-100 text-gray-900 dark:bg-slate-900 dark:text-white border-t-[1px] border-primary">
             <Mobile :href="route('home')" :active="route().current('home')">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
@@ -25,6 +25,18 @@
                     <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
                     <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                 </svg>
+            </Mobile>
+            <Mobile :href="route('notifications')" :active="route().current('notifications')">
+                <div class="indicator">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0">
+                        </path>
+                    </svg>
+                    <span class="badge badge-xs badge-success indicator-item">
+                        {{ $page.props.unreadNotificationsCount }}
+                    </span>
+                </div>
             </Mobile>
             <Mobile :href="route('user-profile', { id: $page.props.user.username })"
                 :active="route().current('user-profile')">

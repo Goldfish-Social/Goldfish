@@ -4,6 +4,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ExploreController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\TimelineController;
@@ -29,5 +30,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get('@{user:username}/follows', [UserController::class, 'follows'])->name('user-profile-follows');
     Route::get('@{user:username}/followers', [UserController::class, 'followers'])->name('user-profile-followers');
     Route::post('/{user:username}/follow', [UserController::class, 'follow'])->name('follow');
-    Route::post('/posts/{post}/like', [PostController::class, 'like'])->name('like');
+    Route::post('/posts/{post}/like', [PostController::class, 'toggleLike'])->name('like');
+    Route::get('/notifications', [NotificationsController::class, 'index'])->name('notifications');
 });

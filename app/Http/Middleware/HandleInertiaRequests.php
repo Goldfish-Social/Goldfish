@@ -51,6 +51,8 @@ class HandleInertiaRequests extends Middleware
 
             'filters' => fn () => $request->only(['search']),
 
+            'unreadNotificationsCount' => $request->user() ? $request->user()->unreadNotifications()->count() : null,
+
         ]);
     }
 }

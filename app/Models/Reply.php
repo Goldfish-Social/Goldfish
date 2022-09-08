@@ -9,7 +9,7 @@ class Reply extends Model
 {
     use HasFactory;
 
-    protected $with = ['user'];
+    /* protected $with = ['user']; */
 
     public function post() {
         return $this->belongsTo(Post::class);

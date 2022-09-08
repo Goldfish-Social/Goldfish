@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Gate;
 use App\Jobs\ConvertVideoForStreaming;
 use Illuminate\Support\Facades\Storage;
 use App\Jobs\ConvertVideoForDownloading;
+use App\Notifications\LikedPostNotification;
 
 class PostController extends Controller
 {
@@ -22,7 +23,7 @@ class PostController extends Controller
         return Inertia::render('Posts/Show', [
             'post'  =>  PostResource::make($post),
             'filters' => $request->only(['search'])
-            ]);
+        ]);
     }
 
     public function store(Request $request)
@@ -44,7 +45,7 @@ class PostController extends Controller
         $storeURL = Str::random(16);
 
         // $attributes['video'] = $request->file('uploads/' . $request['user_id'] . '/' . 'videos/' . $storeURL, 'public');
-        
+
         $attributes = Post::create([
             'user_id'       =>  auth()->user()->id,
             'status'        =>  $request->status,
@@ -57,14 +58,14 @@ class PostController extends Controller
 
         //$this->dispatch(new ConvertVideoForStreaming($attributes));
         $this->dispatch(new ConvertVideoForDownloading($attributes));
-        
+
         return back();
     }
 
     // Delete item
-    public function destroy(Post $post) 
+    public function destroy(Post $post)
     {
-        if (! Gate::allows('delete-post', $post)) {
+        if (!Gate::allows('delete-post', $post)) {
             abort(403);
         }
 
@@ -79,12 +80,23 @@ class PostController extends Controller
 
     public function like(Post $post)
     {
-        if(auth()->user()->hasLiked($post) ) {
+        if (auth()->user()->hasLiked($post)) {
             auth()->user()->unlike($post);
         } else {
-       auth()->user()->toggleLike($post);
+            auth()->user()->toggleLike($post);
+            $post->user->notify(new LikedPostNotification($post, auth()->user()));
         }
         return back();
     }
 
+    public function toggleLike(Post $post)
+    {
+        auth()->user()->toggleLike($post);
+
+        if (auth()->user()->hasLiked($post)) {
+            $post->user->notify(new LikedPostNotification($post, auth()->user()));
+        }
+
+        return redirect()->back();
+    }
 }

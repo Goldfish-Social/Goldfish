@@ -9,8 +9,6 @@ use Inertia\Inertia;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
-use Spatie\ImageOptimizer\OptimizerChainFactory;
 
 class UserController extends Controller
 {
@@ -19,11 +17,13 @@ class UserController extends Controller
         return Inertia::render('Users/Community', [
             'users' => UserResource::collection(
                 User::with('followings', 'posts', 'followables')
-                ->when($request->input('search'), function ($query, $search) {
-                    $query->where('username', 'like', "%{$search}%");
-                })
-                ->paginate(10)
-                ->withQueryString()
+                    ->when($request->input('search'), function ($query, $search) {
+                        $query->where('username', 'like', "%{$search}%");
+                    })
+                    ->withCount(['followings', 'followables', 'posts'])
+                    ->with('followings', 'followables')
+                    ->paginate(10)
+                    ->withQueryString()
             ),
             'filters'                =>  $request->only(['search']),
             'usercount'              =>  User::latest()->count()
@@ -33,8 +33,8 @@ class UserController extends Controller
     public function show(User $user, Request $request)
     {
         return Inertia::render('Users/Show', [
-            'profile'   =>  UserResource::make($user),
-            'filters'                =>  $request->only(['search']),
+            'profile'       =>  UserResource::make($user),
+            'filters'       =>  $request->only(['search']),
         ]);
     }
 

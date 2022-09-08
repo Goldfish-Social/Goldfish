@@ -12,7 +12,7 @@ class Post extends Model
     use Likeable;
 
     // Also load default related tabled
-    protected $with = ['user'];
+    /* protected $with = ['user']; */
 
     // Search function
     public function scopeFilter($query, array $filters)
