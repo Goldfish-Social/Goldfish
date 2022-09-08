@@ -13,6 +13,27 @@ use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
+    public function test(Request $request)
+    {
+        $posts = PostResource::collection(
+            Post::query()
+                ->with('replies', 'user')
+                ->latest()
+                ->where('status', 'Public')
+                ->where('is_nsfw', null)
+                ->paginate(5)
+                ->withQueryString()
+        );
+
+        if ($request->wantsJson()) {
+            return $posts;
+        }
+
+        return Inertia::render('Test', [
+            'posts' => $posts
+        ]);
+    }
+
     public function landing(Request $request)
     {
         return Inertia::render('Welcome', [

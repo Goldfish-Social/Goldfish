@@ -41,7 +41,7 @@ watch(
         <input v-model="search" type="text" class="input input-bordered input-info w-full mt-4 bg-white text-gray-900 dark:bg-gray-800 dark:text-white"
           placeholder="Search.." />
 
-        <div v-for="user in users.data" :key="user.id" class="card dark:bg-gray-800 dark:text-white bg-gray-100 text-gray-900 mt-5 shadow-xl">
+        <div v-for="user in users.data" :key="user.id" class="card dark:bg-gray-800 dark:text-white bg-gray-100 text-gray-900 mt-5">
           <UserCard :profile="user" />
         </div>
 
