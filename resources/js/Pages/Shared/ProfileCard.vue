@@ -69,7 +69,7 @@
                         </svg>
                         <p v-if="profile.website === null">
                             No website</p>
-                        <a v-else :href="profile.link" target="_blank">{{
+                        <a v-else :href="profile.link" class="break-all" target="_blank">{{
                                 profile.website
                         }}</a>
 

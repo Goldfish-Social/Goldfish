@@ -24,7 +24,7 @@ let props = defineProps({
 
         <section class="dark:bg-gray-900 dark:text-white bg-gray-100 text-gray-900 mx-auto max-w-screen-sm">
             <TabGroup>
-                <TabList class="text-center flex space-x-1 bg-gray-200 dark:bg-gray-800 p-2 mx-4 rounded-lg">
+                <TabList class="text-center flex space-x-1 bg-gray-100 dark:bg-gray-800 p-2 mx-4 rounded-lg">
                     <Tab v-slot="{ selected }" as="template">
                         <button :class="[selected ? 'btn btn-primary btn-sm' : 'btn btn-primary btn-sm btn-active']">
                             Posts

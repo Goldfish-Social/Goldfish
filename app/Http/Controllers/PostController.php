@@ -44,17 +44,13 @@ class PostController extends Controller
 
         $attributes['user_id'] = auth()->user()->id;
 
-        $storeURL = Str::random(16);
-
-        // $attributes['video'] = $request->file('uploads/' . $request['user_id'] . '/' . 'videos/' . $storeURL, 'public');
-
         $attributes = Post::create([
             'user_id'       =>  auth()->user()->id,
             'status'        =>  $request->status,
             'is_nsfw'       =>  $request->nsfw,
             'disk'          =>  'public',
             'original_name' =>  $request->file('video')->getClientOriginalName(),
-            'path'          =>  $request->file('video')->store('uploads/' . $request['user_id'] . '/' . 'videos/' . $storeURL, 'public'),
+            'path'          =>  $request->file('video')->store('uploads' . $request['user_id'] . '/' . 'videos/', 'public'),
             'description'   =>  $request->description
         ]);
 
@@ -64,17 +60,25 @@ class PostController extends Controller
         return back();
     }
 
-    // Delete item
     public function destroy(Post $post)
     {
         if (!Gate::allows('delete-post', $post)) {
             abort(403);
         }
 
-        File::delete(public_path('uploads/videos/') . $post->id . '.mp4');
-
-        // Delete the file
         File::delete($post->path);
+        File::delete('/uploads' . $post->user->id . '/videos/' . $post->id);
+
+        /* $firstPath = $post->path;
+        if(File::exists($firstPath)) {
+            File::delete($firstPath);
+        } */
+        $secondPath = public_path('../storage/uploads' . $post->user->id . '/videos/' . $post->id);
+        if(File::exists($secondPath)) {
+            File::delete($secondPath);
+        }
+        // Storage::disk('public')->delete($path);
+        // Storage::disk('public')->delete('/uploads' . $post->user->id . '/videos/' . $post->id);
 
         $post->delete();
         return redirect('/home')->with('message', 'Post deleted successfully.');

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\File;
 use Illuminate\Database\Eloquent\Model;
 use Overtrue\LaravelLike\Traits\Likeable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -23,6 +24,16 @@ class Post extends Model
                 ->where('title', 'like', '%' . $search . '%')
                     ->orWhere('content', 'like', '%' . $search . '%')
             );
+    }
+
+    public function delete(){
+        if($this->attributes['path']){
+            $file = $this->attributes['path'];
+            if(File::isFile($file)){
+                File::delete($file);
+            }
+        }
+        parent::delete();
     }
 
     // Relation to user

@@ -138,13 +138,12 @@
 </template>
 <script setup>
 import { useForm } from '@inertiajs/inertia-vue3'
-import Like from './Like.vue';
 import HLSCore from '@cloudgeek/playcore-hls';
 
 const form = useForm();
 function destroy(id) {
     if (confirm("Are you sure you want to delete?")) {
-        form.delete(route('posts.destroy', id));
+        form.delete(`/posts/${id}/delete`);
     }
 }
 

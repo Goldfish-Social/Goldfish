@@ -6,6 +6,8 @@ use App\Models\Post;
 use App\Models\User;
 use App\Models\Reply;
 use Illuminate\Bus\Queueable;
+use App\Http\Resources\PostResource;
+use App\Http\Resources\UserResource;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -60,9 +62,8 @@ class RepliedPostNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'user'  =>  $this->user,
-            'post'  =>  $this->post,
-            'reply' =>  $this->reply,
+            'user' => UserResource::make($this->user),
+            'post' => PostResource::make($this->post)
         ];
     }
 }

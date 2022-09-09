@@ -24,9 +24,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::post('/home', [PostController::class, 'store']);
     Route::get('/public', [TimelineController::class, 'public'])->name('public-timeline');
     Route::get('/explore', [ExploreController::class, 'index'])->name('explore');
+    Route::delete('/posts/{post}/delete', [PostController::class, 'destroy'])->name('posts.delete');
     Route::post('/posts/{post}/reply', [ReplyController::class, 'store'])->name('reply');
     Route::delete('/replies/{reply}/delete', [ReplyController::class, 'destroy'])->name('reply.destroy');
-    Route::delete('/posts/{post}/delete', [PostController::class, 'destroy'])->name('posts.destroy');
     Route::get('@{user:username}/follows', [UserController::class, 'follows'])->name('user-profile-follows');
     Route::get('@{user:username}/followers', [UserController::class, 'followers'])->name('user-profile-followers');
     Route::post('/{user:username}/follow', [UserController::class, 'follow'])->name('follow');
