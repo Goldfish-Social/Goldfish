@@ -34,7 +34,7 @@
                             <line x1="20" y1="8" x2="20" y2="14"></line>
                             <line x1="23" y1="11" x2="17" y2="11"></line>
                         </svg>
-                        <div class="hidden sm:block">Follow</div>
+                        
                     </InertiaLink>
                     <InertiaLink
                         v-if="$page.props.auth.user !== null && profile.isFollowing === true && profile.followbutton === false"
@@ -46,7 +46,7 @@
                             <circle cx="8.5" cy="7" r="4"></circle>
                             <line x1="23" y1="11" x2="17" y2="11"></line>
                         </svg>
-                        <div class="hidden sm:block">Unfollow</div>
+                        
                     </InertiaLink>
                 </div>
                 <p class="my-5 text-left" v-if="profile.about === null">

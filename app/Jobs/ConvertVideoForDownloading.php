@@ -45,9 +45,9 @@ class ConvertVideoForDownloading implements ShouldQueue
                 $filters->clip(TimeCode::fromSeconds(1), TimeCode::fromSeconds(30));
             })
 
-            ->addFilter(function ($filters) {
+            /* ->addFilter(function ($filters) {
                 $filters->resize(new Dimension(1080, 1920));
-            })
+            }) */
 
             // call the 'export' method...
             ->export()

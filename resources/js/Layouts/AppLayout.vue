@@ -44,7 +44,7 @@ const logout = () => {
 
     <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
       <nav
-        class="navbar sticky top-0 z-50 bg-white dark:bg-gray-900 border-gray-200 px-4 lg:px-6 py-2.5 dark:border-b-[1px] dark:border-gray-800">
+        class="navbar sticky top-0 z-50 bg-white dark:bg-gray-900 border-gray-200 px-4 lg:px-6 py-2.5 border-b-[1px] dark:border-gray-800">
         <div class="navbar-start">
           <div class="dropdown">
             <label tabindex="0" class="btn btn-ghost btn-circle">
