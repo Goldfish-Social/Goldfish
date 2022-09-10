@@ -41,7 +41,7 @@ class TimelineController extends Controller
         })
             ->with('user', 'replies', 'likers')
             ->latest()
-            ->paginate(5)
+            ->paginate(3)
             ->withQueryString());
 
         if ($request->wantsJson()) {
