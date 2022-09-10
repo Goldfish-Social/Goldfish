@@ -8,6 +8,7 @@ use App\Models\Reply;
 use Illuminate\Bus\Queueable;
 use App\Http\Resources\PostResource;
 use App\Http\Resources\UserResource;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -23,9 +24,9 @@ class RepliedPostNotification extends Notification
      */
     public function __construct(User $user, Post $post, Reply $reply)
     {
-        $this->post = $post;
         $this->user = $user;
-        $this->reply = $reply;
+        $this->post = $post;
+        $this->follower = Auth::user();
     }
 
     /**
@@ -62,8 +63,20 @@ class RepliedPostNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'user' => UserResource::make($this->user),
-            'post' => PostResource::make($this->post)
+            'user' => [
+                'id'            =>  $this->user->id,
+                'name'          =>  $this->user->name,
+                'username'      =>  $this->user->username,
+                'avatar'        =>  $this->user->getProfilePhotoUrlAttribute(),
+            ],
+            'post'              =>  PostResource::make($this->post),
+            'type'              =>  'reply',
+            'follower'  =>  [
+                'id'            =>  $this->follower->id,
+                'name'          =>  $this->follower->name,
+                'username'      =>  $this->follower->username,
+                'avatar'        =>  $this->follower->getProfilePhotoUrlAttribute(),
+            ],
         ];
     }
 }

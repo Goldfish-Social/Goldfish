@@ -170,7 +170,7 @@ const logout = () => {
           <div class="dropdown dropdown-end">
             <label tabindex="0" class="btn m-1">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                stroke="#b91c1c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M5.52 19c.64-2.2 1.84-3 3.22-3h6.52c1.38 0 2.58.8 3.22 3" />
                 <circle cx="12" cy="10" r="3" />
                 <circle cx="12" cy="12" r="10" />
@@ -195,7 +195,7 @@ const logout = () => {
         <div v-else class="navbar-end">
           <InertiaLink :href="route('notifications')" class="btn btn-ghost btn-circle">
             <div class="indicator">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="#dc2626">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="#b91c1c">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
               </svg>
@@ -219,22 +219,22 @@ const logout = () => {
                 mt-3
                 p-2
                 shadow
-                bg-gray-100
+                bg-white
                 text-gray-900
                 dark:bg-gray-900
                 dark:text-white
                 rounded-box
                 w-52
               ">
-              <li>
-                <InertiaLink v-if="$page.props.can.admin" class="justify-between" href="/admin/users"
+              <li v-if="$page.props.can.admin">
+                <InertiaLink class="justify-between" href="/admin/users"
                   :class="{ 'btn-active text-white btn-primary': $page.url === '/admin/users' }">
                   Users
                   <span class="badge">ADMIN</span>
                 </InertiaLink>
               </li>
-              <li>
-                <InertiaLink v-if="$page.props.can.admin" class="justify-between" href="/admin/posts"
+              <li v-if="$page.props.can.admin">
+                <InertiaLink class="justify-between" href="/admin/posts"
                   :class="{ 'btn-active text-white btn-primary': $page.url === '/admin/posts' }">
                   Posts
                   <span class="badge">ADMIN</span>

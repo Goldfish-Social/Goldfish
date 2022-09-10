@@ -4,6 +4,7 @@ import ProfileCard from '../Shared/ProfileCard.vue';
 import Empty from '../Shared/Empty.vue';
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue';
 import SimplePagination from '../Shared/SimplePagination.vue';
+import Cards from '../Shared/Cards.vue';
 
 let props = defineProps({
     profile: Object,
@@ -43,14 +44,15 @@ let props = defineProps({
                 </TabList>
                 <TabPanels>
                     <TabPanel>
-                        <div v-if="profile.data.posts === null">
-                            <Empty />
-                        </div>
+                        <Empty v-if="profile.data.posts === null" />
 
-                        <div class="px-4 mx-auto max-w-screen-xl py-10 lg:px-6">
+                        <Cards :posts="posts" />
+
+                        <!-- <div class="px-4 mx-auto max-w-screen-xl py-10 lg:px-6">
                             <div v-if="posts.data.posts !== null">
                                 <div v-for="post in posts.data" :key="post.id"
                                     class="mx-auto max-w-screen-sm max-h-fit lg:mb-16 mb-8">
+
 
                                     <div
                                         class="card card-compact dark:bg-gray-800 bg-white dark:text-white text-gray-900">
@@ -190,7 +192,7 @@ let props = defineProps({
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         <SimplePagination class="mb-6" v-if="posts.meta.total >= 21" :data="posts.links" />
 

@@ -1,46 +1,49 @@
 <script>
-    import AppLayout from '@/Layouts/AppLayout.vue';
-    import axios from 'axios';
-    import { debounce } from "lodash/function";
-    import Cards from '../Shared/Cards.vue';
-    import Empty from '../Shared/Empty.vue';
-    
-    export default {
-        props: {
-            posts: Object,
-        },
-        data() {
-            return {
-                userPosts: this.posts
-            }
-        },
-        components: {
-            AppLayout,
-            Cards,
-            Empty
-        },
-        mounted() {
-            window.addEventListener('scroll', debounce((e) => {
-                let pixelsFromBottom = document.documentElement.offsetHeight - document.documentElement.scrollTop - window.innerHeight;
-    
-                if (pixelsFromBottom < 200) {
-    
-                    axios.get(this.userPosts.links.next).then(response => {
-                        this.userPosts = {
-                            ...response.data,
-                            data: [...this.userPosts.data, ...response.data.data]
-                        }
-                    });
+import AppLayout from '@/Layouts/AppLayout.vue';
+import axios from 'axios';
+import { debounce } from "lodash/function";
+import Cards from '../Shared/Cards.vue';
+import Empty from '../Shared/Empty.vue';
+
+export default {
+    props: {
+        posts: Object,
+    },
+    data() {
+        return {
+            userPosts: this.posts
+        }
+    },
+    components: {
+        AppLayout,
+        Cards,
+        Empty
+    },
+    mounted() {
+        window.addEventListener('scroll', debounce((e) => {
+            let pixelsFromBottom = document.documentElement.offsetHeight - document.documentElement.scrollTop - window.innerHeight;
+
+            if (pixelsFromBottom < 200) {
+                if (!this.userPosts.next_page_url) {
+                    return;
                 }
-            }, 100));
-        },
-        watch: {
-            posts(newPosts) {
-                this.userPosts = newPosts;
+
+                axios.get(this.userPosts.links.next).then(response => {
+                    this.userPosts = {
+                        ...response.data,
+                        data: [...this.userPosts.data, ...response.data.data]
+                    }
+                });
             }
+        }, 100));
+    },
+    watch: {
+        posts(newPosts) {
+            this.userPosts = newPosts;
         }
     }
-    </script>
+}
+</script>
 <template>
     <AppLayout title="Public Timeline">
         <template #header>

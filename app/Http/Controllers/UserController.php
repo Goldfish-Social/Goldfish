@@ -6,6 +6,7 @@ use App\Http\Resources\PostResource;
 use App\Http\Resources\UserResource;
 use App\Models\Post;
 use App\Models\User;
+use App\Notifications\FollowNotifications;
 use Inertia\Inertia;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -46,7 +47,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function followers(User $user, Post $post)
+    public function followers(User $user)
     {
         return Inertia::render('Users/Followers', [
             'profile' => [
@@ -120,6 +121,7 @@ class UserController extends Controller
             auth()->user()->unfollow($user);
         } else {
             auth()->user()->toggleFollow($user);
+            $user->notify(new FollowNotifications($user, auth()->user()));
         }
 
         return back();

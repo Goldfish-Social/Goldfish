@@ -24,6 +24,9 @@ export default {
             let pixelsFromBottom = document.documentElement.offsetHeight - document.documentElement.scrollTop - window.innerHeight;
 
             if (pixelsFromBottom < 200) {
+                if (!this.userPosts.next_page_url) {
+                    return;
+                }
 
                 axios.get(this.userPosts.links.next).then(response => {
                     this.userPosts = {

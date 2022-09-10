@@ -1,7 +1,7 @@
 <template>
     <div>
         <button type="button" @click="openModal" class="btn btn-ghost btn-circle">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                 stroke="#b91c1c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-4M17 8l-5-5-5 5M12 4.2v10.3" />
             </svg>
@@ -56,7 +56,7 @@
                                         <textarea v-model="form.description" id="description" name="description"
                                             class="textarea textarea-primary bg-white text-gray-900 dark:bg-gray-900 dark:text-white"
                                             placeholder="Write a description (max 500 characters)"></textarea>
-                                        <p class="mt-2 text-sm text-gray-100">{{ characterCount }}/500</p>
+                                        <p class="mt-2 text-sm text-gray-900 dark:text-white">{{ characterCount }}/500</p>
                                         <div v-if="form.errors.description" v-text="form.errors.description"
                                             class="text-red-500 mt-1">
                                         </div>
