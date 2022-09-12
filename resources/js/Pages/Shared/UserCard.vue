@@ -14,7 +14,7 @@
                         <div class="ml-2 mb-2 text-sm">
                             <InertiaLink :href="route('user-profile', { id: profile.username })">
                                 {{ profile.name }}
-                                <div class="text-sm">
+                                <div class="text-sm text-gray-600 dark:text-gray-100">
                                     @{{ profile.username }}
                                 </div>
                             </InertiaLink>
@@ -31,7 +31,6 @@
                             <line x1="20" y1="8" x2="20" y2="14"></line>
                             <line x1="23" y1="11" x2="17" y2="11"></line>
                         </svg>
-                        
                     </InertiaLink>
                     <InertiaLink
                         v-if="$page.props.auth.user !== null && profile.is.following === true && profile.is.self === false"
@@ -43,23 +42,22 @@
                             <circle cx="8.5" cy="7" r="4"></circle>
                             <line x1="23" y1="11" x2="17" y2="11"></line>
                         </svg>
-                        
                     </InertiaLink>
                 </div>
-                <p class="my-4">{{ profile.about }}</p>
+                <p class="mb-4 ml-2">{{ profile.about }}</p>
                 
-                <div class="card-actions flex">
-                    <InertiaLink preserve-scroll class="btn btn-xs btn-outline btn-primary"
+                <div class="card-actions flex ml-2">
+                    <InertiaLink preserve-scroll class="btn-link font-bold"
                         :href="route('user-profile', { id: profile.username })">
-                        {{ profile.postamount }} Posts
+                        {{ profile.postamount }} <span class="font-normal">Posts</span>
                     </InertiaLink>
-                    <InertiaLink preserve-scroll class="btn btn-xs btn-outline btn-accent"
+                    <InertiaLink preserve-scroll class="btn-link font-bold"
                         :href="route('user-profile-follows', { id: profile.username })">
-                        {{ profile.followcount }} Follows
+                        {{ profile.followcount }} <span class="font-normal">Follows</span>
                     </InertiaLink>
-                    <InertiaLink preserve-scroll class="btn btn-xs btn-outline btn-primary"
+                    <InertiaLink preserve-scroll class="btn-link font-bold"
                         :href="route('user-profile-followers', { id: profile.username })">
-                        {{ profile.followerscount }} Followers
+                        {{ profile.followerscount }} <span class="font-normal">Followers</span>
                     </InertiaLink>
                 </div>
             </div>

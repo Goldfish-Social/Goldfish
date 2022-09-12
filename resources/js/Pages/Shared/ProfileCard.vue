@@ -47,12 +47,12 @@
                         </svg>
                     </InertiaLink>
                 </div>
-                <p class="my-5 text-left" v-if="profile.about === null">
-                    No bio.
+                <p class="my-2 ml-2 text-left" v-if="profile.about === null">
+                    No bio yet!
                 </p>
-                <p class="my-5 text-left">{{ profile.about }}</p>
+                <p class="my-2 ml-2 text-left">{{ profile.about }}</p>
                 <div class="flex my-4">
-                    <div class="flex justify-center">
+                    <div class="flex justify-start">
                         <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 mt-1" width="14" height="14"
                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
                             stroke-linecap="round" stroke-linejoin="round">
@@ -74,18 +74,18 @@
                     </div>
                 </div>
                 
-                <div class="card-actions flex">
-                    <InertiaLink preserve-scroll class="btn btn-xs btn-outline btn-success"
+                <div class="card-actions flex ml-2">
+                    <InertiaLink preserve-scroll class="btn-link font-bold"
                         :href="route('user-profile', { id: profile.username })">
-                        {{ profile.postamount }} Posts
+                        {{ profile.postamount }} <span class="font-normal">Posts</span>
                     </InertiaLink>
-                    <InertiaLink preserve-scroll class="btn btn-xs btn-outline btn-success"
+                    <InertiaLink preserve-scroll class="btn-link font-bold"
                         :href="route('user-profile-follows', { id: profile.username })">
-                        {{ profile.followcount }} Follows
+                        {{ profile.followcount }} <span class="font-normal">Follows</span>
                     </InertiaLink>
-                    <InertiaLink preserve-scroll class="btn btn-xs btn-outline btn-success"
+                    <InertiaLink preserve-scroll class="btn-link font-bold"
                         :href="route('user-profile-followers', { id: profile.username })">
-                        {{ profile.followerscount }} Followers
+                        {{ profile.followerscount }} <span class="font-normal">Followers</span>
                     </InertiaLink>
                 </div>
             </div>
