@@ -517,6 +517,24 @@ const logout = () => {
                 </div>
                 <!-- /Who to follow -->
 
+                <footer>
+                  <ul class="text-xs text-gray-500 dark:text-gray-100 my-4 mx-2">
+                    <li class="inline-block mx-2">
+                      <InertiaLink href="/about" class="hover:underline">About</InertiaLink>
+                    </li>
+                    <li class="inline-block mx-2">
+                      <InertiaLink href="/terms-of-service" class="hover:underline">Terms</InertiaLink>
+                    </li>
+                    <li class="inline-block mx-2">
+                      <InertiaLink href="/privacy-policy" class="hover:underline">Privacy</InertiaLink>
+                    </li>
+                    <li class="inline-block mx-2">
+                      <a class="hover:underline" target="_blank" href="https://github.com/Goldfish-Social/Goldfish">Source</a>
+                    </li>
+                    <li class="inline-block mx-2">© 2022. <a href="https://github.com/Goldfish-Social/Goldfish" target="_blank">Goldfish</a></li>
+                  </ul>
+                </footer>
+
 
               </div>
             </div>
