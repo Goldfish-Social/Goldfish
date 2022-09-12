@@ -22,10 +22,13 @@ class UserResource extends JsonResource
             'postamount'     =>  $this->posts->count(),
             'followerscount' =>  $this->followers()->count(),
             'followcount'    =>  $this->followings()->count(),
-            'isFollowing'    =>  Auth::user() ? Auth::user()->isFollowing($this->resource) : null,
-            'isFollowedBy'   =>  Auth::user() ? Auth::user()->isFollowedBy($this->resource) : null,
-            'followbutton'   =>  Auth::user() ? Auth::user()->is($this->resource) : null,
-            //'posts'          =>  PostResource::collection($this->whenLoaded('posts')),
+            //'isFollowing'    =>  Auth::user() ? Auth::user()->isFollowing($this->resource) : null,
+            //'isFollowedBy'   =>  Auth::user() ? Auth::user()->isFollowedBy($this->resource) : null,
+            //'followbutton'   =>  Auth::user() ? Auth::user()->is($this->resource) : null,
+            'is'            => [
+                'following'     =>  Auth::user() ? Auth::user()->isFollowing($this->resource) : null,
+                'self'          =>  Auth::user() ? Auth::user()->is($this->resource) : null
+            ]
         ];
     }
 }

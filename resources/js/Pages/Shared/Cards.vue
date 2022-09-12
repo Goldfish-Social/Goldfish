@@ -140,10 +140,13 @@
 import { useForm } from '@inertiajs/inertia-vue3'
 import HLSCore from '@cloudgeek/playcore-hls';
 
+
 const form = useForm();
 function destroy(id) {
     if (confirm("Are you sure you want to delete?")) {
-        form.delete(`/posts/${id}/delete`);
+        form.delete(`/posts/${id}/delete`, {
+            preserveScroll: true,
+        });
     }
 }
 

@@ -21,7 +21,7 @@
                         </div>
                     </h2>
                     <InertiaLink
-                        v-if="$page.props.auth.user !== null && profile.isFollowing === false && profile.followbutton === false"
+                        v-if="$page.props.auth.user !== null && profile.is.following === false && profile.is.self === false"
                         preserveScroll method="post" as="button" type="button" class="btn btn-primary btn-sm gap-2 mt-2"
                         :href="route('follow', { id: profile.username })">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -34,7 +34,7 @@
                         
                     </InertiaLink>
                     <InertiaLink
-                        v-if="$page.props.auth.user !== null && profile.isFollowing === true && profile.followbutton === false"
+                        v-if="$page.props.auth.user !== null && profile.is.following === true && profile.is.self === false"
                         preserveScroll method="post" as="button" type="button" class="btn btn-secondary btn-sm gap-2 mt-2"
                         :href="route('follow', { id: profile.username })">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"

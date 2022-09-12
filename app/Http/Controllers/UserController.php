@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\FollowerResource;
+use App\Http\Resources\FollowResource;
 use App\Http\Resources\PostResource;
 use App\Http\Resources\UserResource;
 use App\Models\Post;
@@ -50,68 +52,24 @@ class UserController extends Controller
     public function followers(User $user)
     {
         return Inertia::render('Users/Followers', [
-            'profile' => [
-                'id'             =>  $user->id,
-                'name'           =>  $user->name,
-                'about'          =>  $user->about,
-                'pic'            =>  $user->getProfilePhotoUrlAttribute(),
-                'time'           =>  $user->created_at->diffForHumans(),
-                'username'       =>  $user->username,
-                'website'        =>  Str::limit($user->website, 16),
-                'link'           =>  $user->website,
-                'postamount'     =>  $user->posts->count(),
-                'followerscount' =>  $user->followers()->count(),
-                'followcount'    =>  $user->followings()->count(),
-                'isFollowing'    =>  Auth::user()->isFollowing($user),
-                'isFollowedBy'   =>  Auth::user()->isFollowedBy($user),
-                'followbutton'   =>  Auth::user()->id === $user->id,
-                'followers'      =>  $user->followers
-                    // NEED: pagination
-                    ->map(fn ($followers) => [
-                        'id'             =>  $followers->id,
-                        'name'           =>  Str::limit($followers->name, 8),
-                        'username'       =>  $followers->username,
-                        'avatar'         =>  $followers->getProfilePhotoUrlAttribute(),
-                        'userlink'       =>  '/@' . $followers->username,
-                        'isFollowing'    =>  Auth::user()->isFollowing($followers),
-                        'isFollowedBy'   =>  Auth::user()->isFollowedBy($followers),
-                        'followbutton'   =>  Auth::user()->id === $followers->id,
-                    ]),
-            ],
+            'profile'       =>  UserResource::make($user),
+            'followers'     =>  FollowerResource::collection(
+                $user->followers()
+                     ->latest()
+                     ->paginate()
+            )
         ]);
     }
 
     public function follows(User $user)
     {
         return Inertia::render('Users/Follows', [
-            'profile' => [
-                'id'             =>  $user->id,
-                'name'           =>  $user->name,
-                'about'          =>  $user->about,
-                'pic'            =>  $user->getProfilePhotoUrlAttribute(),
-                'time'           =>  $user->created_at->diffForHumans(),
-                'username'       =>  $user->username,
-                'website'        =>  Str::limit($user->website, 16),
-                'link'           =>  $user->website,
-                'postamount'     =>  $user->posts->count(),
-                'followerscount' =>  $user->followers()->count(),
-                'followcount'    =>  $user->followings()->count(),
-                'isFollowing'    =>  Auth::user()->isFollowing($user),
-                'isFollowedBy'   =>  Auth::user()->isFollowedBy($user),
-                'followbutton'   =>  Auth::user()->id === $user->id,
-                'followers'      =>  $user->followings
-                    // NEED: pagination
-                    ->map(fn ($follows) => [
-                        'name'          =>  Str::limit($follows->followable->name, 8),
-                        'id'            =>  $follows->followable->user_id,
-                        'username'      =>  $follows->followable->username,
-                        'avatar'        =>  $follows->followable->getProfilePhotoUrlAttribute(),
-                        'userlink'       =>  '/@' . $follows->followable->username,
-                        'isFollowing'    =>  Auth::user()->isFollowing($follows->followable),
-                        'isFollowedBy'   =>  Auth::user()->isFollowedBy($follows->followable),
-                        'followbutton'   =>  Auth::user()->id === $follows->followable->id,
-                    ]),
-            ],
+            'profile'       =>  UserResource::make($user),
+            'follows'       =>  FollowResource::collection(
+                $user->followings()
+                     ->latest()
+                     ->paginate()
+            )
         ]);
     }
 
