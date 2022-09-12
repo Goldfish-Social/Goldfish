@@ -43,7 +43,7 @@ module.exports = {
                     error: "#ef4444",
                 },
             },
-            "light",
+            /* "light",
             "dark",
             "cupcake",
             "bumblebee",
@@ -71,7 +71,7 @@ module.exports = {
             "lemonade",
             "night",
             "coffee",
-            "winter",
+            "winter", */
         ],
         base: true,
         utils: true,
