@@ -2,7 +2,7 @@
     <div>
         <!-- Put this part before </body> tag -->
         <form @submit.prevent="submit">
-             
+
             <h3 class="font-bold text-lg dark:text-white">Upload a video {{$page.props.user.name}}</h3>
             <div class="py-4">
                 <div class="form-control py-2">
@@ -47,7 +47,7 @@
                 <div class="justify-start">
                     <div class="form-control">
                         <label class="label cursor-pointer mt-1">
-                            <span class="label-text dark:text-white mr-2">NSFW?</span> 
+                            <span class="label-text dark:text-white mr-2">NSFW?</span>
                             <input v-model="form.nsfw" type="checkbox" name="nsfw" id="nsfw" class="checkbox" />
                         </label>
                     </div>
@@ -55,9 +55,9 @@
                 <div class="justify-start">
                     <select v-model="form.status" name="status" id="status" class="select select-bordered w-full max-w-xs">
                         <option disabled value="">Status</option>
-                        <option value="public" selected>Public</option>
-                        <option value="unlisted">Unlisted</option>
-                        <option value="private">Private</option>
+                        <option value="Public" selected>Public</option>
+                        <option value="Unlisted">Unlisted</option>
+                        <option value="Private">Private</option>
                     </select>
                 </div>
 
@@ -85,7 +85,7 @@ let form = useForm({
   description: "",
   video: "",
   nsfw: "",
-  status:   "public",
+  status:   "Public",
 });
 
 let submit = () => {
