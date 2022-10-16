@@ -78,9 +78,9 @@
                                             <select v-model="form.status" name="status" id="status"
                                                 class="select select-bordered w-full max-w-xs">
                                                 <option disabled value="">Status</option>
-                                                <option value="public" selected>Public</option>
-                                                <option value="unlisted">Unlisted</option>
-                                                <option value="private">Private</option>
+                                                <option value="Public" selected>Public</option>
+                                                <option value="Unlisted">Unlisted</option>
+                                                <option value="Private">Private</option>
                                             </select>
                                         </div>
 
@@ -123,7 +123,7 @@ let form = useForm({
     description: "",
     video: "",
     nsfw: "",
-    status: "public",
+    status: "Public",
 })
 
 let submit = () => {
