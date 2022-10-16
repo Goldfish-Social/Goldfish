@@ -194,7 +194,7 @@ let props = defineProps({
                             </div>
                         </div> -->
 
-                        <SimplePagination class="mb-6" v-if="posts.meta.total >= 21" :data="posts.links" />
+                        <SimplePagination class="mb-6" v-if="posts.meta.total >= 11" :data="posts.links" />
 
 
                     </TabPanel>

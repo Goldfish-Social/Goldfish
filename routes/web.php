@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AboutController;
@@ -12,11 +11,10 @@ use App\Http\Controllers\TimelineController;
 use App\Http\Controllers\NotificationsController;
 
 
-Route::get('/', [HomeController::class, 'welcome'])->name('landing')->middleware('guest');
+Route::get('/', [TimelineController::class, 'welcome'])->name('landing')->middleware('guest');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('@{user:username}', [UserController::class, 'show'])->name('user-profile');
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('show-post');
-// Route::get('/test', [HomeController::class, 'test']);
 Route::get('/community', [UserController::class, 'index'])->name('community');
 Route::get('@{user:username}/follows', [UserController::class, 'follows'])->name('user-profile-follows');
 Route::get('@{user:username}/followers', [UserController::class, 'followers'])->name('user-profile-followers');

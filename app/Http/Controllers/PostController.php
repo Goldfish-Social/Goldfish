@@ -4,15 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Inertia\Inertia;
-use App\Models\Reply;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Resources\PostResource;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Gate;
-use App\Jobs\ConvertVideoForStreaming;
-use Illuminate\Support\Facades\Storage;
 use App\Jobs\ConvertVideoForDownloading;
 use App\Notifications\LikedPostNotification;
 

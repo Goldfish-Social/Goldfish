@@ -10,7 +10,7 @@
         <div tabindex="0"
             class="dropdown-content card card-compact w-64 p-2 shadow dark:bg-gray-900 dark:text-white bg-gray-100 text-gray-900">
             <div class="card-body">
-                <input v-model="search" type="text" class="input input-bordered input-info w-full bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-white"
+                <input v-model.lazy="search" type="text" class="input input-bordered input-info w-full bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-white"
                     placeholder="Search.." />
             </div>
         </div>

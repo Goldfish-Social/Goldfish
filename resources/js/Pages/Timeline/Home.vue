@@ -1,48 +1,41 @@
-<script>
+<script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
-import axios from 'axios';
-import { debounce } from "lodash/function";
+import throttle from "lodash/throttle";
+import { ref, watch } from "vue";
+import { Inertia } from "@inertiajs/inertia";
+import { useForm } from '@inertiajs/inertia-vue3';
 import Cards from '../Shared/Cards.vue';
 import Empty from '../Shared/Empty.vue';
+import SimplePagination from '../Shared/SimplePagination.vue';
 
-export default {
-    props: {
-        posts: Object,
-    },
-    data() {
-        return {
-            userPosts: this.posts
-        }
-    },
-    components: {
-        AppLayout,
-        Cards,
-        Empty
-    },
-    mounted() {
-        window.addEventListener('scroll', debounce((e) => {
-            let pixelsFromBottom = document.documentElement.offsetHeight - document.documentElement.scrollTop - window.innerHeight;
+let props = defineProps({
+    posts: Object,
+    filters: Object,
+});
 
-            if (pixelsFromBottom < 200) {
-                if (!this.userPosts.links.next) {
-                    return;
-                }
+let search = ref(props.filters.search);
 
-                axios.get(this.userPosts.links.next).then(response => {
-                    this.userPosts = {
-                        ...response.data,
-                        data: [...this.userPosts.data, ...response.data.data]
-                    }
-                });
+watch(
+    search,
+    throttle(function (value) {
+        Inertia.get(
+            "/home",
+            { search: value },
+            {
+                preserveState: true,
+                replace: true,
+                preserveScroll: true
             }
-        }, 100));
-    },
-    watch: {
-        posts(newPosts) {
-            this.userPosts = newPosts;
-        }
+        );
+    }, 500)
+);
+
+const form = useForm();
+function destroy(id) {
+    if (confirm("Are you sure you want to delete?")) {
+        form.delete(route('post.destroy', id));
     }
-}
+};
 </script>
 <template>
     <AppLayout title="Home">
@@ -54,9 +47,9 @@ export default {
             <div v-if="posts.meta.total === 0">
                 <Empty />
             </div>
-            <Cards :posts="userPosts" />
+            <Cards :posts="posts" />
         </section>
-        <!-- <SimplePagination v-if="posts.meta.total >= 21" :data="posts.links" /> -->
+        <SimplePagination v-if="posts.meta.total >= 11" :data="posts.links" />
 
     </AppLayout>
 </template>

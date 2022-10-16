@@ -43,7 +43,7 @@ class UserController extends Controller
                 $user->posts()
                 ->withCount('replies')
                 ->latest()
-                ->paginate()
+                ->paginate(10)
             ),
             'filters'       =>  $request->only(['search']),
         ]);
