@@ -35,7 +35,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::group(['middleware' => 'admin'], function () {
         Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
         Route::get('/admin/posts', [AdminController::class, 'posts'])->name('admin.posts');
-        Route::delete('/posts/{post}/delete', [AdminController::class, 'deletePost'])->name('admin.post.destroy');
-        Route::delete('/@{user:id}/delete', [AdminController::class, 'deleteUser'])->name('admin.user.destroy');
+        Route::delete('/admin/posts/{post}/delete', [AdminController::class, 'deletePost'])->name('admin.post.destroy');
+        Route::delete('/admin/@{user:id}/delete', [AdminController::class, 'deleteUser'])->name('admin.user.destroy');
     });
 });
