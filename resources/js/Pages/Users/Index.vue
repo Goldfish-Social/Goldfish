@@ -51,7 +51,7 @@ watch(
                   <h2 class="card-title">
                     <div class="avatar">
                         <div class="w-12 rounded-full">
-                            <img :src="user.avatar" />
+                            <img :src="user.pic" />
                         </div>
                       </div>
                       <div class="ml-3">

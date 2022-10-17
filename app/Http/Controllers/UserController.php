@@ -21,7 +21,7 @@ class UserController extends Controller
         return Inertia::render('Users/Community', [
             'users' => UserResource::collection(
                 User::query()
-                    ->select('id', 'name', 'username', 'about', 'created_at')
+                    ->select('id', 'name', 'username', 'about', 'created_at', 'profile_photo_path')
                     ->when($request->input('search'), function ($query, $search) {
                         $query->where('username', 'like', "%{$search}%");
                     })
@@ -31,7 +31,7 @@ class UserController extends Controller
                     ->paginate(10)
                     ->withQueryString()
             ),
-            'filters'                =>  $request->only(['search'])
+            'filters' =>  $request->only(['search'])
         ]);
     }
 
@@ -45,7 +45,7 @@ class UserController extends Controller
                 ->latest()
                 ->paginate(10)
             ),
-            'filters'       =>  $request->only(['search']),
+            'filters' =>  $request->only(['search']),
         ]);
     }
 
