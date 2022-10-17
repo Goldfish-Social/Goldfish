@@ -148,12 +148,12 @@ const clearPhotoFileInput = () => {
                 <JetLabel for="about" value="About" />
                 <textarea
                 v-model="form.about"
-                class="textarea textarea-primary w-full dark:bg-gray-900 dark:text-white" 
+                class="textarea textarea-primary w-full dark:bg-gray-900 dark:text-white"
                 rows="4"
                 >
                 </textarea>
-                
-                <JetInputError :message="form.errors.name" class="mt-2" />
+
+                <JetInputError :message="form.errors.about" class="mt-2" />
             </div>
 
             <!-- Website -->
