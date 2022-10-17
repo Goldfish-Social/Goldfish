@@ -495,14 +495,14 @@ const logout = () => {
                           alt="" />
                         <div class="flex flex-col ml-2">
                           <h1 class="text-gray-900 dark:text-white font-bold text-sm">
-                            Washy
+                            stux
                           </h1>
-                          <p class="text-gray-400 text-sm">@Washy</p>
+                          <p class="text-gray-400 text-sm">@stux</p>
                         </div>
                       </div>
                       <div class="">
                         <div class="flex items-center h-full text-gray-800 dark:text-white">
-                          <a href="#"
+                          <a href="/@stux"
                             class="text-xs font-bold text-red-400 px-4 py-1 rounded-full border-2 border-red-400">Follow</a>
                         </div>
                       </div>
@@ -546,9 +546,7 @@ const logout = () => {
       </main>
 
     </div>
-
-    <MobileNav class="pt-10 z-10" v-if="$page.props.auth.user !== null" />
-
+    <!-- <MobileNav class="pt-10 z-10" v-if="$page.props.auth.user !== null" /> -->
   </div>
 
 </template>
