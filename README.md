@@ -1,6 +1,6 @@
 ## Goldfish Social
 
-Meow there! Welcome to the Goldfish Social repo, this project is intended as a free open source alternative to (former) Vine and (currently) TikTok. The project has just started and is in very early stages. We started out with something different, but after some great advice restarted the project in SPA form(Single Page Application). We are using the following stacks:
+Hello there! Welcome to the Goldfish Social repo, this project is intended as a free open source alternative to (former) Vine and (currently) TikTok. The project has just started and is in very early stages. We started out with something different, but after some great advice restarted the project in SPA form(Single Page Application). We are using the following stacks:
 
 - [Laravel 9.x](https://laravel.com/).
 - [Vue JS 3.x](https://vuejs.org/).
@@ -29,7 +29,7 @@ In order to ensure that the Laravel community is welcoming to all, please review
 
 ## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+If you discover a security vulnerability within Laravel, please send an e-mail to stux via [stux@mstdn.social](mailto:stux@mstdn.social). All security vulnerabilities will be promptly addressed.
 
 ## License
 
