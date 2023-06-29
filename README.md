@@ -1,3 +1,5 @@
+# Goldfish is dead the last commit was May 30 - a month ago. Long live [Vidzy](https://codeberg.org/vidzy/vidzy)!
+
 ## Goldfish Social
 
 Hello there! Welcome to the Goldfish Social repo, this project is intended as a free open source alternative to (former) Vine and (currently) TikTok. The project has just started and is in very early stages. We started out with something different, but after some great advice restarted the project in SPA form(Single Page Application). We are using the following stacks:
