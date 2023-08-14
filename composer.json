@@ -17,7 +17,7 @@
         "overtrue/laravel-follow": "^5.0",
         "overtrue/laravel-like": "^5.0",
         "pbmedia/laravel-ffmpeg": "^8.1",
-        "predis/predis": "^2.0",
+        "predis/predis": "^2.2",
         "pusher/pusher-php-server": "^7.0",
         "silviolleite/laravelpwa": "^2.0",
         "spatie/image-optimizer": "^1.6",
